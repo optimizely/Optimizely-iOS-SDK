@@ -1,0 +1,7 @@
+pod "Optimizely-iOS-SDK", :path => "../Optimizely-iOS-SDK.podspec"
+
+target "Demo" do
+end
+
+target "DemoTests" do
+end
