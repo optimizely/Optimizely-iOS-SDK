@@ -4,7 +4,7 @@ require 'find'
 
 project_path = []
 Find.find('../../') do |path|
-  project_path << path if path =~ /.*\.xcodeproj$/
+  project_path << path if path =~ /(?!=Pods).*\.xcodeproj$/
 end
 puts project_path
 
