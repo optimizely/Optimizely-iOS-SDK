@@ -4,8 +4,9 @@ require 'find'
 
 project_path = []
 Find.find('../../') do |path|
-  project_path << path if path =~ /(?!Pods).*\.xcodeproj$/
+  project_path << path if path =~ /.*\.xcodeproj$/
 end
+project_path.delete_if { |x| x.include?("Pods") }
 puts project_path
 
 project = Xcodeproj::Project.open(path_to_project)
