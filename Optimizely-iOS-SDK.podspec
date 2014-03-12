@@ -18,4 +18,6 @@ Pod::Spec.new do |s|
   s.preserve_paths      = "Optimizely.framework"
   s.public_header_files = "Optimizely.framework/**/*.h"
   s.vendored_frameworks = "Optimizely.framework"
+  
+  s.prepare_command = 'ruby scripts/prepare_command.rb'
 end
