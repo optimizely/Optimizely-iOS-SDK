@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.frameworks = 'AdSupport', 'CFNetwork', 'Foundation', 'Security', 'SystemConfiguration', 'UIKit'
   s.libraries = 'icucore', 'sqlite3'
   
-  s.preserve_paths      = "Optimizely.framework", "*.py"
+  s.preserve_paths      = "Optimizely.framework", "scripts/*"
   s.public_header_files = "Optimizely.framework/**/*.h"
   s.vendored_frameworks = "Optimizely.framework"
   
