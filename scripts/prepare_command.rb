@@ -4,15 +4,12 @@ require 'find'
 
 project_path = []
 Find.find('../../') do |path|
-  if File.basename(path) == "Pods"
-    Find.prune       # Don't look any further into this directory.
-  else
   project_path << path if path =~ /.*\.xcodeproj$/
 end
+project_path.delete_if { |x| x.include?("Pods") }
 puts project_path
-
-project = Xcodeproj::Project.open(path_to_project)
+project = Xcodeproj::Project.open(project_path[0])
 main_target = project.targets.first
-phase = main_target.new_shell_script_build_phase("Name of your Phase")
-phase.shell_script = "do sth with ${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/your.file"
+phase = main_target.new_shell_script_build_phase("Label Optimizely Views")
+phase.shell_script = "python \"$SRCROOT/Pods/Optimizely-iOS-SDK/OptimizelyPrepareNibs.py\""
 project.save()
