@@ -24,7 +24,7 @@ phases = main_target.shell_script_build_phases
 phases.each do |phase|
   if phase.name == BUILD_PHASE_NAME
     puts "SHORTCUT"
-    return
+    exit
   end
 end
 
