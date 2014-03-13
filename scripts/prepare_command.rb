@@ -7,14 +7,11 @@ SHELL_SCRIPT = "python \"$SRCROOT/Pods/Optimizely-iOS-SDK/scripts/OptimizelyPrep
 # Find main project file
 project_path = []
 Find.find('../../') do |path|
-  puts path
   if(path == "../../Pods")
-    puts "Prunung" + path 
     Find.prune
   end
   project_path << path if path =~ /.*\.xcodeproj$/
 end
-puts project_path
 
 # Open project
 project = Xcodeproj::Project.open(project_path[0])
@@ -24,7 +21,6 @@ main_target = project.targets.first
 phases = main_target.shell_script_build_phases
 phases.each do |phase|
   if phase.shell_script == SHELL_SCRIPT 
-    puts "SHORTCUT"
     exit
   end
 end
