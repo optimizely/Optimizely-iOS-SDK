@@ -7,7 +7,7 @@ BUILD_PHASE_NAME = "Label Optimizely Views"
 project_path = []
 Find.find('../../') do |path|
   puts path
-  if(path == ".")
+  if(path == "../../Pods")
     puts "Prunung" + path 
     Find.prune
   end
