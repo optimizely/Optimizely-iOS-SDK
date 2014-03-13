@@ -6,7 +6,8 @@ BUILD_PHASE_NAME = "Label Optimizely Views"
 # Find main project file
 project_path = []
 Find.find('../../') do |path|
-  if(path == ".") 
+  if(path == ".")
+    puts "Prunung" + path 
     Find.prune
   end
   project_path << path if path =~ /.*\.xcodeproj$/
