@@ -5,7 +5,8 @@
 
 ## Usage
 
-To run the example project; clone the repo, and run `pod install` from the Example directory first.
+TODO
+<!-- To run the example project; clone the repo, and run `pod install` from the Example directory first. -->
 
 ## Requirements
 
@@ -18,9 +19,10 @@ it simply add the following line to your Podfile:
 
 ## Author
 
-Alex Medearis, alexmedearis@gmail.com
+Optimizely Engineering
 
 ## License
 
-Optimizely-iOS-SDK is available under the MIT license. See the LICENSE file for more info.
+TODO
+<!-- Otimizely-iOS-SDK is available under the MIT license. See the LICENSE file for more info. -->
 
