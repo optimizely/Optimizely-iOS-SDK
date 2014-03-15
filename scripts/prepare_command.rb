@@ -26,6 +26,10 @@ phases.each do |phase|
   end
 end
 
+# Check if build setting already exists
+settings = main_target.build_settings
+puts settings
+
 # If not, add it
 phase = main_target.new_shell_script_build_phase(BUILD_PHASE_NAME)
 phase.shell_script = SHELL_SCRIPT
