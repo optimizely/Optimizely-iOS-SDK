@@ -18,27 +18,40 @@ end
 project = Xcodeproj::Project.open(project_path[0])
 main_target = project.targets.first
 
+# What to install
+install_build_phase = true
+install_linker_flag = true
+
 # Check if build phase already exists
 phases = main_target.shell_script_build_phases
 phases.each do |phase|
   if phase.shell_script == SHELL_SCRIPT 
-    exit
+    install_build_phase = false
   end
 end
 
 # Check if build setting already exists
 settings = main_target.build_settings
-puts settings
-puts "HELLOOO"
+settings.each do |setting|
+  puts setting
+end
 
-# If not, add it
-phase = main_target.new_shell_script_build_phase(BUILD_PHASE_NAME)
-phase.shell_script = SHELL_SCRIPT
+# Install shell script build phase
+if install_build_phase
+  phase = main_target.new_shell_script_build_phase(BUILD_PHASE_NAME)
+  phase.shell_script = SHELL_SCRIPT
+  # Move new script phase to the beginning
+  phases = main_target.build_phases
+  popped_phase = phases.pop
+  phases.unshift popped_phase
+end
 
-# Move new script phase to the beginning
-phases = main_target.build_phases
-popped_phase = phases.pop
-phases.unshift popped_phase
+# Install linker flag
+if install_linker_flag
+
+end
 
 # Save project
-project.save()
+if install_linker_flag || install_build_phase
+  project.save()
+end
