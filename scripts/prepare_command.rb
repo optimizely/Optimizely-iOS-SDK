@@ -31,8 +31,10 @@ phases.each do |phase|
 end
 
 # Check if build setting already exists
-settings = main_target.build_settings("OTHER_LDFLAGS")
-puts settings
+settings = main_target.build_configurations
+settings.each do |setting|
+  puts setting
+end
 
 # Install shell script build phase
 if install_build_phase
