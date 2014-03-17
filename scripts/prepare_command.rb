@@ -31,7 +31,7 @@ phases.each do |phase|
 end
 
 # Check if build setting already exists
-settings = main_target.build_configurations
+settings = main_target.build_settings("Debug")
 settings.each do |setting|
   puts setting
 end
