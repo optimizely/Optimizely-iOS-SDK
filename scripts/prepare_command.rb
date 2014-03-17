@@ -35,6 +35,7 @@ settings = main_target.build_configurations
 settings.each do |setting|
   puts setting
 end
+puts "HELLOO"
 
 # Install shell script build phase
 if install_build_phase
