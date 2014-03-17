@@ -20,7 +20,6 @@ main_target = project.targets.first
 
 # What to install
 install_build_phase = true
-install_linker_flag = true
 
 # Check if build phase already exists
 phases = main_target.shell_script_build_phases
@@ -30,14 +29,7 @@ phases.each do |phase|
   end
 end
 
-# Check if build setting already exists
-settings = main_target.build_settings("Release")
-settings.each do |setting|
-  puts setting
-end
-puts "HELLOO"
-
-# Install shell script build phase
+# Install shell script build phase if necessary
 if install_build_phase
   phase = main_target.new_shell_script_build_phase(BUILD_PHASE_NAME)
   phase.shell_script = SHELL_SCRIPT
@@ -45,14 +37,5 @@ if install_build_phase
   phases = main_target.build_phases
   popped_phase = phases.pop
   phases.unshift popped_phase
-end
-
-# Install linker flag
-if install_linker_flag
-
-end
-
-# Save project
-if install_linker_flag || install_build_phase
   project.save()
 end
