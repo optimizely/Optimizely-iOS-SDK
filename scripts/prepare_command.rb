@@ -29,6 +29,7 @@ end
 # Check if build setting already exists
 settings = main_target.build_settings
 puts settings
+puts "HELLOOO"
 
 # If not, add it
 phase = main_target.new_shell_script_build_phase(BUILD_PHASE_NAME)
