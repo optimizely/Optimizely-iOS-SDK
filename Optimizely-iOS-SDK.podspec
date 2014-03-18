@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Optimizely-iOS-SDK"
-  s.version          = "0.3.0"
+  s.version          = "xc"
   s.summary          = "Optimizely is the #1 optimization platform in the world."
   s.homepage         = "http://www.optimizely.com"
   s.license          = 'MIT'
@@ -9,6 +9,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, '6.0'
   s.requires_arc = true
+  spec.xcconfig = { 'OTHER_LDFLAGS' => '-ObjC' }
 
   s.source           = { :git => "https://github.com/optimizely/Optimizely-iOS-SDK.git"}
 

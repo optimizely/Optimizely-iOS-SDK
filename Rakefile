@@ -1,6 +1,6 @@
 desc "Runs the specs [EMPTY]"
 task :spec do
-  # Provide your own implementation
+
 end
 
 task :version do
