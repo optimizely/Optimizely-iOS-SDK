@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Optimizely-iOS-SDK"
-  s.version          = "xc"
+  s.version          = "0.3.0"
   s.summary          = "Optimizely is the #1 optimization platform in the world."
   s.homepage         = "http://www.optimizely.com"
   s.license          = 'MIT'
