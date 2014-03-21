@@ -57,7 +57,7 @@ You can copy-paste your API token from the `Project Code` dialog within your Opt
 If you have trouble connectiong to the Optimizely Editor in your development environment, remove the `#ifdef DEBUG … #endif` flag and force-enable the editor (just don't ship your production app with the Editor enabled!)
 
 ### Manual Installation
-0. Clone the Optimizely SDK using `git clone https://github.com/optimizely/Optimizely-IOS-SDK`
+0. Clone the Optimizely SDK using `git clone https://github.com/optimizely/Optimizely-iOS-SDK`
 
 1. Drag `Optimizely.framework` from the SDK repository into your project. Check "Copy items into destination group's folder" and make sure the appropriate targets are checked.
     
