@@ -81,16 +81,13 @@ pod 'Optimizely-iOS-SDK', :git =&gt; 'git@github.com:optimizely/Optimizely-iOS-S
 </ol><p>4 Add the following to the beginning of <code>application:didFinishLaunchingWithOptions:</code> in your
 app delegate:</p>
 
-<pre><code>- (void)application:(UIApplication*)application didFinishLaunchingWithOptions:(...) {
-
-        #ifdef DEBUG
+<pre><code>        #ifdef DEBUG
         [Optimizely enableEditor];
         #endif
 
-        [Optimizely startOptimizelyWithAPIToken:@"YOUR-API-TOKEN" launchOptions:launchOptions];
+        [Optimizely startOptimizelyWithAPIToken:YOUR_API_TOKEN launchOptions:launchOptions];
 
-                // The rest of your initialization code...
-    }
+        // The rest of your initialization code...
 </code></pre>
 
 <p>You can copy-paste your API token from the <code>Project Code</code> dialog within your Optimizely iOS project.</p>
@@ -118,13 +115,15 @@ app delegate:</p>
 </li>
 </ul>
 </li>
-<li><p>Switch to the "Build Settings" tab. Add <code>-ObjC</code> to the "Other Linker Flags" build setting.</p></li>
-<li><p>Drag <code>scripts/OptimizelyPrepareNibs.py</code> from the SDK into your project. Check "Copy items into destination group's folder" and <strong>uncheck all targets</strong>.</p></li>
+<li><p><a name="objc"></a>Switch to the "Build Settings" tab. Add <code>-ObjC</code> to the "Other Linker Flags" build setting.</p></li>
+<li><p>Drag <code>scripts/OptimizelyPrepareNibs.py</code> from the SDK into the root of your project. Check "Copy items into destination group's folder" and <strong>uncheck all targets</strong>.</p></li>
 <li>
 <p>Open the "Build Phases" tab for the app's target. In the app menu (top of the screen) click "Editor" -&gt; "Add Build Phase" -&gt; "Add Run Script Build Phase". In the script field, write:</p>
 
 <pre><code>python "$SRCROOT/OptimizelyPrepareNibs.py"
 </code></pre>
+
+<p>You may need to modify this path if you added <code>OptimizelyPrepareNibs.py</code> to a different directory.</p>
 
 <p>This script needs to run at the start of the build process (right after Target Dependencies). To make sure this happens, drag the Run Script phase you just added to the top of the list of phases, just under "Target Dependencies". The final result should look something like this:</p>
 
@@ -140,16 +139,13 @@ app delegate:</p>
 <p>Add the following to the beginning of <code>application:didFinishLaunchingWithOptions:</code> in your
 app delegate:</p>
 
-<pre><code>- (void)application:(UIApplication*)application didFinishLaunchingWithOptions:(...) {
-
-    #ifdef DEBUG
+<pre><code>    #ifdef DEBUG
     [Optimizely enableEditor];
     #endif
 
-    [Optimizely startOptimizelyWithAPIToken:@"YOUR-API-TOKEN" launchOptions:launchOptions];
+    [Optimizely startOptimizelyWithAPIToken:YOUR_API_TOKEN launchOptions:launchOptions];
 
     // The rest of your initialization code...
-}
 </code></pre>
 </li>
 </ol><h3>
@@ -162,8 +158,7 @@ app delegate:</p>
 <a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a>:
 used for making network requests.</li>
 <li>
-<a href="https://github.com/steipete/AFDownloadRequestOperation">AFDownloadRequestOperation</a>:
-used to download assets, with the ability to resume interrupted downloads.</li>
+<a href="https://github.com/steipete/AFDownloadRequestOperation">AFDownloadRequestOperation</a>:</li>
 <li>
 <a href="https://github.com/ccgus/fmdb">FMDB</a>:
 Objective-C wrapper for sqlite.</li>
@@ -213,9 +208,9 @@ used to communicate with the web editor over websockets.</li>
 
 <p>All experiments must have at least one goal! We automatically track all view controller transitions and screen taps so that they can easily be used as goals. In order to select a particular transition or screen tap as a goal, open the "Goals" dialogue and click "New Goal" in the bottom right.</p>
 
-<p><img src="editor-add-goal.png" alt="Drawing"></p>
+<p><img src="editor-add-goal.png" alt="Create Goal dialog"></p>
 
-<p>On this screen, you will see all the transitions and taps occurring in your app as you interact with it on your device. Select the one that you want to be your goal and click "Done". Optimizely will now track the percentage of your users in each variation that complete that action and the results will appear in our dashboard. If you're curious about the "Create Custom Goal Instead" button, jump ahead to <a href="#customgoals">Custom Goals</a>.</p>
+<p>On this screen, you will see all the view transitions and taps occurring in your app as you interact with it on your device. Select the one that you want to be your goal, give it a name, and click "Save". Optimizely will now track the percentage of your users in each variation that complete that action and the results will appear in our dashboard. If you're curious about the "Create Custom Goal Instead" button, jump ahead to <a href="#customgoals">Custom Goals</a>.</p>
 
 <h4>
 <a name="optional-allocating-experiment-traffic" class="anchor" href="#optional-allocating-experiment-traffic"><span class="octicon octicon-link"></span></a><em>Optional: Allocating Experiment Traffic</em>
@@ -240,7 +235,7 @@ used to communicate with the web editor over websockets.</li>
 <li>Optimizely will assign randomly generated <code>optimizelyIDs</code> to each UIView prototype in your app; an example might be "MainView-w389gjw" using the OptimizelyPrepareNibs.py script.</li>
 <li>Each UIView will become available in the Optimizely Mobile Editor on <a href="www.optimizely.com">optimizely.com</a>.</li>
 <li>
-<strong>Important</strong>: When you make changes to a UIView or child object in the Optimizely Mobile Editor, those changes will affect all instances of the that object prototype. Selecting a UIImage object in an infinite-scroll list will appear to modify the most recently created object (usually on the bottom), but will affect all instances of that object once the experiment is running live. <em>Please use the Preview functionality to verify this behavior before running your experiment.</em>
+<strong>Important</strong>: Each instance of a UITableViewCell in a UITableView will have the same changes applied to it. <em>Please use the Preview functionality to verify this behavior before running your experiment.</em>
 </li>
 </ul><p>If you are creating views programmatically, you must set the <code>optimizelyId</code> manually:</p>
 
@@ -248,7 +243,7 @@ used to communicate with the web editor over websockets.</li>
 label.optimizelyId = @"pricing-title-label";
 </code></pre>
 
-<p>For any views that you want to swizzle, you should give them a unique <code>optimizelyId</code>. All the subviews of that view will also automatically become visible to the editor, so there's no need to assign an <code>optimizelyId</code> to each subview. A good guideline is that you need to assign an <code>optimizelyId</code> to the view of each of your view controllers.</p>
+<p>For any views that you want to swizzle, you should give them a unique <code>optimizelyId</code>.   </p>
 
 <h3>
 <a name="code-blocks" class="anchor" href="#code-blocks"><span class="octicon octicon-link"></span></a>Code blocks</h3>
@@ -281,14 +276,9 @@ label.optimizelyId = @"pricing-title-label";
 <a name="custom-goals-" class="anchor" href="#custom-goals-"><span class="octicon octicon-link"></span></a>Custom Goals <a name="customgoals"></a>
 </h3>
 
-<p>Custom goals allow you to track events other than taps and view changes. There are two steps to creating a custom goal. The first step occurs in the web editor. Click "Goals", then "New Goal", and finally "Create Custom Goal". You will be prompted for a string to uniquely identify your custom goal. In order to track this goal, send this same string as a parameter to </p>
+<p>Custom goals allow you to track events other than taps and view changes. There are two steps to creating a custom goal. The first step occurs in the web editor. Click "Goals", then "New Goal", and select "Custom Goal" from the drop-down. You will be prompted for a string to uniquely identify your custom goal. In order to track this goal, send this same string as a parameter to </p>
 
 <pre><code>[[Optimizely sharedInstance] trackEvent:(NSString *)]
-</code></pre>
-
-<p>You can optionally include revenue information with the goal:</p>
-
-<pre><code>[[Optimizely sharedInstance] trackEvent:(NSString *) revenue:(NSInteger)]
 </code></pre>
 
 <p>For example, if we wanted a goal for users deleting a task with a swipe, we might create a custom goal "User Deleted Task" and then call <code>-trackEvent</code> with this string in our event handler as follows:</p>
@@ -305,6 +295,10 @@ label.optimizelyId = @"pricing-title-label";
 <p><strong>Q: My device is running the app but I can't see it in the editor.</strong></p>
 
 <p>A: First, confirm your device is connected to the internet. If that turns out to be useless advice, make sure that the API token that you passed into <code>[Optimizely startOptimizelyWithAPIToken:@"YOUR-API-TOKEN" launchOptions:launchOptions];</code> matches what you see in the Project Code box within Optimizely.</p>
+
+<p><strong>Q: My app crashes and I get a run-time error after installing <code>this class is not key value coding-compliant for the key optimizelyId</code></strong></p>
+
+<p>A: Make sure you added the <code>-ObjC</code> linker flag to your build settings (see <a href="#objc">Manual Installation</a>).</p>
       </section>
       <footer>
         <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
