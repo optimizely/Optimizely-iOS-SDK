@@ -1,0 +1,1933 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>Optimizely Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.2 (build 963)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Optimizely </a></h1>
+				<a id="developerHome" href="../index.html">Optimizely</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">Optimizely Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/appVersion">&nbsp;&nbsp;&nbsp;&nbsp;appVersion</option>
+	
+	<option value="//api/name/projectId">&nbsp;&nbsp;&nbsp;&nbsp;projectId</option>
+	
+	<option value="//api/name/sdkVersion">&nbsp;&nbsp;&nbsp;&nbsp;sdkVersion</option>
+	
+	<option value="//api/name/userId">&nbsp;&nbsp;&nbsp;&nbsp;userId</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/disableSwizzle">&nbsp;&nbsp;&nbsp;&nbsp;+ disableSwizzle</option>
+	
+	<option value="//api/name/enableEditor">&nbsp;&nbsp;&nbsp;&nbsp;+ enableEditor</option>
+	
+	<option value="//api/name/flushEvents">&nbsp;&nbsp;&nbsp;&nbsp;+ flushEvents</option>
+	
+	<option value="//api/name/sharedInstance">&nbsp;&nbsp;&nbsp;&nbsp;+ sharedInstance</option>
+	
+	<option value="//api/name/startOptimizelyWithAPIToken:launchOptions:">&nbsp;&nbsp;&nbsp;&nbsp;+ startOptimizelyWithAPIToken:launchOptions:</option>
+	
+	<option value="//api/name/startOptimizelyWithAPIToken:launchOptions:experimentsLoadedCallback:">&nbsp;&nbsp;&nbsp;&nbsp;+ startOptimizelyWithAPIToken:launchOptions:experimentsLoadedCallback:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/bindColorForKey:toKeyPath:onObject:">&nbsp;&nbsp;&nbsp;&nbsp;- bindColorForKey:toKeyPath:onObject:</option>
+	
+	<option value="//api/name/bindNumberForKey:toKeyPath:onObject:">&nbsp;&nbsp;&nbsp;&nbsp;- bindNumberForKey:toKeyPath:onObject:</option>
+	
+	<option value="//api/name/bindPointForKey:toKeyPath:onObject:">&nbsp;&nbsp;&nbsp;&nbsp;- bindPointForKey:toKeyPath:onObject:</option>
+	
+	<option value="//api/name/bindRectForKey:toKeyPath:onObject:">&nbsp;&nbsp;&nbsp;&nbsp;- bindRectForKey:toKeyPath:onObject:</option>
+	
+	<option value="//api/name/bindSizeForKey:toKeyPath:onObject:">&nbsp;&nbsp;&nbsp;&nbsp;- bindSizeForKey:toKeyPath:onObject:</option>
+	
+	<option value="//api/name/bindStringForKey:toKeyPath:onObject:">&nbsp;&nbsp;&nbsp;&nbsp;- bindStringForKey:toKeyPath:onObject:</option>
+	
+	<option value="//api/name/boolForKey:defaultValue:">&nbsp;&nbsp;&nbsp;&nbsp;- boolForKey:defaultValue:</option>
+	
+	<option value="//api/name/codeTest:withBlocks:defaultBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- codeTest:withBlocks:defaultBlock:</option>
+	
+	<option value="//api/name/colorForKey:defaultValue:">&nbsp;&nbsp;&nbsp;&nbsp;- colorForKey:defaultValue:</option>
+	
+	<option value="//api/name/numberForKey:defaultValue:">&nbsp;&nbsp;&nbsp;&nbsp;- numberForKey:defaultValue:</option>
+	
+	<option value="//api/name/pointForKey:defaultValue:">&nbsp;&nbsp;&nbsp;&nbsp;- pointForKey:defaultValue:</option>
+	
+	<option value="//api/name/rectForKey:defaultValue:">&nbsp;&nbsp;&nbsp;&nbsp;- rectForKey:defaultValue:</option>
+	
+	<option value="//api/name/sizeForKey:defaultValue:">&nbsp;&nbsp;&nbsp;&nbsp;- sizeForKey:defaultValue:</option>
+	
+	<option value="//api/name/stringForKey:defaultValue:">&nbsp;&nbsp;&nbsp;&nbsp;- stringForKey:defaultValue:</option>
+	
+	<option value="//api/name/trackEvent:">&nbsp;&nbsp;&nbsp;&nbsp;- trackEvent:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Initialization">Initialization</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Events and Goal Tracking">Events and Goal Tracking</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Experiment Variables">Experiment Variables</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Code Tests">Code Tests</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/appVersion">appVersion</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/projectId">projectId</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sdkVersion">sdkVersion</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userId">userId</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/disableSwizzle">disableSwizzle</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/enableEditor">enableEditor</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/flushEvents">flushEvents</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sharedInstance">sharedInstance</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startOptimizelyWithAPIToken:launchOptions:">startOptimizelyWithAPIToken:launchOptions:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startOptimizelyWithAPIToken:launchOptions:experimentsLoadedCallback:">startOptimizelyWithAPIToken:launchOptions:experimentsLoadedCallback:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bindColorForKey:toKeyPath:onObject:">bindColorForKey:toKeyPath:onObject:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bindNumberForKey:toKeyPath:onObject:">bindNumberForKey:toKeyPath:onObject:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bindPointForKey:toKeyPath:onObject:">bindPointForKey:toKeyPath:onObject:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bindRectForKey:toKeyPath:onObject:">bindRectForKey:toKeyPath:onObject:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bindSizeForKey:toKeyPath:onObject:">bindSizeForKey:toKeyPath:onObject:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bindStringForKey:toKeyPath:onObject:">bindStringForKey:toKeyPath:onObject:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/boolForKey:defaultValue:">boolForKey:defaultValue:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/codeTest:withBlocks:defaultBlock:">codeTest:withBlocks:defaultBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/colorForKey:defaultValue:">colorForKey:defaultValue:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/numberForKey:defaultValue:">numberForKey:defaultValue:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pointForKey:defaultValue:">pointForKey:defaultValue:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rectForKey:defaultValue:">rectForKey:defaultValue:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sizeForKey:defaultValue:">sizeForKey:defaultValue:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stringForKey:defaultValue:">stringForKey:defaultValue:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/trackEvent:">trackEvent:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="Optimizely Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">Optimizely Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">Optimizely.h</td>
+</tr>
+						</tbody></table></div>
+					
+                    
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>This class defines the entire interface with the Optimizely SDK</p>
+
+<p>The Optimizely SDK is organized around a Singleton, accessible via
+the <a href="#//api/name/sharedInstance"><code>sharedInstance</code></a> method. Through this singleton, you can mark variables
+or assets as available for experimentation, track custom goals, or <strong>(Coming Soon!)</strong>
+run experiments through code blocks.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						<a title="Initialization" name="task_Initialization"></a>
+						<h3 class="subsubtitle task-title">Initialization</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sharedInstance">+&nbsp;sharedInstance</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startOptimizelyWithAPIToken:launchOptions:">+&nbsp;startOptimizelyWithAPIToken:launchOptions:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startOptimizelyWithAPIToken:launchOptions:experimentsLoadedCallback:">+&nbsp;startOptimizelyWithAPIToken:launchOptions:experimentsLoadedCallback:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/enableEditor">+&nbsp;enableEditor</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/disableSwizzle">+&nbsp;disableSwizzle</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Events and Goal Tracking" name="task_Events and Goal Tracking"></a>
+						<h3 class="subsubtitle task-title">Events and Goal Tracking</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/flushEvents">+&nbsp;flushEvents</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/trackEvent:">&ndash;&nbsp;trackEvent:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Experiment Variables" name="task_Experiment Variables"></a>
+						<h3 class="subsubtitle task-title">Experiment Variables</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bindStringForKey:toKeyPath:onObject:">&ndash;&nbsp;bindStringForKey:toKeyPath:onObject:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stringForKey:defaultValue:">&ndash;&nbsp;stringForKey:defaultValue:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bindColorForKey:toKeyPath:onObject:">&ndash;&nbsp;bindColorForKey:toKeyPath:onObject:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/colorForKey:defaultValue:">&ndash;&nbsp;colorForKey:defaultValue:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bindNumberForKey:toKeyPath:onObject:">&ndash;&nbsp;bindNumberForKey:toKeyPath:onObject:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/numberForKey:defaultValue:">&ndash;&nbsp;numberForKey:defaultValue:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bindPointForKey:toKeyPath:onObject:">&ndash;&nbsp;bindPointForKey:toKeyPath:onObject:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pointForKey:defaultValue:">&ndash;&nbsp;pointForKey:defaultValue:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bindSizeForKey:toKeyPath:onObject:">&ndash;&nbsp;bindSizeForKey:toKeyPath:onObject:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sizeForKey:defaultValue:">&ndash;&nbsp;sizeForKey:defaultValue:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bindRectForKey:toKeyPath:onObject:">&ndash;&nbsp;bindRectForKey:toKeyPath:onObject:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/rectForKey:defaultValue:">&ndash;&nbsp;rectForKey:defaultValue:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/boolForKey:defaultValue:">&ndash;&nbsp;boolForKey:defaultValue:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Code Tests" name="task_Code Tests"></a>
+						<h3 class="subsubtitle task-title">Code Tests</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/codeTest:withBlocks:defaultBlock:">&ndash;&nbsp;codeTest:withBlocks:defaultBlock:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/projectId">&nbsp;&nbsp;projectId</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sdkVersion">&nbsp;&nbsp;sdkVersion</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/appVersion">&nbsp;&nbsp;appVersion</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/userId">&nbsp;&nbsp;userId</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/appVersion" title="appVersion"></a>
+	<h3 class="subsubtitle method-title">appVersion</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Optional NSString property that is the current app version
+We default this value from bundle if not provided</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSString *appVersion</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/projectId" title="projectId"></a>
+	<h3 class="subsubtitle method-title">projectId</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>NSString property that is your project Id</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (readonly, strong) NSString *projectId</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sdkVersion" title="sdkVersion"></a>
+	<h3 class="subsubtitle method-title">sdkVersion</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>NSString property that is the current SDK version</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (readonly, strong) NSString *sdkVersion</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userId" title="userId"></a>
+	<h3 class="subsubtitle method-title">userId</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Using this you can set the user id idenifying this user
+This is optional, the default value is vendor id</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSString *userId</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/disableSwizzle" title="disableSwizzle"></a>
+	<h3 class="subsubtitle method-title">disableSwizzle</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method deactivate the features that require swizzling.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)disableSwizzle</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/enableEditor" title="enableEditor"></a>
+	<h3 class="subsubtitle method-title">enableEditor</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method makes the device available to the Optimizely web editor</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)enableEditor</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method makes it more convenient for a developer to set up an experiment. The only other way
+to connect a device to the web editor is by opening the app through the appropriate
+custom URL, accessible from the matching Optimizely project.</p><div class="warning"><p><strong>Warning:</strong> This method should only be called behind an <code>#ifdef DEBUG</code> flag. Otherwise
+any device running the app could be altered from the web editor.</p></div><div class="warning"><p><strong>Warning:</strong> Should only be called before <code>+(void)startWithProjectId:(NSString*)</code>projectId<code> launchOptions:(NSDictionary *)launchOptions;</code>.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/flushEvents" title="flushEvents"></a>
+	<h3 class="subsubtitle method-title">flushEvents</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method immediately starts a network request that sends tracked events bac
+to the server</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)flushEvents</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Events are automatically flushed at regular intervals by the SDK. This method exists
+so that the Optimizely SDK can piggy-back on an already activated radio. This can save
+battery by reducing the number of times the radio is turned on/off.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sharedInstance" title="sharedInstance"></a>
+	<h3 class="subsubtitle method-title">sharedInstance</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method provides access to the Optimizely singleton</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (instancetype)sharedInstance</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The Optimizely Singleton</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startOptimizelyWithAPIToken:launchOptions:" title="startOptimizelyWithAPIToken:launchOptions:"></a>
+	<h3 class="subsubtitle method-title">startOptimizelyWithAPIToken:launchOptions:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Calling this activates the Optimizely framework. If this isn&rsquo;t called, the app will behave
+as though Optimizely wasn&rsquo;t included. Any configuration should be done before this is called.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)startOptimizelyWithAPIToken:(NSString *)<em>apiToken</em> launchOptions:(NSDictionary *)<em>launchOptions</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>apiToken</em></dt>
+			<dd><p>The apiToken of your iOS project on Optimizely.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>launchOptions</em></dt>
+			<dd><p>A dictionary of launch options. This is typically the variable
+passed into <code>-application: didFinishLaunchingWithOptions:</code>. TODO: Options for launchOptions</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startOptimizelyWithAPIToken:launchOptions:experimentsLoadedCallback:" title="startOptimizelyWithAPIToken:launchOptions:experimentsLoadedCallback:"></a>
+	<h3 class="subsubtitle method-title">startOptimizelyWithAPIToken:launchOptions:experimentsLoadedCallback:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Calling this activates the Optimizely framework. If this isn&rsquo;t called, the app will behave
+as though Optimizely wasn&rsquo;t included. Any configuration should be done before this is called.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)startOptimizelyWithAPIToken:(NSString *)<em>apiToken</em> launchOptions:(NSDictionary *)<em>launchOptions</em> experimentsLoadedCallback:(OptimizelySuccessBlock)<em>experimentsLoadedCallback</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>apiToken</em></dt>
+			<dd><p>The apiToken of your iOS project on Optimizely.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>launchOptions</em></dt>
+			<dd><p>A dictionary of launch options. This is typically the variable
+passed into <code>-application: didFinishLaunchingWithOptions:</code>. TODO: Options for launchOptions</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>experimentsLoadedCallback</em></dt>
+			<dd><p>A block that will be executed when the Optimizely framework
+has activated any experiments that pass targeting.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If no data file has been cached (e.g. if
+this is the first launch) then the experimentsLoadedCallback will not be called until
+the latest experiments file has been downloaded from the server.
+If the device is in edit mode, the callback will execute immediately.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/bindColorForKey:toKeyPath:onObject:" title="bindColorForKey:toKeyPath:onObject:"></a>
+	<h3 class="subsubtitle method-title">bindColorForKey:toKeyPath:onObject:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method allows a property on an object of type UIColor to be exposed as a variable
+that can be changed as part of an Optimizely experiment</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)bindColorForKey:(NSString *)<em>key</em> toKeyPath:(NSString *)<em>keyPath</em> onObject:(id)<em>object</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>A unique identifier for this variable. You should be able to recognize this name when it appears in the web editor</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>keyPath</em></dt>
+			<dd><p>A key path of the form property.subproperty (with zero or more subproperties): for example
+“backgroundColor” or &ldquo;backgroundColor.red&rdquo;</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>The object whose property you want to expose</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Different from <a href="#//api/name/colorForKey:defaultValue:"><code>colorForKey:defaultValue:</code></a> in two ways. (1) The default value is whatever you
+set the variable to prior to calling this function and (2) the value can be &lsquo;live updated&rsquo;
+through the editor.
+See <code>NSKeyValueCoding setValue:forKeyPath:</code> for more information</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/bindNumberForKey:toKeyPath:onObject:" title="bindNumberForKey:toKeyPath:onObject:"></a>
+	<h3 class="subsubtitle method-title">bindNumberForKey:toKeyPath:onObject:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method allows a property on an object of type NSNumber to be exposed as a variable
+that can be changed as part of an Optimizely experiment</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)bindNumberForKey:(NSString *)<em>key</em> toKeyPath:(NSString *)<em>keyPath</em> onObject:(id)<em>object</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>A unique identifier for this variable. You should be able to recognize this name when it appears in the web editor</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>keyPath</em></dt>
+			<dd><p>A key path of the form property.subproperty (with zero or more subproperties): for example
+“backgroundColor” or &ldquo;backgroundColor.red&rdquo;</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>The object whose property you want to expose</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Different from <a href="#//api/name/numberForKey:defaultValue:"><code>numberForKey:defaultValue:</code></a> in two ways. (1) The default value is whatever you
+set the variable to prior to calling this function and (2) the value can be &lsquo;live updated&rsquo;
+through the editor.
+See <code>NSKeyValueCoding setValue:forKeyPath:</code> for more information</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/bindPointForKey:toKeyPath:onObject:" title="bindPointForKey:toKeyPath:onObject:"></a>
+	<h3 class="subsubtitle method-title">bindPointForKey:toKeyPath:onObject:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method allows a property on an object of type CGPoint to be exposed as a variable
+that can be changed as part of an Optimizely experiment</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)bindPointForKey:(NSString *)<em>key</em> toKeyPath:(NSString *)<em>keyPath</em> onObject:(id)<em>object</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>A unique identifier for this variable. You should be able to recognize this name when it appears in the web editor</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>keyPath</em></dt>
+			<dd><p>A key path of the form property.subproperty (with zero or more subproperties): for example
+“backgroundColor” or &ldquo;backgroundColor.red&rdquo;</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>The object whose property you want to expose</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Different from <a href="#//api/name/pointForKey:defaultValue:"><code>pointForKey:defaultValue:</code></a> in two ways. (1) The default value is whatever you
+set the variable to prior to calling this function and (2) the value can be &lsquo;live updated&rsquo;
+through the editor.
+See <code>NSKeyValueCoding setValue:forKeyPath:</code> for more information</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/bindRectForKey:toKeyPath:onObject:" title="bindRectForKey:toKeyPath:onObject:"></a>
+	<h3 class="subsubtitle method-title">bindRectForKey:toKeyPath:onObject:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method allows a property on an object of type CGRect to be exposed as a variable
+that can be changed as part of an Optimizely experiment</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)bindRectForKey:(NSString *)<em>key</em> toKeyPath:(NSString *)<em>keyPath</em> onObject:(id)<em>object</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>A unique identifier for this variable. You should be able to recognize this name when it appears in the web editor</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>keyPath</em></dt>
+			<dd><p>A key path of the form property.subproperty (with zero or more subproperties): for example
+“backgroundColor” or &ldquo;backgroundColor.red&rdquo;</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>The object whose property you want to expose</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Different from <a href="#//api/name/rectForKey:defaultValue:"><code>rectForKey:defaultValue:</code></a> in two ways. (1) The default value is whatever you
+set the variable to prior to calling this function and (2) the value can be &lsquo;live updated&rsquo;
+through the editor.
+See <code>NSKeyValueCoding setValue:forKeyPath:</code> for more information</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/bindSizeForKey:toKeyPath:onObject:" title="bindSizeForKey:toKeyPath:onObject:"></a>
+	<h3 class="subsubtitle method-title">bindSizeForKey:toKeyPath:onObject:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method allows a property on an object of type CGSize to be exposed as a variable
+that can be changed as part of an Optimizely experiment</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)bindSizeForKey:(NSString *)<em>key</em> toKeyPath:(NSString *)<em>keyPath</em> onObject:(id)<em>object</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>A unique identifier for this variable. You should be able to recognize this name when it appears in the web editor</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>keyPath</em></dt>
+			<dd><p>A key path of the form property.subproperty (with zero or more subproperties): for example
+“backgroundColor” or &ldquo;backgroundColor.red&rdquo;</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>The object whose property you want to expose</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Different from <a href="#//api/name/sizeForKey:defaultValue:"><code>sizeForKey:defaultValue:</code></a> in two ways. (1) The default value is whatever you
+set the variable to prior to calling this function and (2) the value can be &lsquo;live updated&rsquo;
+through the editor.
+See <code>NSKeyValueCoding setValue:forKeyPath:</code> for more information</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/bindStringForKey:toKeyPath:onObject:" title="bindStringForKey:toKeyPath:onObject:"></a>
+	<h3 class="subsubtitle method-title">bindStringForKey:toKeyPath:onObject:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method allows a property on an object of type NSString to be exposed as a variable
+that can be changed as part of an Optimizely experiment</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)bindStringForKey:(NSString *)<em>key</em> toKeyPath:(NSString *)<em>keyPath</em> onObject:(id)<em>object</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>A unique identifier for this variable. You should be able to recognize this name when it appears in the web editor</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>keyPath</em></dt>
+			<dd><p>A key path of the form property.subproperty (with zero or more subproperties): for example
+“backgroundColor” or &ldquo;backgroundColor.red&rdquo;</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>The object whose property you want to expose</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Different from <a href="#//api/name/stringForKey:defaultValue:"><code>stringForKey:defaultValue:</code></a> in two ways. (1) The default value is whatever you
+set the variable to prior to calling this function and (2) the value can be &lsquo;live updated&rsquo;
+through the editor.
+See <code>NSKeyValueCoding setValue:forKeyPath:</code> for more information</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/boolForKey:defaultValue:" title="boolForKey:defaultValue:"></a>
+	<h3 class="subsubtitle method-title">boolForKey:defaultValue:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method registers a BOOL so that it can be changed via the Optimizely web editor</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)boolForKey:(NSString *)<em>key</em> defaultValue:(BOOL)<em>defaultValue</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>A key uniquely defining the variable</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>defaultValue</em></dt>
+			<dd><p>The value this variable should take on in the absence of an
+experimental change</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The value of this variable in the active experiment (default if no active experiment)</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/codeTest:withBlocks:defaultBlock:" title="codeTest:withBlocks:defaultBlock:"></a>
+	<h3 class="subsubtitle method-title">codeTest:withBlocks:defaultBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method allows you to set up a code block based experiment</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)codeTest:(NSString *)<em>codeTestKey</em> withBlocks:(NSDictionary *)<em>blocks</em> defaultBlock:(void ( ^ ) ( void ))<em>defaultBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>codeTestKey</em></dt>
+			<dd><p>A unique key that describes this test</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>blocks</em></dt>
+			<dd><p>A dictionary that maps descriptive NSString keys to (void (^)(void)) blocks for each
+variation of this test.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>defaultBlock</em></dt>
+			<dd><p>This block will be executed if no active experiment involves this code test.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<pre><code> [[Optimizely sharedInstance] codeTest:@"checkout flow" withBlocks:@{
+     @"skip signup": ^{
+        [self showConfirmation];
+     },
+     @"free shipping": ^{
+        order.shippingCost = 0;
+     },
+ }
+ defaultBlock:^{
+    [self showSignup];
+ }];
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/colorForKey:defaultValue:" title="colorForKey:defaultValue:"></a>
+	<h3 class="subsubtitle method-title">colorForKey:defaultValue:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method registers an UIColor so that it can be changed via the Optimizely web editor</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (UIColor *)colorForKey:(NSString *)<em>key</em> defaultValue:(UIColor *)<em>defaultValue</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>A key uniquely defining the variable</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>defaultValue</em></dt>
+			<dd><p>The value this variable should take on in the absence of an
+experimental change</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The value of this variable in the active experiment (default if no active experiment)</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/numberForKey:defaultValue:" title="numberForKey:defaultValue:"></a>
+	<h3 class="subsubtitle method-title">numberForKey:defaultValue:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method registers an NSNumber so that it can be changed via the Optimizely web editor</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSNumber *)numberForKey:(NSString *)<em>key</em> defaultValue:(NSNumber *)<em>defaultValue</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>A key uniquely defining the variable</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>defaultValue</em></dt>
+			<dd><p>The value this variable should take on in the absence of an
+experimental change</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The value of this variable in the active experiment (default if no active experiment)</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pointForKey:defaultValue:" title="pointForKey:defaultValue:"></a>
+	<h3 class="subsubtitle method-title">pointForKey:defaultValue:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method registers an CGPoint so that it can be changed via the Optimizely web editor</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (CGPoint)pointForKey:(NSString *)<em>key</em> defaultValue:(CGPoint)<em>defaultValue</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>A key uniquely defining the variable</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>defaultValue</em></dt>
+			<dd><p>The value this variable should take on in the absence of an
+experimental change</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The value of this variable in the active experiment (default if no active experiment)</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/rectForKey:defaultValue:" title="rectForKey:defaultValue:"></a>
+	<h3 class="subsubtitle method-title">rectForKey:defaultValue:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method registers an CGRect so that it can be changed via the Optimizely web editor</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (CGRect)rectForKey:(NSString *)<em>key</em> defaultValue:(CGRect)<em>defaultValue</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>A key uniquely defining the variable</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>defaultValue</em></dt>
+			<dd><p>The value this variable should take on in the absence of an
+experimental change</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The value of this variable in the active experiment (default if no active experiment)</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sizeForKey:defaultValue:" title="sizeForKey:defaultValue:"></a>
+	<h3 class="subsubtitle method-title">sizeForKey:defaultValue:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method registers an CGSize so that it can be changed via the Optimizely web editor</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (CGSize)sizeForKey:(NSString *)<em>key</em> defaultValue:(CGSize)<em>defaultValue</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>A key uniquely defining the variable</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>defaultValue</em></dt>
+			<dd><p>The value this variable should take on in the absence of an
+experimental change</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The value of this variable in the active experiment (default if no active experiment)</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/stringForKey:defaultValue:" title="stringForKey:defaultValue:"></a>
+	<h3 class="subsubtitle method-title">stringForKey:defaultValue:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method registers an NSString so that it can be changed via the Optimizely web editor</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)stringForKey:(NSString *)<em>key</em> defaultValue:(NSString *)<em>defaultValue</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>A key uniquely defining the variable</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>defaultValue</em></dt>
+			<dd><p>The value this variable should take on in the absence of an
+experimental change</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The value of this variable in the active experiment (default if no active experiment)</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/trackEvent:" title="trackEvent:"></a>
+	<h3 class="subsubtitle method-title">trackEvent:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method informs the server that a custom goal with key <code>description</code> occured</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)trackEvent:(NSString *)<em>description</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>description</em></dt>
+			<dd><p>The string uniquely identifying the custom goal you want to track</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Use this method to let Optimizely know that a custom goal occured. Events are sent in batches
+to reduce radio/battery usage, so use <a href="#//api/name/flushEvents"><code>flushEvents</code></a> if you want to schedule the request
+yourself or want to take advantage of a time when the radio is already on.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/flushEvents">+ flushEvents</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">Optimizely.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+                    
+                    
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2014 Optimizely. All rights reserved. (Last updated: 2014-03-19)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>
