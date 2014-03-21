@@ -12,21 +12,16 @@ OPTIMIZELY_ID_KEY_PATH = "optimizelyId"
 def full_paths(root_dir, matches):
   return map(lambda item: os.path.join(root_dir, item), matches)
 
-def get_storyboard_paths(project_dir):
-  storyboards = []
+def get_view_files(project_dir):
+  file_filters = ["*.storyboard", "*.xib"]
+
+  view_files = []
   for root, dirs, files in os.walk(project_dir):
-    matches = fnmatch.filter(files, "*.storyboard")
-    storyboards.extend(full_paths(root, matches))
+    for file_filter in file_filters:
+      matches = fnmatch.filter(files, file_filter)
+      view_files.extend(full_paths(root, matches))
 
-  return storyboards
-
-def get_xib_paths(project_dir):
-  xibs = []
-  for root, dirs, files in os.walk(project_dir):
-    matches = fnmatch.filter(files, "*.xib")
-    xibs.extend(full_paths(root, matches))
-
-  return xibs
+  return view_files
 
 def generate_optimizely_id(path, cls, view_id):
   new_oid = "_%s-%s-%s" % (os.path.splitext(os.path.basename(path))[0], cls, view_id)
@@ -39,33 +34,43 @@ def generate_optimizely_id(path, cls, view_id):
   else:
     return new_oid
 
-class Storyboard(object):
+class NewXCodeViewFormat(object):
   RUNTIME_ATTR_TAG_NAME = "userDefinedRuntimeAttribute"
   RUNTIME_ATTRS_TAG_NAME = "userDefinedRuntimeAttributes"
   view_tags = ["activityIndicatorView",
                "button",
+               "collectionView",
+               "collectionViewCell",
                "datePicker",
-               "label",
                "imageView",
+               "label",
+               "navigatorBar",
+               "pageControl",
                "pickerView",
                "progressView",
-               "textField",
-               "textView",
+               "scrollView",
+               "searchBar",
                "segmentedControl",
                "slider",
                "stepper",
                "switch",
+               "tabBar",
+               "tabBarItem",
                "tableView",
                "tableViewCell",
                "tableViewCellContentView",
-               "view"]
+               "textField",
+               "textView",
+               "toolbar",
+               "view",
+               "webView"]
 
   def __init__(self, path):
     print "Processing %s..." % path
     self.views = [] # all views
     self.new_views = [] # views without an Optimizely ID set
     self.dom = xml.dom.minidom.parse(path)
-    for tag in Storyboard.view_tags:
+    for tag in NewXCodeViewFormat.view_tags:
       self.views.extend(self.dom.getElementsByTagName(tag))
 
     for view in self.views:
@@ -88,7 +93,7 @@ class Storyboard(object):
     for view in self.new_views:
       new_oid = generate_optimizely_id(path, view.tagName, view.getAttribute('id'))
       self.set_optimizely_id(view, new_oid)
-    
+
     if self.new_views: # don't save if nothing changed
       # TODO preserve as much of the original file as possible to minimize diffs (i.e. attr ordering)
       tmp_file = path + ".tmp"
@@ -101,13 +106,13 @@ class Storyboard(object):
       else:
         # replace storyboard with tmp_file
         os.rename(tmp_file, path)
-      finally:
+finally:
         f.close()
 
   def get_runtime_attrs_element(self, view):
     ''' Returns the runtime attributes element for view, or None if none exists. '''
     for element in view.childNodes:
-      if element.nodeType == Node.ELEMENT_NODE and element.tagName == Storyboard.RUNTIME_ATTRS_TAG_NAME:
+      if element.nodeType == Node.ELEMENT_NODE and element.tagName == NewXCodeViewFormat.RUNTIME_ATTRS_TAG_NAME:
         return element
 
   def get_optimizely_id_element(self, view):
@@ -116,7 +121,7 @@ class Storyboard(object):
     if runtime_attrs_element is None:
       return
 
-    for runtime_attr in runtime_attrs_element.getElementsByTagName(Storyboard.RUNTIME_ATTR_TAG_NAME):
+    for runtime_attr in runtime_attrs_element.getElementsByTagName(NewXCodeViewFormat.RUNTIME_ATTR_TAG_NAME):
       if runtime_attr.getAttribute("keyPath") == OPTIMIZELY_ID_KEY_PATH:
         return runtime_attr
 
@@ -130,12 +135,12 @@ class Storyboard(object):
     ''' Sets a unique Optimizely ID on the view. '''
     runtime_attrs = self.get_runtime_attrs_element(view)
     if runtime_attrs is None:
-      runtime_attrs = self.dom.createElement(Storyboard.RUNTIME_ATTRS_TAG_NAME)
+      runtime_attrs = self.dom.createElement(NewXCodeViewFormat.RUNTIME_ATTRS_TAG_NAME)
       view.appendChild(runtime_attrs)
 
     oid_tag = self.get_optimizely_id_element(view)
     if oid_tag is None:
-      oid_tag = self.dom.createElement(Storyboard.RUNTIME_ATTR_TAG_NAME)
+      oid_tag = self.dom.createElement(NewXCodeViewFormat.RUNTIME_ATTR_TAG_NAME)
       oid_tag.setAttribute("keyPath", OPTIMIZELY_ID_KEY_PATH)
       oid_tag.setAttribute("value", oid)
       oid_tag.setAttribute("type", "string")
@@ -144,24 +149,36 @@ class Storyboard(object):
       print 'setting oid on existing tag:   new: %s,   old: %s' % (oid, oid_tag.getAttribute("value"))
       oid_tag.setAttribute("value", oid)
 
-class Xib(object):
+class OldXCodeViewFormat(object):
   view_classes = [
-      'IBUIActivityIndicatorView',
-      'IBUIButton',
-      'IBUICollectionView',
-      'IBUIImageView',
-      'IBUILabel',
-      'IBUIProgressView',
-      'IBUIScrollView',
-      'IBUISegmentedControl',
-      'IBUISlider',
-      'IBUIStepper',
-      'IBUISwitch',
-      'IBUITableView',
-      'IBUITableViewCell',
-      'IBUITextField',
-      'IBUITextView',
-      'IBUIView',
+                  'IBUIActivityIndicatorView',
+                  'IBUIButton',
+                  'IBUICollectionView',
+                  'IBUICollectionViewCell',
+                  'IBUIDatePicker',
+                  'IBUIImageView',
+                  'IBUILabel',
+                  'IBUINavigationBar',
+                  'IBUIPageControl',
+                  'IBUIPickerView',
+                  'IBUIProgressView',
+                  'IBUIScrollView',
+                  'IBUISearchBar',
+                  'IBUISegmentedControl',
+                  'IBUISlider',
+                  'IBUIStepper'
+                  'IBUISwitch',
+                  'IBUITabBar',
+                  'IBUITabBarItem',
+                  'IBUITableView',
+                  'IBUITableViewCell',
+                  'IBUITableViewCellContentView',
+                  'IBUITextField',
+                  'IBUITextView',
+                  'IBUIToolbar',
+                  'IBUIView',
+                  'IBUIWebView',
+
       ]
 
   def get_elements(self, tag='object', root=None, **attrs):
@@ -204,14 +221,20 @@ class Xib(object):
 
     # Get all views
     self.views = filter(
-        lambda obj: obj.getAttribute('class') in Xib.view_classes,
+        lambda obj: obj.getAttribute('class') in OldXCodeViewFormat.view_classes,
         objects)
 
     # Get all object ids
     for record in els(**{ 'class': 'IBObjectRecord' }):
       ref = el('reference', root=record, key='object')
       if ref:
-        self.object_ids[ref.getAttribute('ref')] = el('int', root=record, key='objectID').firstChild.nodeValue
+        int_types = ['int', 'integer']
+        for int_type in int_types:
+          try:
+            self.object_ids[ref.getAttribute('ref')] = el('int', root=record, key='objectID').firstChild.nodeValue
+          except:
+            # Its either int or integer we are just going to pass on exception
+            pass
 
     # Get all currently defined Optimizely IDs
     for placeholder in els(**{ 'class': 'IBUIUserDefinedRuntimeAttributesPlaceholder' }):
@@ -256,7 +279,7 @@ class Xib(object):
     else:
       # replace storyboard with tmp_file
       os.rename(tmp_file, path)
-    finally:
+finally:
       f.close()
 
   def get_optimizely_id(self, view):
@@ -295,7 +318,7 @@ class Xib(object):
       placeholder_dict.setAttribute('key', placeholder_key)
       flattened_props.appendChild(placeholder_dict)
 
-    runtime_attrs_placeholder = self.get_element(root=placeholder_dict, 
+    runtime_attrs_placeholder = self.get_element(root=placeholder_dict,
         **{ 'class': 'IBUIUserDefinedRuntimeAttributesPlaceholder' })
     if not runtime_attrs_placeholder:
       runtime_attrs_string = self.dom.createElement('string')
@@ -355,11 +378,24 @@ class Xib(object):
 
       attrs_array.appendChild(oid_element)
 
-    #import pdb; pdb.set_trace()
+def process_view_file(file_path):
+  NewXCodeViewFormat(file_path)
+  OldXCodeViewFormat(file_path)
+
+def main(project_dir):
+  print "Looking for all storyboard and xib files in %s..." % project_dir
+
+  view_files = get_view_files(project_dir)
+
+  print "View Files {}".format(view_files)
+
+  for view_file in view_files:
+    process_view_file(view_file)
 
 if __name__ == "__main__":
   try:
     project_dir = os.environ["SRCROOT"]
+    main(project_dir)
   except KeyError:
     sys.exit("No SRCROOT defined in environment, can't continue.")
 
@@ -367,12 +403,3 @@ if __name__ == "__main__":
   # with deployment iOS5.0+ and Xcode 4.3+ to support user defined
   # runtime attributes.
 
-  print "Looking for all storyboard files in %s..." % project_dir
-  storyboards = get_storyboard_paths(project_dir)
-  for path in storyboards:
-    storyboard = Storyboard(path)
-
-  print "Looking for all xib files in %s..." % project_dir
-  xibs = get_xib_paths(project_dir)
-  for path in xibs:
-    xib = Xib(path)
