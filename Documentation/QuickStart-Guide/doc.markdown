@@ -71,7 +71,7 @@ If you have trouble connectiong to the Optimizely Editor in your development env
    * SystemConfiguration.framework
    * UIKit.framework  
 
-<a name="objc"></a>3. Switch to the "Build Settings" tab. Add `-ObjC` to the "Other Linker Flags" build setting.
+3. <a name="objc"></a>Switch to the "Build Settings" tab. Add `-ObjC` to the "Other Linker Flags" build setting.
 
 4. Drag `scripts/OptimizelyPrepareNibs.py` from the SDK into your project. Check "Copy items into destination group's folder" and **uncheck all targets**.
     
