@@ -106,7 +106,7 @@ class NewXCodeViewFormat(object):
       else:
         # replace storyboard with tmp_file
         os.rename(tmp_file, path)
-finally:
+      finally:
         f.close()
 
   def get_runtime_attrs_element(self, view):
@@ -279,7 +279,7 @@ class OldXCodeViewFormat(object):
     else:
       # replace storyboard with tmp_file
       os.rename(tmp_file, path)
-finally:
+    finally:
       f.close()
 
   def get_optimizely_id(self, view):
