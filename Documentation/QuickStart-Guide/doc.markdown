@@ -41,16 +41,13 @@ Refer to [CocoaPods Getting Started](http://cocoapods.org/#getstarted) if you ha
 4 Add the following to the beginning of `application:didFinishLaunchingWithOptions:` in your
 app delegate:
 
-    - (void)application:(UIApplication*)application didFinishLaunchingWithOptions:(...) {
-			
-			#ifdef DEBUG
+       		#ifdef DEBUG
             [Optimizely enableEditor];
             #endif
             
-			[Optimizely startOptimizelyWithAPIToken:@"YOUR-API-TOKEN" launchOptions:launchOptions];
+			[Optimizely startOptimizelyWithAPIToken:YOUR_API_TOKEN launchOptions:launchOptions];
 					
-                    // The rest of your initialization code...
-        }
+            // The rest of your initialization code...
 
 You can copy-paste your API token from the `Project Code` dialog within your Optimizely iOS project.
 
@@ -92,17 +89,14 @@ If you have trouble connectiong to the Optimizely Editor in your development env
 7. Add the following to the beginning of `application:didFinishLaunchingWithOptions:` in your
 app delegate:
 
-		- (void)application:(UIApplication*)application didFinishLaunchingWithOptions:(...) {
-
 			#ifdef DEBUG
 	        [Optimizely enableEditor];
 	        #endif
 
-			[Optimizely startOptimizelyWithAPIToken:@"YOUR-API-TOKEN" launchOptions:launchOptions];
+			[Optimizely startOptimizelyWithAPIToken:YOUR_API_TOKEN launchOptions:launchOptions];
 						
     	    // The rest of your initialization code...
-        }
-
+  
 ### External Dependencies
 There are a few external libraries used by the Optimizely SDK. These ship with the Optimizely SDK so there is no need to install them separately.
 
@@ -144,7 +138,7 @@ All experiments must have at least one goal! We automatically track all view con
 
 ![Create Goal dialog](editor-add-goal.png)
 
-On this screen, you will see all the transitions and taps occurring in your app as you interact with it on your device. Select the one that you want to be your goal and click "Done". Optimizely will now track the percentage of your users in each variation that complete that action and the results will appear in our dashboard. If you're curious about the "Create Custom Goal Instead" button, jump ahead to [Custom Goals](#customgoals).
+On this screen, you will see all the view transitions and taps occurring in your app as you interact with it on your device. Select the one that you want to be your goal, give it a name, and click "Save". Optimizely will now track the percentage of your users in each variation that complete that action and the results will appear in our dashboard. If you're curious about the "Create Custom Goal Instead" button, jump ahead to [Custom Goals](#customgoals).
 
 #### _Optional: Allocating Experiment Traffic_
 By default, an equal percentage of your traffic will see each variation. If you want to change from the default, you can adjust the targeting allocation from the Options menu.
@@ -160,7 +154,7 @@ The Optimizely editor becomes aware of views it can swizzle by looking for views
 
 - Optimizely will assign randomly generated `optimizelyIDs` to each UIView prototype in your app; an example might be "MainView-w389gjw" using the OptimizelyPrepareNibs.py script.
 - Each UIView will become available in the Optimizely Mobile Editor on [optimizely.com](www.optimizely.com).
-- **Important**: When you make changes to a UIView or child object in the Optimizely Mobile Editor, those changes will affect all instances of the that object prototype. Selecting a UIImage object in an infinite-scroll list will appear to modify the most recently created object (usually on the bottom), but will affect all instances of that object once the experiment is running live. *Please use the Preview functionality to verify this behavior before running your experiment.*
+- **Important**: Each instance of a UITableViewCell in a UITableView will have the same changes applied to it. *Please use the Preview functionality to verify this behavior before running your experiment.*
 
 If you are creating views programmatically, you must set the `optimizelyId` manually:
 
@@ -191,7 +185,7 @@ The values of named variables can be affected from the "Variables" tab in the ed
     [[Optimizely sharedInstance] bindNumberForKey:@"retry-count" toKeyPath:@"maxRetries" onObject:foo];
 
 ### Custom Goals <a name="customgoals"></a>
-Custom goals allow you to track events other than taps and view changes. There are two steps to creating a custom goal. The first step occurs in the web editor. Click "Goals", then "New Goal", and finally "Create Custom Goal". You will be prompted for a string to uniquely identify your custom goal. In order to track this goal, send this same string as a parameter to 
+Custom goals allow you to track events other than taps and view changes. There are two steps to creating a custom goal. The first step occurs in the web editor. Click "Goals", then "New Goal", and select "Custom Goal" from the drop-down. You will be prompted for a string to uniquely identify your custom goal. In order to track this goal, send this same string as a parameter to 
 
     [[Optimizely sharedInstance] trackEvent:(NSString *)]
 
