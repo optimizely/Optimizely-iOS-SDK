@@ -73,12 +73,14 @@ If you have trouble connectiong to the Optimizely Editor in your development env
 
 3. <a name="objc"></a>Switch to the "Build Settings" tab. Add `-ObjC` to the "Other Linker Flags" build setting.
 
-4. Drag `scripts/OptimizelyPrepareNibs.py` from the SDK into your project. Check "Copy items into destination group's folder" and **uncheck all targets**.
+4. Drag `scripts/OptimizelyPrepareNibs.py` from the SDK into the root of your project. Check "Copy items into destination group's folder" and **uncheck all targets**.
     
 5. Open the "Build Phases" tab for the app's target. In the app menu (top of the screen) click "Editor" -> "Add Build Phase" -> "Add Run Script Build Phase". In the script field, write:
 
 		python "$SRCROOT/OptimizelyPrepareNibs.py"
 
+    You may need to modify this path if you added `OptimizelyPrepareNibs.py` to a different directory.
+    
     This script needs to run at the start of the build process (right after Target Dependencies). To make sure this happens, drag the Run Script phase you just added to the top of the list of phases, just under "Target Dependencies". The final result should look something like this:
     
     ![Build Targets Screenshot](screenshot-run-build-phase.png)
