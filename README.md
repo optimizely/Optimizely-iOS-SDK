@@ -20,8 +20,12 @@ At initialization time, Optimizely will process the experiment config at the beg
 
 We have tested the client SDK in a number of apps, and believe that it is robust to most common failure scenarios.  Additionally, the SDK has a built in 'kill switch' - if you pause/delete all running experiments in your project, the config file read by the SDK from our CDN on its next pass will be empty and the SDK won't execute.
 
-Please test every variation you create using the Preview functionality in the web editor before starting an experiment on a live app.
+**Please test every variation you create using the Preview functionality in the web editor before starting an experiment on a live app.**
 
+## Known Issues
+
+- When using Optimizely to replace a dynamically-rendered image, the new image might not consistently render while using the Editor. Please use Preview to test how the replaced image will render in production.
+ 
 ## Pricing
 iOS is included on all Silver, Gold, and Platinum Optimizely plans during our developer preview; experiments will count against your Monthly Unique Visitor allotment, as they do for web experiments.
 
