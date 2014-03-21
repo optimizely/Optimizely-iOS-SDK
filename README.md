@@ -1,9 +1,4 @@
-# Optimizely for iOS
-
-[![Version](http://cocoapod-badges.herokuapp.com/v/Optimizely-iOS-SDK/badge.png)](http://cocoadocs.org/docsets/Optimizely-iOS-SDK)
-[![Platform](http://cocoapod-badges.herokuapp.com/p/Optimizely-iOS-SDK/badge.png)](http://cocoadocs.org/docsets/Optimizely-iOS-SDK)
-
-## Developer Preview
+# Optimizely for iOS Developer Preview
 
 This is a preview release of our iOS product. Our objective is to get feedback on the product and improve it prior to public launch. Your [feedback](mailto:mobile-support@optimizely.com) is critical and will help us shape the future of this product!
 

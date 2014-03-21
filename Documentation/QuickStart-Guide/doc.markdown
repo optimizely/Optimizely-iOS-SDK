@@ -24,8 +24,12 @@ To use Optimizely for iOS you must first integrate the SDK into your app. You ca
 
 Refer to [CocoaPods Getting Started](http://cocoapods.org/#getstarted) if you haven't yet configured your project to work with CocoaPods.
 
-1. Add this line to your project Podfile:
- 
+
+1. Our SDK only supports iOS 6.0 and above, so please make sure your Podfile specifies a [deployment target](http://guides.cocoapods.org/syntax/podfile.html#platform) of iOS 6.0 (or above). Then, add Optimizely to your podfile:
+
+        platform :ios, '6.0'
+
+        # Other Pods 
 		pod 'Optimizely-iOS-SDK', :git => 'git@github.com:optimizely/Optimizely-iOS-SDK.git'
 
 2. Run `pod install` from the command line.  This will add and install the Optimizely iOS SDK in your generated CocoaPods workspace. *Note:* by default CocoaPods installs to the first build target in the project.
@@ -50,6 +54,8 @@ app delegate:
 
 You can copy-paste your API token from the `Project Code` dialog within your Optimizely iOS project.
 
+If you have trouble connectiong to the Optimizely Editor in your development environment, remove the `#ifdef DEBUG … #endif` flag and force-enable the editor (just don't ship your production app with the Editor enabled!)
+
 ### Manual Installation
 0. Clone the Optimizely SDK using `git clone https://github.com/optimizely/Optimizely-IOS-SDK`
 
@@ -67,7 +73,7 @@ You can copy-paste your API token from the `Project Code` dialog within your Opt
 
 3. Switch to the "Build Settings" tab. Add `-ObjC` to the "Other Linker Flags" build setting.
 
-4. Drag `OptimizelyPrepareNibs.py` from the root directory of the SDK into your project. Check "Copy items into destination group's folder" and **uncheck all targets**.
+4. Drag `scripts/OptimizelyPrepareNibs.py` from the SDK into your project. Check "Copy items into destination group's folder" and **uncheck all targets**.
     
 5. Open the "Build Phases" tab for the app's target. In the app menu (top of the screen) click "Editor" -> "Add Build Phase" -> "Add Run Script Build Phase". In the script field, write:
 
