@@ -16,9 +16,9 @@ Optimizely for iOS works similarly to Optimizely on the web: after you create an
 
 The Optimizely SDK downloads experiment configs in the background, validates, then executes any new experiments on next app load (i.e. after the application has been terminated by the OS or the user).
 
-At initialization time, Optimizely will process the experiment config at the beginning of your app session for up to 2 seconds. This ensures a user of your app will only ever see one variation in an experiment and all experiments will activate, even those affecting the first screen of your app. We use the `vendorIdentifier` similarly to a 1st-party cookie on the web to identify and bucket users.
+At app initialization time, Optimizely will download and process the experiment config from our global CDN with a 2 second timeout. This ensures a user of your app will only ever see one variation in an experiment and all experiments will activate, even those affecting the first screen of your app. We use the `vendorIdentifier` similarly to a 1st-party cookie on the web to identify and bucket users.
 
-We have tested the client SDK in a number of apps, and believe that it is robust to most common failure scenarios.  Additionally, the SDK has a built in 'kill switch' - if you pause/delete all running experiments in your project, the config file read by the SDK from our CDN on its next pass will be empty and the SDK won't execute.
+We have tested the client SDK in a number of apps, and believe that it is robust to most common failure scenarios.  Additionally, the SDK has a built in 'kill switch' - if you delete or archive all running experiments in your project, the config file read by the SDK from our CDN on its next pass will be empty and the SDK won't execute.
 
 **Please test every variation you create using the Preview functionality in the web editor before starting an experiment on a live app.**
 

@@ -57,7 +57,7 @@ You can copy-paste your API token from the `Project Code` dialog within your Opt
 If you have trouble connectiong to the Optimizely Editor in your development environment, remove the `#ifdef DEBUG … #endif` flag and force-enable the editor (just don't ship your production app with the Editor enabled!)
 
 ### Manual Installation
-0. Clone the Optimizely SDK using `git clone https://github.com/optimizely/Optimizely-IOS-SDK`
+0. Clone the Optimizely SDK using `git clone https://github.com/optimizely/Optimizely-iOS-SDK`
 
 1. Drag `Optimizely.framework` from the SDK repository into your project. Check "Copy items into destination group's folder" and make sure the appropriate targets are checked.
     
@@ -71,7 +71,7 @@ If you have trouble connectiong to the Optimizely Editor in your development env
    * SystemConfiguration.framework
    * UIKit.framework  
 
-3. Switch to the "Build Settings" tab. Add `-ObjC` to the "Other Linker Flags" build setting.
+<a name="objc"></a>3. Switch to the "Build Settings" tab. Add `-ObjC` to the "Other Linker Flags" build setting.
 
 4. Drag `scripts/OptimizelyPrepareNibs.py` from the SDK into your project. Check "Copy items into destination group's folder" and **uncheck all targets**.
     
@@ -107,7 +107,6 @@ There are a few external libraries used by the Optimizely SDK. These ship with t
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking):
     used for making network requests.
 - [AFDownloadRequestOperation](https://github.com/steipete/AFDownloadRequestOperation):
-    used to download assets, with the ability to resume interrupted downloads.
 - [FMDB](https://github.com/ccgus/fmdb):
     Objective-C wrapper for sqlite.
 - [SocketRocket](https://github.com/square/SocketRocket):
@@ -141,7 +140,7 @@ To simulate a user's experience when they are in a particular variation, you can
 ### Goals
 All experiments must have at least one goal! We automatically track all view controller transitions and screen taps so that they can easily be used as goals. In order to select a particular transition or screen tap as a goal, open the "Goals" dialogue and click "New Goal" in the bottom right.
 
-<img src="editor-add-goal.png" alt="Drawing" style="width: 100%;"/>
+![Create Goal dialog](editor-add-goal.png)
 
 On this screen, you will see all the transitions and taps occurring in your app as you interact with it on your device. Select the one that you want to be your goal and click "Done". Optimizely will now track the percentage of your users in each variation that complete that action and the results will appear in our dashboard. If you're curious about the "Create Custom Goal Instead" button, jump ahead to [Custom Goals](#customgoals).
 
@@ -166,8 +165,7 @@ If you are creating views programmatically, you must set the `optimizelyId` manu
     UILabel *label = [[UILabel alloc] initWithFrame:...];
     label.optimizelyId = @"pricing-title-label";
 
-For any views that you want to swizzle, you should give them a unique `optimizelyId`. All the subviews of that view will also automatically become visible to the editor, so there's no need to assign an `optimizelyId` to each subview. A good guideline is that you need to assign an `optimizelyId` to the view of each of your view controllers.
-	
+For any views that you want to swizzle, you should give them a unique `optimizelyId`.	
 ### Code blocks
 
 This allows developers to execute different code paths based on the active experiment and variation. Users will be randomly bucketed into a particular variation and the variationId passed into the block will reflect their bucket. This is the most powerful method for creating experiments, but requires the app to be resubmitted to the app store.
@@ -195,10 +193,6 @@ Custom goals allow you to track events other than taps and view changes. There a
 
     [[Optimizely sharedInstance] trackEvent:(NSString *)]
 
-You can optionally include revenue information with the goal:
-
-    [[Optimizely sharedInstance] trackEvent:(NSString *) revenue:(NSInteger)]
-
 For example, if we wanted a goal for users deleting a task with a swipe, we might create a custom goal "User Deleted Task" and then call `-trackEvent` with this string in our event handler as follows:
 
     - (void)userDidSwipeTask:(id)sender {
@@ -210,3 +204,7 @@ For example, if we wanted a goal for users deleting a task with a swipe, we migh
 **Q: My device is running the app but I can't see it in the editor.**
 
 A: First, confirm your device is connected to the internet. If that turns out to be useless advice, make sure that the API token that you passed into `[Optimizely startOptimizelyWithAPIToken:@"YOUR-API-TOKEN" launchOptions:launchOptions];` matches what you see in the Project Code box within Optimizely.
+
+**Q: My app crashes and I get a run-time error after installing `this class is not key value coding-compliant for the key optimizelyId`**
+
+A: Make sure you added the `-ObjC` linker flag to your build settings (see [Manual Installation](#objc)).
