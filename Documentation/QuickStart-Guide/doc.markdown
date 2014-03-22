@@ -166,7 +166,7 @@ For any views that you want to adjust from the visual editor, you should give th
 
 This allows developers to execute different code paths based on the active experiment and variation. Users will be randomly bucketed into a particular variation and the variationId passed into the block will reflect their bucket. This is the most powerful method for creating experiments, but requires the app to be resubmitted to the app store.
 
-To implement, please see the [Code Blocks API Reference](../help/html/Classes/Optimizely.html#//api/name/codeTest:withBlocks:defaultBlock:)
+To implement, please see the [Code Blocks API Reference](http://ios-preview.optimizely.com/Optimizely-iOS-SDK/Documentation/help/html/Classes/Optimizely.html#//api/name/codeTest:withBlocks:defaultBlock:)
 
 ### Named variables
 
