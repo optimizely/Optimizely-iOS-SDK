@@ -147,7 +147,7 @@ By default, an equal percentage of your traffic will see each variation. If you 
 
 
 ## Advanced Testing Info
-For additional information about any of the experimental approaches below, see the full [API Documentation](../help/html/Classes/Optimizely.html).
+For additional information about any of the experimental approaches below, see the full [API Documentation](http://ios-preview.optimizely.com/Optimizely-iOS-SDK/Documentation/help/html/Classes/Optimizely.html).
 
 ### Optimizely Visual Editor <a name="visualeditor"></a>
 The Optimizely editor becomes aware of views it can change from the visual editor by looking for views that have an `optimizelyId` property. When a view with an `optimizelyId` becomes visible in the app, the SDK alerts the web editor of its existence. The `OptimizelyPrepareNibs.py` script assigns an `optimizelyId` automatically to views created with Interface Builder or Storyboards. For automatically tagged views, the behavior will be as follows:
