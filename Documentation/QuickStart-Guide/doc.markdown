@@ -199,8 +199,26 @@ For example, if we wanted a goal for users deleting a task with a swipe, we migh
 ## Troubleshooting
 **Q: My device is running the app but I can't see it in the editor.**
 
-A: First, confirm your device is connected to the internet. If that turns out to be useless advice, make sure that the API token that you passed into `[Optimizely startOptimizelyWithAPIToken:@"YOUR-API-TOKEN" launchOptions:launchOptions];` matches what you see in the Project Code box within Optimizely.
+A: First, confirm your device is connected to the internet. If that turns out to be useless advice, make sure that the API token that you passed into
 
-**Q: My app crashes and I get a run-time error after installing `this class is not key value coding-compliant for the key optimizelyId`**
+```
+[Optimizely startOptimizelyWithAPIToken:@"YOUR-API-TOKEN"
+						  launchOptions:launchOptions];
+```
+matches what you see in the Project Code box within Optimizely.
+
+**Q: My app crashes and I get a run-time error after installing:**
+```this class is not key value coding-compliant for the key optimizelyId```
 
 A: Make sure you added the `-ObjC` linker flag to your build settings (see [Manual Installation](#objc)).
+
+**Q: My app won't compile and I get an error saying**
+
+```
+Undefined symbols for architecture armv7s: "_OBJC_CLASS_$_Optimizely",
+referenced from: MY_CLASS
+```
+
+If you get this error it could be for any (though probably all) architectures.
+
+A: Certain build configurations require you to add `-framework Optimizely` to your Build Settings under "Other Linker Flags". If you installed using Cocoapods, you may need to update or reset "Other Linker Flags" because you have settings in your project that conflict with Cocoapods's automatic addition of that flag.
