@@ -9,14 +9,14 @@ We support all build targets for iOS 6.0 and above.
 
 ## Getting Started
 
-To install Optimizely, please refer to our [Quick Start Guide](Documentation/QuickStart-Guide).
+To install Optimizely, please refer to our [Quick Start Guide](Documentation/QuickStart-Guide/doc.markdown).
 
 ## Technical Overview
 Optimizely for iOS works similarly to Optimizely on the web: after you create an experiment in our Editor, an experiment config is generated and uploaded to our global CDN.
 
 The Optimizely SDK downloads experiment configs in the background, validates, then executes any new experiments on next app load (i.e. after the application has been terminated by the OS or the user).
 
-At app initialization time, Optimizely will download and process the experiment config from our global CDN with a 2 second timeout. This ensures a user of your app will only ever see one variation in an experiment and all experiments will activate, even those affecting the first screen of your app. We use the `vendorIdentifier` similarly to a 1st-party cookie on the web to identify and bucket users.
+Optimizely will display your splash screen while it downloads and processes the experiment config from our global CDN. Our CDN is [very fast](http://blog.optimizely.com/2013/12/11/why-cdn-balancing/) and this process usually completes quite quickly. The download times out after 2 seconds; if so, no experiments are activated. This ensures a user of your app will only ever see one variation in an experiment and all experiments will activate. We use the `vendorIdentifier` similarly to a 1st-party cookie on the web to identify and bucket users.
 
 We have tested the client SDK in a number of apps, and believe that it is robust to most common failure scenarios.  Additionally, the SDK has a built in 'kill switch' - if you delete or archive all running experiments in your project, the config file read by the SDK from our CDN on its next pass will be empty and the SDK won't execute.
 
@@ -25,7 +25,7 @@ We have tested the client SDK in a number of apps, and believe that it is robust
 ## Known Issues
 
 - When using Optimizely to replace a dynamically-rendered image, the new image might not consistently render while using the Editor. Please use Preview to test how the replaced image will render in production.
- 
+
 ## Pricing
 iOS is included on all Silver, Gold, and Platinum Optimizely plans during our developer preview; experiments will count against your Monthly Unique Visitor allotment, as they do for web experiments.
 
