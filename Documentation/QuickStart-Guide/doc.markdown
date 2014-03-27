@@ -109,7 +109,7 @@ There are a few external libraries used by the Optimizely SDK. These ship with t
     used to communicate with the web editor over websockets.
 
 ## <a name="quickstart"></a>Creating your first experiment
-This guide will walk you through setting up your first experiment using UIView Swizzling. If you are using Interface Builder or Storyboards, this is already available to you. However, if you are creating your views programmatically, jump ahead to [UISwizzling](#uiswizzling) and then return to this guide. 
+This guide will walk you through setting up your first experiment using the Optimizley visual editor. If you are using Interface Builder or Storyboards, this is already available to you. However, if you are creating your views programmatically, jump ahead to [Optimizely Visual Editor](#visualeditor) and then return to this guide. 
 
 ### Setting up Variations
 1. In the [Optimizely Application](http://optimizely.com/dashboard), select the project that you created at the start of the installation process and click "Create Experiment".
@@ -147,10 +147,10 @@ By default, an equal percentage of your traffic will see each variation. If you 
 
 
 ## Advanced Testing Info
-For additional information about any of the experimental approaches below, see the full [API Documentation](../help/html/Classes/Optimizely.html).
+For additional information about any of the experimental approaches below, see the full [API Documentation](http://ios-preview.optimizely.com/Optimizely-iOS-SDK/Documentation/help/html/Classes/Optimizely.html).
 
-### UISwizzling <a name="uiswizzling"></a>
-The Optimizely editor becomes aware of views it can swizzle by looking for views that have an `optimizelyId` property. When a view with an `optimizelyId` becomes visible in the app, the SDK alerts the web editor of its existence, as well as the existence of all of its children. The `OptimizelyPrepareNibs.py` script assigns an `optimizelyId` automatically to views created with Interface Builder or Storyboards. For automatically tagged views, the behavior will be as follows:
+### Optimizely Visual Editor <a name="visualeditor"></a>
+The Optimizely editor becomes aware of views it can change from the visual editor by looking for views that have an `optimizelyId` property. When a view with an `optimizelyId` becomes visible in the app, the SDK alerts the web editor of its existence. The `OptimizelyPrepareNibs.py` script assigns an `optimizelyId` automatically to views created with Interface Builder or Storyboards. For automatically tagged views, the behavior will be as follows:
 
 - Optimizely will assign randomly generated `optimizelyIDs` to each UIView prototype in your app; an example might be "MainView-w389gjw" using the OptimizelyPrepareNibs.py script.
 - Each UIView will become available in the Optimizely Mobile Editor on [optimizely.com](www.optimizely.com).
@@ -161,12 +161,12 @@ If you are creating views programmatically, you must set the `optimizelyId` manu
     UILabel *label = [[UILabel alloc] initWithFrame:...];
     label.optimizelyId = @"pricing-title-label";
 
-For any views that you want to swizzle, you should give them a unique `optimizelyId`.	
+For any views that you want to adjust from the visual editor, you should give them a unique `optimizelyId`.	
 ### Code blocks
 
 This allows developers to execute different code paths based on the active experiment and variation. Users will be randomly bucketed into a particular variation and the variationId passed into the block will reflect their bucket. This is the most powerful method for creating experiments, but requires the app to be resubmitted to the app store.
 
-To implement, please see the [Code Blocks API Reference](../help/html/Classes/Optimizely.html#//api/name/codeTest:withBlocks:defaultBlock:)
+To implement, please see the [Code Blocks API Reference](http://ios-preview.optimizely.com/Optimizely-iOS-SDK/Documentation/help/html/Classes/Optimizely.html#//api/name/codeTest:withBlocks:defaultBlock:)
 
 ### Named variables
 
