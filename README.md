@@ -9,7 +9,7 @@ We support all build targets for iOS 6.0 and above.
 
 ## Getting Started
 
-To install Optimizely, please refer to our [Quick Start Guide](Documentation/QuickStart-Guide/doc.markdown).
+To install Optimizely, please refer to our **[Quick Start Guide](http://ios-preview.optimizely.com/ios/)**.
 
 ## Technical Overview
 Optimizely for iOS works similarly to Optimizely on the web: after you create an experiment in our Editor, an experiment config is generated and uploaded to our global CDN.

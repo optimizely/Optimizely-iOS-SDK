@@ -14,6 +14,7 @@
 //       - Yonatan Kogan
 //       - Marco Sgrignuoli
 //       - Richard Klafter
+//       - Alex Medearis
 //       - Chrix Finne
 //       - Rama Ranganath
 //       - Hemant Verma

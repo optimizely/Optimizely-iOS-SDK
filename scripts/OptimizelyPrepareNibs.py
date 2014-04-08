@@ -44,7 +44,7 @@ class NewXCodeViewFormat(object):
                "datePicker",
                "imageView",
                "label",
-               "navigatorBar",
+               "navigationBar",
                "pageControl",
                "pickerView",
                "progressView",
@@ -55,7 +55,6 @@ class NewXCodeViewFormat(object):
                "stepper",
                "switch",
                "tabBar",
-               "tabBarItem",
                "tableView",
                "tableViewCell",
                "tableViewCellContentView",
@@ -94,20 +93,19 @@ class NewXCodeViewFormat(object):
       new_oid = generate_optimizely_id(path, view.tagName, view.getAttribute('id'))
       self.set_optimizely_id(view, new_oid)
 
-    if self.new_views: # don't save if nothing changed
-      # TODO preserve as much of the original file as possible to minimize diffs (i.e. attr ordering)
-      tmp_file = path + ".tmp"
+    if self.new_views:
+      f = None
       try:
-        f = codecs.open(tmp_file, "w", "utf-8")
+        f = codecs.open(path, "w", "utf-8")
         self.dom.writexml(f, encoding="utf-8")
       except Exception as e:
-        os.remove(tmp_file)
+        print 'Failed to save changes to %s.' % path
+        print 'This happen in case Optimizely script is not able to write to %s.' % path
+        print 'Check write permision on %s.' % path
         raise e
-      else:
-        # replace storyboard with tmp_file
-        os.rename(tmp_file, path)
       finally:
-        f.close()
+        if f is not None:
+          f.close()
 
   def get_runtime_attrs_element(self, view):
     ''' Returns the runtime attributes element for view, or None if none exists. '''
@@ -169,7 +167,6 @@ class OldXCodeViewFormat(object):
                   'IBUIStepper'
                   'IBUISwitch',
                   'IBUITabBar',
-                  'IBUITabBarItem',
                   'IBUITableView',
                   'IBUITableViewCell',
                   'IBUITableViewCellContentView',
@@ -267,20 +264,18 @@ class OldXCodeViewFormat(object):
     for view_id in self.new_views:
       self.set_optimizely_id(view_id, generate_optimizely_id(path, 'view', view_id))
 
-    # TODO preserve as much of the original file as possible to minimize diffs (i.e. attr ordering)
-    tmp_file = path + ".tmp"
+    f = None
     try:
-      print 'Saving %s...' % tmp_file
-      f = codecs.open(tmp_file, "w", "utf-8")
+      f = codecs.open(path, "w", "utf-8")
       self.dom.writexml(f, encoding="utf-8")
     except Exception as e:
-      os.remove(tmp_file)
+      print 'Failed to save changes to %s.' % path
+      print 'This happen in case Optimizely script is not able to write to %s.' % path
+      print 'Check write permision on %s.' % path
       raise e
-    else:
-      # replace storyboard with tmp_file
-      os.rename(tmp_file, path)
     finally:
-      f.close()
+      if f is not None:
+        f.close()
 
   def get_optimizely_id(self, view):
     ''' Returns the Optimizely ID for the view, or None if one isn't set. '''
