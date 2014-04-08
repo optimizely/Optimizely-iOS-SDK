@@ -1,6 +1,6 @@
 # Optimizely-iOS-SDK CHANGELOG
 
-## 0.3.1
+## 0.4.32
 
 April 7, 2014
 
