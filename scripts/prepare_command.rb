@@ -7,11 +7,13 @@ SHELL_SCRIPT = "python \"$SRCROOT/Pods/Optimizely-iOS-SDK/scripts/OptimizelyPrep
 
 # Find main project file
 project_path = []
-Find.find('../../') do |path|
-  if(path == "../../Pods")
-    Find.prune
-  end
-  project_path << path if path =~ /.*\.xcodeproj$/
+Dir['../../'].each do |fname|
+    project_path << path if path =~ /.*\.xcodeproj$/
+end
+
+if(project_path.length == 0)
+  print "Could not locate project, please add the OptimizelyPrepareNibs.py build phase manually"
+  abort
 end
 
 # Open project
