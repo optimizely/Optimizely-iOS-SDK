@@ -9,7 +9,6 @@ SHELL_SCRIPT = "python \"$SRCROOT/Pods/Optimizely-iOS-SDK/scripts/OptimizelyPrep
 project_path = []
 Dir['../../*'].each do |fname|
     project_path << fname if fname =~ /.*\.xcodeproj$/
-    print fname
 end
 
 if(project_path.length == 0)
