@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Optimizely-iOS-SDK"
-  s.version          = "0.4.32"
+  s.version          = "0.4.37"
   s.summary          = "Optimizely is the #1 optimization platform in the world."
   s.homepage         = "http://www.optimizely.com"
   s.license          = { :type => 'Commercial', :text => 'See https://www.optimizely.com/terms' }  
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
   s.source           = { :git => "https://github.com/optimizely/Optimizely-iOS-SDK.git"}
 
-  s.frameworks = 'AdSupport', 'CFNetwork', 'Foundation', 'Security', 'SystemConfiguration', 'UIKit'
+  s.frameworks = 'CFNetwork', 'Foundation', 'Security', 'SystemConfiguration', 'UIKit'
   s.libraries = 'icucore', 'sqlite3'
   
   s.preserve_paths      = "Optimizely.framework", "scripts/*"

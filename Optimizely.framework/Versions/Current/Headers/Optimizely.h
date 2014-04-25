@@ -110,19 +110,6 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
 #pragma mark - Variable getters
 /** @name Experiment Variables */
 
-/** This method allows a property on an object of type NSString to be exposed as a variable
- * that can be changed as part of an Optimizely experiment
- *
- * Different from `stringForKey:defaultValue:` in two ways. (1) The default value is whatever you
- * set the variable to prior to calling this function and (2) the value can be 'live updated'
- * through the editor.
- * See `NSKeyValueCoding setValue:forKeyPath:` for more information
- * @param key A unique identifier for this variable. You should be able to recognize this name when it appears in the web editor
- * @param keyPath A key path of the form property.subproperty (with zero or more subproperties): for example
- * “backgroundColor” or "backgroundColor.red"
- * @param object The object whose property you want to expose
- */
-- (void)bindStringForKey:(NSString*)key toKeyPath:(NSString*)keyPath onObject:(id)object;
 /** This method registers an NSString so that it can be changed via the Optimizely web editor
  *
  * @param key A key uniquely defining the variable
@@ -132,19 +119,6 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  */
 - (NSString*)stringForKey:(NSString*)key defaultValue:(NSString*)defaultValue;
 
-/** This method allows a property on an object of type UIColor to be exposed as a variable
- * that can be changed as part of an Optimizely experiment
- *
- * Different from `colorForKey:defaultValue:` in two ways. (1) The default value is whatever you
- * set the variable to prior to calling this function and (2) the value can be 'live updated'
- * through the editor.
- * See `NSKeyValueCoding setValue:forKeyPath:` for more information
- * @param key A unique identifier for this variable. You should be able to recognize this name when it appears in the web editor
- * @param keyPath A key path of the form property.subproperty (with zero or more subproperties): for example
- * “backgroundColor” or "backgroundColor.red"
- * @param object The object whose property you want to expose
- */
-- (void)bindColorForKey:(NSString*)key toKeyPath:(NSString*)keyPath onObject:(id)object;
 /** This method registers an UIColor so that it can be changed via the Optimizely web editor
  *
  * @param key A key uniquely defining the variable
@@ -154,19 +128,6 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  */
 - (UIColor*)colorForKey:(NSString*)key defaultValue:(UIColor*)defaultValue;
 
-/** This method allows a property on an object of type NSNumber to be exposed as a variable
- * that can be changed as part of an Optimizely experiment
- *
- * Different from `numberForKey:defaultValue:` in two ways. (1) The default value is whatever you
- * set the variable to prior to calling this function and (2) the value can be 'live updated'
- * through the editor.
- * See `NSKeyValueCoding setValue:forKeyPath:` for more information
- * @param key A unique identifier for this variable. You should be able to recognize this name when it appears in the web editor
- * @param keyPath A key path of the form property.subproperty (with zero or more subproperties): for example
- * “backgroundColor” or "backgroundColor.red"
- * @param object The object whose property you want to expose
- */
-- (void)bindNumberForKey:(NSString*)key toKeyPath:(NSString*)keyPath onObject:(id)object;
 /** This method registers an NSNumber so that it can be changed via the Optimizely web editor
  *
  * @param key A key uniquely defining the variable
@@ -176,19 +137,6 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  */
 - (NSNumber*)numberForKey:(NSString*)key defaultValue:(NSNumber*)defaultValue;
 
-/** This method allows a property on an object of type CGPoint to be exposed as a variable
- * that can be changed as part of an Optimizely experiment
- *
- * Different from `pointForKey:defaultValue:` in two ways. (1) The default value is whatever you
- * set the variable to prior to calling this function and (2) the value can be 'live updated'
- * through the editor.
- * See `NSKeyValueCoding setValue:forKeyPath:` for more information
- * @param key A unique identifier for this variable. You should be able to recognize this name when it appears in the web editor
- * @param keyPath A key path of the form property.subproperty (with zero or more subproperties): for example
- * “backgroundColor” or "backgroundColor.red"
- * @param object The object whose property you want to expose
- */
-- (void)bindPointForKey:(NSString*)key toKeyPath:(NSString*)keyPath onObject:(id)object;
 /** This method registers an CGPoint so that it can be changed via the Optimizely web editor
  *
  * @param key A key uniquely defining the variable
@@ -198,19 +146,6 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  */
 - (CGPoint)pointForKey:(NSString*)key defaultValue:(CGPoint)defaultValue;
 
-/** This method allows a property on an object of type CGSize to be exposed as a variable
- * that can be changed as part of an Optimizely experiment
- *
- * Different from `sizeForKey:defaultValue:` in two ways. (1) The default value is whatever you
- * set the variable to prior to calling this function and (2) the value can be 'live updated'
- * through the editor.
- * See `NSKeyValueCoding setValue:forKeyPath:` for more information
- * @param key A unique identifier for this variable. You should be able to recognize this name when it appears in the web editor
- * @param keyPath A key path of the form property.subproperty (with zero or more subproperties): for example
- * “backgroundColor” or "backgroundColor.red"
- * @param object The object whose property you want to expose
- */
-- (void)bindSizeForKey:(NSString*)key toKeyPath:(NSString*)keyPath onObject:(id)object;
 /** This method registers an CGSize so that it can be changed via the Optimizely web editor
  *
  * @param key A key uniquely defining the variable
@@ -220,19 +155,6 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  */
 - (CGSize)sizeForKey:(NSString*)key defaultValue:(CGSize)defaultValue;
 
-/** This method allows a property on an object of type CGRect to be exposed as a variable
- * that can be changed as part of an Optimizely experiment
- *
- * Different from `rectForKey:defaultValue:` in two ways. (1) The default value is whatever you
- * set the variable to prior to calling this function and (2) the value can be 'live updated'
- * through the editor.
- * See `NSKeyValueCoding setValue:forKeyPath:` for more information
- * @param key A unique identifier for this variable. You should be able to recognize this name when it appears in the web editor
- * @param keyPath A key path of the form property.subproperty (with zero or more subproperties): for example
- * “backgroundColor” or "backgroundColor.red"
- * @param object The object whose property you want to expose
- */
-- (void)bindRectForKey:(NSString*)key toKeyPath:(NSString*)keyPath onObject:(id)object;
 /** This method registers an CGRect so that it can be changed via the Optimizely web editor
  *
  * @param key A key uniquely defining the variable
