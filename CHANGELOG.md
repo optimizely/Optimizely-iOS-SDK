@@ -8,7 +8,7 @@ May 5, 2014
 - Adds manual event flush capability
 - Adds manual experiment fetch capability (trigger fetches of experiment changes to be applied on next app start)
 - Adds verbose logging option
-- To target this SDK in an experiment, please target SDK version "0.4.41". This discrepancy will be fixed in an upcoming release.
+- To target this SDK in an experiment, please target SDK version "0.4.42". This discrepancy will be fixed in an upcoming release.
 
 ## 0.4.37
 
