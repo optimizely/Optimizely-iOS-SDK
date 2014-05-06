@@ -91,28 +91,21 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
 /** This method immediately starts a network request that sends tracked events 
  * back to Optimizely and fetches the newest experiment data file.
  *
- * If you only want to send tracked events back to Optimizely or fetch new data file look at dispatchEvent and fetchNewDataFile. 
- *
- * If you want to change the frequency of auto dispatch (events and new data file)
- * have a look at dispatchInterval.
+ * This is the same as calling dispatchEvents followed by fetchNewDataFile.
  *
  * Events are automatically flushed at regular intervals by the SDK. This method exists
  * so that the Optimizely SDK can piggy-back on an already activated radio. This can save
  * battery by reducing the number of times the radio is turned on/off.
+ *
+ * See dispatchInterval to change the frequency of auto dispatch (events and new data file).
  */
 + (void)dispatch;
 
 /** Manually send events to Optimizely
- *
- * If you want to auto dispatch events and fetch new data file, have a look at 
- * dispatchInterval
  */
 + (void)dispatchEvents;
 
 /** Manually fetch new data file from Optimizely
- *
- * If you want to auto dispatch events and fetch new data file, have a look at
- * dispatchInterval
  */
 + (void)fetchNewDataFile;
 
@@ -240,9 +233,8 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  */
 @property (nonatomic) BOOL verboseLogging;
 
-/** Optional NSTimeInterval property to change the frequency (in seconds)
- * at which new events are sent and experiment data file is fetched
- * from server. (default value is 2 minutes)
+/**The frequency (in seconds) at which new events are sent and experiment
+ * data file is fetched from server. (default value is 2 minutes)
  *
  * Setting this to zero or negative value will disable automatic sending 
  * of events and you will have to manually dispatch events and fetch new data file 
