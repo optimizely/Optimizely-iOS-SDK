@@ -88,14 +88,33 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
 
 /** @name Events and Goal Tracking */
 
-/** This method immediately starts a network request that sends tracked events bac
- * to the server
+/** This method immediately starts a network request that sends tracked events 
+ * back to Optimizely and fetches the newest experiment data file.
+ *
+ * If you only want to send tracked events back to Optimizely or fetch new data file look at dispatchEvent and fetchNewDataFile. 
+ *
+ * If you want to change the frequency of auto dispatch (events and new data file)
+ * have a look at dispatchInterval.
  *
  * Events are automatically flushed at regular intervals by the SDK. This method exists
  * so that the Optimizely SDK can piggy-back on an already activated radio. This can save
  * battery by reducing the number of times the radio is turned on/off.
  */
-+ (void)flushEvents;
++ (void)dispatch;
+
+/** Manually send events to Optimizely
+ *
+ * If you want to auto dispatch events and fetch new data file, have a look at 
+ * dispatchInterval
+ */
++ (void)dispatchEvents;
+
+/** Manually fetch new data file from Optimizely
+ *
+ * If you want to auto dispatch events and fetch new data file, have a look at
+ * dispatchInterval
+ */
++ (void)fetchNewDataFile;
 
 /** This method informs the server that a custom goal with key `description` occured
  *
@@ -103,7 +122,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * to reduce radio/battery usage, so use `-flushEvents` if you want to schedule the request
  * yourself or want to take advantage of a time when the radio is already on.
  * @param description The string uniquely identifying the custom goal you want to track
- * @see -flushEvents
+ * @see -dispatch
  */
 - (void)trackEvent:(NSString *)description;
 
@@ -216,7 +235,19 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  */
 @property (nonatomic,strong) NSString *userId;
 
-/* Toggle for Logging in console */
+/** Optional Output more verbose logs, helps in debugging 
+ * Optimizely related issues 
+ */
 @property (nonatomic) BOOL verboseLogging;
+
+/** Optional NSTimeInterval property to change the frequency (in seconds)
+ * at which new events are sent and experiment data file is fetched
+ * from server. (default value is 2 minutes)
+ *
+ * Setting this to zero or negative value will disable automatic sending 
+ * of events and you will have to manually dispatch events and fetch new data file 
+ * using dispatch or dispatchEvent / fetchNewDataFile.
+ */
+@property (nonatomic) NSTimeInterval dispatchInterval;
 
 @end
