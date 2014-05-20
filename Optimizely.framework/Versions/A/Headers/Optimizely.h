@@ -50,7 +50,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * @param launchOptions A dictionary of launch options. This is typically the variable
  * passed into `-application: didFinishLaunchingWithOptions:`. TODO: Options for launchOptions
  */
-+ (void)startOptimizelyWithAPIToken:(NSString*)apiToken launchOptions:(NSDictionary *)launchOptions;
++ (void)startOptimizelyWithAPIToken:(NSString *)apiToken launchOptions:(NSDictionary *)launchOptions;
 
 /** Calling this activates the Optimizely framework. If this isn't called, the app will behave
  * as though Optimizely wasn't included. Any configuration should be done before this is called.
@@ -68,6 +68,14 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
 + (void)startOptimizelyWithAPIToken:(NSString *)apiToken
                       launchOptions:(NSDictionary *)launchOptions
           experimentsLoadedCallback:(OptimizelySuccessBlock)experimentsLoadedCallback;
+
+
+/** This method is intended to notify Optimizely that the app has been opened via URL and the
+ * user wishes to enter edit mode.  Returns false if the provided URL is not an Optimizely URL.
+   @param url
+   @return Returns false if not an Optimizely URL
+ */
++ (BOOL)handleOpenURL:(NSURL *)url;
 
 /** This method makes the device available to the Optimizely web editor
  *
@@ -88,7 +96,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
 
 /** @name Events and Goal Tracking */
 
-/** This method immediately starts a network request that sends tracked events 
+/** This method immediately starts a network request that sends tracked events
  * back to Optimizely and fetches the newest experiment data file.
  *
  * This is the same as calling dispatchEvents followed by fetchNewDataFile.
@@ -129,7 +137,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * experimental change
  * @return The value of this variable in the active experiment (default if no active experiment)
  */
-- (NSString*)stringForKey:(NSString*)key defaultValue:(NSString*)defaultValue;
+- (NSString *)stringForKey:(NSString *)key defaultValue:(NSString *)defaultValue;
 
 /** This method registers an UIColor so that it can be changed via the Optimizely web editor
  *
@@ -138,7 +146,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * experimental change
  * @return The value of this variable in the active experiment (default if no active experiment)
  */
-- (UIColor*)colorForKey:(NSString*)key defaultValue:(UIColor*)defaultValue;
+- (UIColor *)colorForKey:(NSString *)key defaultValue:(UIColor *)defaultValue;
 
 /** This method registers an NSNumber so that it can be changed via the Optimizely web editor
  *
@@ -147,7 +155,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * experimental change
  * @return The value of this variable in the active experiment (default if no active experiment)
  */
-- (NSNumber*)numberForKey:(NSString*)key defaultValue:(NSNumber*)defaultValue;
+- (NSNumber *)numberForKey:(NSString *)key defaultValue:(NSNumber *)defaultValue;
 
 /** This method registers an CGPoint so that it can be changed via the Optimizely web editor
  *
@@ -156,7 +164,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * experimental change
  * @return The value of this variable in the active experiment (default if no active experiment)
  */
-- (CGPoint)pointForKey:(NSString*)key defaultValue:(CGPoint)defaultValue;
+- (CGPoint)pointForKey:(NSString *)key defaultValue:(CGPoint)defaultValue;
 
 /** This method registers an CGSize so that it can be changed via the Optimizely web editor
  *
@@ -165,7 +173,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * experimental change
  * @return The value of this variable in the active experiment (default if no active experiment)
  */
-- (CGSize)sizeForKey:(NSString*)key defaultValue:(CGSize)defaultValue;
+- (CGSize)sizeForKey:(NSString *)key defaultValue:(CGSize)defaultValue;
 
 /** This method registers an CGRect so that it can be changed via the Optimizely web editor
  *
@@ -174,7 +182,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * experimental change
  * @return The value of this variable in the active experiment (default if no active experiment)
  */
-- (CGRect)rectForKey:(NSString*)key defaultValue:(CGRect)defaultValue;
+- (CGRect)rectForKey:(NSString *)key defaultValue:(CGRect)defaultValue;
 
 /** This method registers a BOOL so that it can be changed via the Optimizely web editor
  *
@@ -183,61 +191,61 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * experimental change
  * @return The value of this variable in the active experiment (default if no active experiment)
  */
-- (BOOL)boolForKey:(NSString*)key defaultValue:(BOOL)defaultValue;
+- (BOOL)boolForKey:(NSString *)key defaultValue:(BOOL)defaultValue;
 
 #pragma mark - Code Tests
 /** @name Code Tests */
 
 /** This method allows you to set up a code block based experiment
- 
- [[Optimizely sharedInstance] codeTest:@"checkout flow" withBlocks:@{
- @"skip signup": ^{
- [self showConfirmation];
- },
- @"free shipping": ^{
- order.shippingCost = 0;
- },
- }
- defaultBlock:^{
- [self showSignup];
- }];
- 
- @param codeTestKey A unique key that describes this test
- @param blocks A dictionary that maps descriptive NSString keys to (void (^)(void)) blocks for each
- variation of this test.
- @param defaultBlock This block will be executed if no active experiment involves this code test.
+
+   [[Optimizely sharedInstance] codeTest:@"checkout flow" withBlocks:@{
+   @"skip signup": ^{
+   [self showConfirmation];
+   },
+   @"free shipping": ^{
+   order.shippingCost = 0;
+   },
+   }
+   defaultBlock:^{
+   [self showSignup];
+   }];
+
+   @param codeTestKey A unique key that describes this test
+   @param blocks A dictionary that maps descriptive NSString keys to (void (^)(void)) blocks for each
+   variation of this test.
+   @param defaultBlock This block will be executed if no active experiment involves this code test.
  */
-- (void)codeTest:(NSString*)codeTestKey
-      withBlocks:(NSDictionary*)blocks
+- (void)codeTest:(NSString *)codeTestKey
+      withBlocks:(NSDictionary *)blocks
     defaultBlock:(void (^)(void))defaultBlock;
 
 #pragma mark - Properties
 
 /** NSString property that is your project Id */
-@property (readonly,strong) NSString *projectId;
+@property (readonly, strong) NSString *projectId;
 
 /** NSString property that is the current SDK version */
-@property (readonly,strong) NSString *sdkVersion;
+@property (readonly, strong) NSString *sdkVersion;
 
 /** Optional NSString property that is the current app version
- We default this value from bundle if not provided */
-@property (nonatomic,strong) NSString *appVersion;
+   We default this value from bundle if not provided */
+@property (nonatomic, strong) NSString *appVersion;
 
 /** Using this you can set the user id idenifying this user
  * This is optional, the default value is vendor id
  */
-@property (nonatomic,strong) NSString *userId;
+@property (nonatomic, strong) NSString *userId;
 
-/** Optional Output more verbose logs, helps in debugging 
- * Optimizely related issues 
+/** Optional Output more verbose logs, helps in debugging
+ * Optimizely related issues
  */
 @property (nonatomic) BOOL verboseLogging;
 
 /**The frequency (in seconds) at which new events are sent and experiment
  * data file is fetched from server. (default value is 2 minutes)
  *
- * Setting this to zero or negative value will disable automatic sending 
- * of events and you will have to manually dispatch events and fetch new data file 
+ * Setting this to zero or negative value will disable automatic sending
+ * of events and you will have to manually dispatch events and fetch new data file
  * using dispatch or dispatchEvent / fetchNewDataFile.
  */
 @property (nonatomic) NSTimeInterval dispatchInterval;
