@@ -8,6 +8,7 @@ May 21, 2014
 - Secured entering preview mode via URL
 - Fix "Unknown App" issue
 - Bug fixes, enhancements
+- Fixes discrepancy between published SDK version and SDK version used for targeting (they are now one and the same).
 
 ## 0.4.42
 
