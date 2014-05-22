@@ -1,5 +1,12 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 0.5.44
+
+- Launch edit mode from URL
+- Secured entering preview mode via URL
+- Fix "Unknown App" issue
+- Bug fixes, enhancements
+
 ## 0.4.42
 
 May 5, 2014
