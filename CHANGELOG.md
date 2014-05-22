@@ -2,6 +2,8 @@
 
 ## 0.5.44
 
+May 21, 2014
+
 - Launch edit mode from URL
 - Secured entering preview mode via URL
 - Fix "Unknown App" issue
