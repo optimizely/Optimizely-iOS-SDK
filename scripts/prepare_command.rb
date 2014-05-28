@@ -3,7 +3,7 @@ require 'cocoapods'
 require 'find'
 
 BUILD_PHASE_NAME = "Label Optimizely Views"
-SHELL_SCRIPT = "python \"$SRCROOT/Pods/Optimizely-iOS-SDK/scripts/OptimizelyPrepareNibs.py\""
+SHELL_SCRIPT = "python \"$PODS_ROOT/Optimizely-iOS-SDK/scripts/OptimizelyPrepareNibs.py\""
 
 # Find main project file by looking in the Podfile declaration
 xcodeproj_path = begin
