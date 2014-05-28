@@ -1,5 +1,13 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 0.5.45
+
+May 27, 2014
+
+- Fixes a bug related to app backgrounding.
+- Fixes a bug where not calling +startOptimizely leaves variables nil rather than the defaultValue.
+- Fixes bug related to visitor segmenting.
+
 ## 0.5.44
 
 May 21, 2014
