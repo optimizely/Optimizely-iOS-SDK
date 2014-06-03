@@ -1,23 +1,50 @@
 require 'rubygems'
-require 'xcodeproj'
+require 'cocoapods'
 require 'find'
 
 BUILD_PHASE_NAME = "Label Optimizely Views"
-SHELL_SCRIPT = "python \"$SRCROOT/Pods/Optimizely-iOS-SDK/scripts/OptimizelyPrepareNibs.py\""
+SHELL_SCRIPT = "python \"$PODS_ROOT/Optimizely-iOS-SDK/scripts/OptimizelyPrepareNibs.py\""
 
-# Find main project file
-project_path = []
-Dir['../../*'].each do |fname|
-    project_path << fname if fname =~ /.*\.xcodeproj$/
+# This was a prior way of referencing the script and will be deprecated
+OLD_SHELL_SCRIPT = "python \"$SRCROOT/Pods/Optimizely-iOS-SDK/scripts/OptimizelyPrepareNibs.py\""
+
+# Find main project file by looking in the Podfile declaration
+xcodeproj_path = begin
+  filename = File.exists?('../../podfile') ? '../../podfile' : '../../Podfile'
+  Pod::Command::IPC::Podfile::Pod::Podfile.from_file(filename).to_hash["target_definitions"].first["user_project_path"]
+rescue
+  nil 
 end
 
-if(project_path.length == 0)
+if xcodeproj_path
+  # If declared in Podfile, prepend two directories up so that project path is relative to this script
+  xcodeproj_path = "../../" + xcodeproj_path
+  
+  # xcodeproj extension may or may not be specified
+  if xcodeproj_path.split('.').last != 'xcodeproj'
+    xcodeproj_path = xcodeproj_path + '.xcodeproj'
+  end
+  
+  # Verify file is valid
+  if(!File.exists?(xcodeproj_path))
+    xcodeproj_path = nil
+  end
+end
+
+if !xcodeproj_path
+  # Otherwise, fallback on a simple directory listing
+  xcodeproj_path = Dir['../../*'].detect do |fname|
+      fname =~ /.*\.xcodeproj$/
+  end
+end
+
+unless xcodeproj_path
   print "Could not locate project, please add the OptimizelyPrepareNibs.py build phase manually"
   abort
 end
 
 # Open project
-project = Xcodeproj::Project.open(project_path[0])
+project = Xcodeproj::Project.open(xcodeproj_path)
 main_target = project.targets.first
 
 # What to install
@@ -29,6 +56,13 @@ phases.each do |phase|
   if phase.shell_script == SHELL_SCRIPT 
     install_build_phase = false
   end
+  
+   #if a project has the old version, just update it, save and exit
+  if phase.shell_script == OLD_SHELL_SCRIPT
+    phase.shell_script = SHELL_SCRIPT
+    install_build_phase = false
+    project.save()
+  end 
 end
 
 # Install shell script build phase if necessary
@@ -41,3 +75,4 @@ if install_build_phase
   phases.unshift popped_phase
   project.save()
 end
+
