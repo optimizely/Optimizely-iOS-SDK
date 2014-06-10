@@ -1,5 +1,11 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 0.5.46
+
+June 09, 2014
+
+- Fixes a bug where the app was not receiving messages from the editor when launched from a URL instead of from Xcode.
+
 ## 0.5.45
 
 May 27, 2014
