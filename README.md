@@ -35,4 +35,4 @@ After public launch we reserve the right to charge separately for the iOS servic
 We want your feedback! For any and all questions, comments, or kudos, please get in touch with us at [mobile-support@optimizely.com](mailto:mobile-support@optimizely.com)
 
 ## Legal
-By using this SDK and the account provided to you, you agree to abide by the [Optimizely Terms of Service](http://optimizely.com/terms).
+By using this SDK and the account provided to you, you agree to abide by the [Optimezely iOS Beta Terms of Service](http://developers.optimizely.com/ios/terms).

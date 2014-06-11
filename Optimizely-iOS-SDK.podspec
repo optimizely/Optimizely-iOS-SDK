@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version          = "0.5.46"
   s.summary          = "Optimizely is the #1 optimization platform in the world."
   s.homepage         = "http://www.optimizely.com"
-  s.license          = { :type => 'Commercial', :text => 'See https://www.optimizely.com/terms' }  
+  s.license          = { :type => 'Commercial', :text => 'See http://developers.optimizely.com/ios/terms' }  
   s.author           = { "Optimizely" => "support@optimizely.com" }
   s.social_media_url = 'https://twitter.com/optimizely'
 
