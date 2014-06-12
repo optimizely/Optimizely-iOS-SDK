@@ -1,5 +1,16 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 0.5.47
+
+June 12, 2014
+
+- Internal logging improvements.
+- Fixes a bug where Code Blocks weren't applied in Edit Mode 
+  (now they work like Live Variables - you don't have to use 
+  Preview to see the changes).
+- Fixes slowness in the Editor due to unnecessary socket messages 
+  using Live Variables.
+
 ## 0.5.46
 
 June 09, 2014
