@@ -17,10 +17,11 @@ SHELL_SCRIPT = "python \"$PODS_ROOT/Optimizely-iOS-SDK/scripts/OptimizelyPrepare
 OLD_SHELL_SCRIPT = "python \"$SRCROOT/Pods/Optimizely-iOS-SDK/scripts/OptimizelyPrepareNibs.py\""
 
 # Find main project file by looking in the Podfile declaration
-xcodeproj_path = begin
+xcodeproj_path = nil
+begin
   filename = File.exists?('../../podfile') ? '../../podfile' : '../../Podfile'
   suppress_warnings {
-      Pod::Command::IPC::Podfile::Pod::Podfile.from_file(filename).to_hash["target_definitions"].first["user_project_path"]
+      xcodeproj_path = Pod::Command::IPC::Podfile::Pod::Podfile.from_file(filename).to_hash["target_definitions"].first["user_project_path"]
   }
 rescue
   nil 
