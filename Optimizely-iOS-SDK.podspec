@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.xcconfig = { 'OTHER_LDFLAGS' => '-ObjC' }
 
-  s.source           = { :git => "https://github.com/optimizely/Optimizely-iOS-SDK.git"}
+  s.source           = { :git => "https://github.com/optimizely/Optimizely-iOS-SDK.git", :tag => "0.5.47" }
 
   s.frameworks = 'CFNetwork', 'Foundation', 'Security', 'SystemConfiguration', 'UIKit'
   s.libraries = 'icucore', 'sqlite3'
