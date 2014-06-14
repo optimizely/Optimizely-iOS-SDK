@@ -17,4 +17,4 @@ For a technical overview, please refer to our **[Technical FAQ](https://help.opt
 We want your feedback! For any and all questions, comments, or kudos, please get in touch with us at [support@optimizely.com](mailto:support@optimizely.com)
 
 ## Legal
-By using this SDK and your Optimizely account, you agree to abide by the [Optimezely iOS Beta Terms of Service](http://developers.optimizely.com/ios/terms).
+By using this SDK and your Optimizely account, you agree to abide by the [Optimizely iOS Beta Terms of Service](http://developers.optimizely.com/ios/terms).
