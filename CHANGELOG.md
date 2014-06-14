@@ -1,5 +1,11 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 0.5.48
+
+June 13, 2014
+
+- Fixes constraint conflict when status bar is hidden
+
 ## 0.5.47
 
 June 12, 2014
