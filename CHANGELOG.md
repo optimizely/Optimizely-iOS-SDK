@@ -1,6 +1,6 @@
 # Optimizely-iOS-SDK CHANGELOG
 
-## 0.5.50
+## 0.5.51
 July 3, 2014
 
 - New Live Variables and Code Blocks syntax which allows instantaneous discovery in
