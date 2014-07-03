@@ -1,5 +1,17 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 0.5.50
+July 3, 2014
+
+- New Live Variables and Code Blocks syntax which allows instantaneous discovery in
+  the Editor. The prior syntax is now deprecated but will be supported in future
+  SDKs for at least 6 months. [Learn More](#).
+- Optimizely now integrates with Mixpanel! [Learn More](#).
+- The currently active experiments (and the variation for each experiment
+  that the user is bucketed in) are now available as a property of the
+  Optimizely singleton. [Learn More](#).
+- Option to specify data file download timeout. [Learn More](#).
+
 ## 0.5.48
 
 June 13, 2014
