@@ -19,49 +19,63 @@
 //       - Rama Ranganath
 //       - Hemant Verma
 
+#import "OptimizelyVariableKey.h"
+#import "OptimizelyCodeBlocksKey.h"
+
 typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
 
 @interface UIView (Optimizely)
 @property NSString *optimizelyId;
 @end
 
-/** This class defines the entire interface with the Optimizely SDK
+
+/** This class defines the Optimizely SDK interface.
  *
- * The Optimizely SDK is organized around a Singleton, accessible via
- * the `+sharedInstance` method. Through this singleton, you can mark variables
- * or assets as available for experimentation, track custom goals, or __(Coming Soon!)__
- * run experiments through code blocks.
+ * The Optimizely SDK is organized around a singleton, accessible via
+ * the `+sharedInstance` method. Through this singleton, you can configure
+ * Optimizely.
+ *
+ * Methods associated with retrieving variables, code blocks and tracking goals are
+ * available as class methods.
  */
 @interface Optimizely : NSObject {
 }
 
 /** @name Initialization */
 
-/** This method provides access to the Optimizely singleton
+/** This method provides access to the Optimizely singleton.
  *
- * @return The Optimizely Singleton
+ * @return The Optimizely singleton
  */
 + (instancetype)sharedInstance;
 
-/** Calling this activates the Optimizely framework. If this isn't called, the app will behave
- * as though Optimizely wasn't included. Any configuration should be done before this is called.
+/** Calling this activates the Optimizely framework. If not called, the app will behave
+ * as though Optimizely wasn't included.
+ *
+ * This method attempts to fetch the latest Optimizely experiment data with a timeout of two seconds and returns immediately
+ * after the data has been successfully loaded.  In the case of a timeout and when no experiment data is available, the user will
+ * not be counted as a visitor to your experiment.
  *
  * @param apiToken The apiToken of your iOS project on Optimizely.
- * @param launchOptions A dictionary of launch options. This is typically the variable
- * passed into `-application: didFinishLaunchingWithOptions:`. TODO: Options for launchOptions
+ * @param launchOptions A dictionary of launch options. This is typically the launch options
+ * passed into `-application: didFinishLaunchingWithOptions:`.
  */
 + (void)startOptimizelyWithAPIToken:(NSString *)apiToken launchOptions:(NSDictionary *)launchOptions;
 
-/** Calling this activates the Optimizely framework. If this isn't called, the app will behave
- * as though Optimizely wasn't included. Any configuration should be done before this is called.
+/** Calling this activates the Optimizely framework. If not called, the app will behave
+ * as though Optimizely wasn't included.
+ *
+ * This method will return immediately.  However, accessing live variables, code blocks or Optimizely views
+ * involved in an active experiment prior to receiving a successful callback will prevent the experiment
+ * from running on this launch.
  *
  * @param apiToken The apiToken of your iOS project on Optimizely.
- * @param launchOptions A dictionary of launch options. This is typically the variable
- * passed into `-application: didFinishLaunchingWithOptions:`. TODO: Options for launchOptions
+ * @param launchOptions A dictionary of launch options. This is typically the launch options
+ * passed into `-application: didFinishLaunchingWithOptions:`.
  * @param experimentsLoadedCallback A block that will be executed when the Optimizely framework
  * has activated any experiments that pass targeting.
- * @discussion If no data file has been cached (e.g. if
- * this is the first launch) then the experimentsLoadedCallback will not be called until
+ * @discussion The experimentsLoadedCallback is guaranteed to be called exactly once.  If no data file has been cached
+ * (e.g. if this is the first launch) then the experimentsLoadedCallback will not be called until
  * the latest experiments file has been downloaded from the server.
  * If the device is in edit mode, the callback will execute immediately.
  */
@@ -71,33 +85,32 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
 
 
 /** This method is intended to notify Optimizely that the app has been opened via URL and the
- * user wishes to enter edit mode.  Returns false if the provided URL is not an Optimizely URL.
-   @param url
-   @return Returns false if not an Optimizely URL
+ * user wishes to enter edit mode.  Typically, this should be placed in `application:handleOpenURL:`
+ * @param url The url passed to `application:handleOpenURL:`
+ * @return Returns true if the provided URL is an Optimizely URL, false otherwise.
  */
 + (BOOL)handleOpenURL:(NSURL *)url;
 
-/** This method makes the device available to the Optimizely web editor
+/** This method makes the device available to the Optimizely web editor.
  *
- * This method makes it more convenient for a developer to set up an experiment. The only other way
- * to connect a device to the web editor is by opening the app through the appropriate
- * custom URL, accessible from the matching Optimizely project.
+ * It is a programmatic shortcut for developers to place the device in edit mode, rather than
+ * opening the app through the custom URL accessible in the Optimizely web editor.
  *
- * @warning This method should only be called behind an `#ifdef DEBUG` flag. Otherwise
- * any device running the app could be altered from the web editor.
- * @warning Should only be called before `+(void)startWithProjectId:(NSString*)projectId launchOptions:(NSDictionary *)launchOptions;`.
+ * @warning We recommend that this call be wrapped in an `#ifdef DEBUG` flag.  It should be removed from test and production builds.
+ * @warning Should be called before `+startWithProjectId:launchOptions:`.
  */
 + (void)enableEditor;
 
-/** This method deactivate the features that require swizzling.
+/** This method deactivates the swizzling functionality of the SDK required for use of the visual editor.
  *
+ * @warning Should be called before `+startWithProjectId:launchOptions:`.
  */
 + (void)disableSwizzle;
 
 /** @name Events and Goal Tracking */
 
 /** This method immediately starts a network request that sends tracked events
- * back to Optimizely and fetches the newest experiment data file.
+ *  to Optimizely and fetches the newest experiment data file.
  *
  * This is the same as calling dispatchEvents followed by fetchNewDataFile.
  *
@@ -109,145 +122,281 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  */
 + (void)dispatch;
 
-/** Manually send events to Optimizely
+/** Manually send events to Optimizely.
  */
 + (void)dispatchEvents;
 
-/** Manually fetch new data file from Optimizely
+/** Manually fetch new data file from Optimizely.
  */
 + (void)fetchNewDataFile;
 
-/** This method informs the server that a custom goal with key `description` occured
+/** This method informs Optimizely that a custom goal with key `description` occured.
  *
- * Use this method to let Optimizely know that a custom goal occured. Events are sent in batches
- * to reduce radio/battery usage, so use `-flushEvents` if you want to schedule the request
- * yourself or want to take advantage of a time when the radio is already on.
- * @param description The string uniquely identifying the custom goal you want to track
- * @see -dispatch
+ * @param description A unique string identifying the custom goal
+ * @see +dispatch
  */
-- (void)trackEvent:(NSString *)description;
++ (void)trackEvent:(NSString *)description;
 
 #pragma mark - Variable getters
 /** @name Experiment Variables */
 
-/** This method registers an NSString so that it can be changed via the Optimizely web editor
+/** Returns the NSString idenitified by the provided key.
  *
- * @param key A key uniquely defining the variable
- * @param defaultValue The value this variable should take on in the absence of an
- * experimental change
+ * @param key A key uniquely identifying a live variable
  * @return The value of this variable in the active experiment (default if no active experiment)
  */
-- (NSString *)stringForKey:(NSString *)key defaultValue:(NSString *)defaultValue;
++ (NSString *)stringForKey:(OptimizelyVariableKey *)key;
 
-/** This method registers an UIColor so that it can be changed via the Optimizely web editor
+/** Returns the UIColor idenitified by the provided key.
  *
- * @param key A key uniquely defining the variable
- * @param defaultValue The value this variable should take on in the absence of an
- * experimental change
+ * @param key A key uniquely identifying a live variable
  * @return The value of this variable in the active experiment (default if no active experiment)
  */
-- (UIColor *)colorForKey:(NSString *)key defaultValue:(UIColor *)defaultValue;
++ (UIColor *)colorForKey:(OptimizelyVariableKey *)key;
 
-/** This method registers an NSNumber so that it can be changed via the Optimizely web editor
+/** Returns the NSNumber idenitified by the provided key.
  *
- * @param key A key uniquely defining the variable
- * @param defaultValue The value this variable should take on in the absence of an
- * experimental change
+ * @param key A key uniquely identifying a live variable
  * @return The value of this variable in the active experiment (default if no active experiment)
  */
-- (NSNumber *)numberForKey:(NSString *)key defaultValue:(NSNumber *)defaultValue;
++ (NSNumber *)numberForKey:(OptimizelyVariableKey *)key;
 
-/** This method registers an CGPoint so that it can be changed via the Optimizely web editor
+/** Returns the CGPoint idenitified by the provided key.
  *
- * @param key A key uniquely defining the variable
- * @param defaultValue The value this variable should take on in the absence of an
- * experimental change
+ * @param key A key uniquely identifying a live variable
  * @return The value of this variable in the active experiment (default if no active experiment)
  */
-- (CGPoint)pointForKey:(NSString *)key defaultValue:(CGPoint)defaultValue;
++ (CGPoint)pointForKey:(OptimizelyVariableKey *)key;
 
-/** This method registers an CGSize so that it can be changed via the Optimizely web editor
+/** Returns the CGSize idenitified by the provided key.
  *
- * @param key A key uniquely defining the variable
- * @param defaultValue The value this variable should take on in the absence of an
- * experimental change
+ * @param key A key uniquely identifying a live variable
  * @return The value of this variable in the active experiment (default if no active experiment)
  */
-- (CGSize)sizeForKey:(NSString *)key defaultValue:(CGSize)defaultValue;
++ (CGSize)sizeForKey:(OptimizelyVariableKey *)key;
 
-/** This method registers an CGRect so that it can be changed via the Optimizely web editor
+/** Returns the CGRect idenitified by the provided key.
  *
- * @param key A key uniquely defining the variable
- * @param defaultValue The value this variable should take on in the absence of an
- * experimental change
+ * @param key A key uniquely identifying a live variable
  * @return The value of this variable in the active experiment (default if no active experiment)
  */
-- (CGRect)rectForKey:(NSString *)key defaultValue:(CGRect)defaultValue;
++ (CGRect)rectForKey:(OptimizelyVariableKey *)key;
 
-/** This method registers a BOOL so that it can be changed via the Optimizely web editor
+/** Returns the BOOL idenitified by the provided key.
  *
- * @param key A key uniquely defining the variable
- * @param defaultValue The value this variable should take on in the absence of an
- * experimental change
+ * @param key A key uniquely identifying a live variable
  * @return The value of this variable in the active experiment (default if no active experiment)
  */
-- (BOOL)boolForKey:(NSString *)key defaultValue:(BOOL)defaultValue;
++ (BOOL)boolForKey:(OptimizelyVariableKey *)key;
 
-#pragma mark - Code Tests
-/** @name Code Tests */
+#pragma mark - Code Blocks
+/** @name Code Blocks */
 
-/** This method allows you to set up a code block based experiment
-
-   [[Optimizely sharedInstance] codeTest:@"checkout flow" withBlocks:@{
-   @"skip signup": ^{
-   [self showConfirmation];
-   },
-   @"free shipping": ^{
-   order.shippingCost = 0;
-   },
-   }
-   defaultBlock:^{
-   [self showSignup];
-   }];
-
-   @param codeTestKey A unique key that describes this test
-   @param blocks A dictionary that maps descriptive NSString keys to (void (^)(void)) blocks for each
-   variation of this test.
-   @param defaultBlock This block will be executed if no active experiment involves this code test.
+/** This method allows you to define a code block based experiment with one alternative.
+ *
+ * @param codeBlocksKey The OptimizelyCodeBlocksKey associated with this code blocks experiment
+ * @param blockOne Block corresponding to the first block name in the provided OptimizelyCodeBlocksKey
+ * @param defaultBlock This block will be executed if no active experiment involves this code block key.
  */
-- (void)codeTest:(NSString *)codeTestKey
-      withBlocks:(NSDictionary *)blocks
-    defaultBlock:(void (^)(void))defaultBlock;
++ (void)codeBlocksWithKey:(OptimizelyCodeBlocksKey *)codeBlocksKey
+                 blockOne:(void (^)(void))blockOne
+             defaultBlock:(void (^)(void))defaultBlock;
+
+/** This method allows you to define a code block based experiment with two alternatives.
+ *
+ * @param codeBlocksKey The OptimizelyCodeBlocksKey associated with this code blocks experiment
+ * @param blockOne Block corresponding to the first block name in the provided OptimizelyCodeBlocksKey
+ * @param blockTwo Block corresponding to the second block name in the provided OptimizelyCodeBlocksKey
+ * @param defaultBlock This block will be executed if no active experiment involves this code block key.
+ */
++ (void)codeBlocksWithKey:(OptimizelyCodeBlocksKey *)codeBlocksKey
+                 blockOne:(void (^)(void))blockOne
+                 blockTwo:(void (^)(void))blockTwo
+             defaultBlock:(void (^)(void))defaultBlock;
+
+/** This method allows you to define a code block based experiment with three alternatives.
+ *
+ * @param codeBlocksKey The OptimizelyCodeBlocksKey associated with this code blocks experiment
+ * @param blockOne Block corresponding to the first block name in the provided OptimizelyCodeBlocksKey
+ * @param blockTwo Block corresponding to the second block name in the provided OptimizelyCodeBlocksKey
+ * @param blockThree Block corresponding to the third block name in the provided OptimizelyCodeBlocksKey
+ * @param defaultBlock This block will be executed if no active experiment involves this code block key.
+ */
++ (void)codeBlocksWithKey:(OptimizelyCodeBlocksKey *)codeBlocksKey
+                 blockOne:(void (^)(void))blockOne
+                 blockTwo:(void (^)(void))blockTwo
+               blockThree:(void (^)(void))blockThree
+             defaultBlock:(void (^)(void))defaultBlock;
+
+/** This method allows you to define a code block based experiment with four alternatives.
+ *
+ * @param codeBlocksKey The OptimizelyCodeBlocksKey associated with this code blocks experiment
+ * @param blockOne Block corresponding to the first block name in the provided OptimizelyCodeBlocksKey
+ * @param blockTwo Block corresponding to the second block name in the provided OptimizelyCodeBlocksKey
+ * @param blockThree Block corresponding to the third block name in the provided OptimizelyCodeBlocksKey
+ * @param blockFour Block corresponding to the fourth block name in the provided OptimizelyCodeBlocksKey
+ * @param defaultBlock This block will be executed if no active experiment involves this code block key.
+ */
++ (void)codeBlocksWithKey:(OptimizelyCodeBlocksKey *)codeBlocksKey
+                 blockOne:(void (^)(void))blockOne
+                 blockTwo:(void (^)(void))blockTwo
+               blockThree:(void (^)(void))blockThree
+                blockFour:(void (^)(void))blockFour
+             defaultBlock:(void (^)(void))defaultBlock;
+
+/* Should not be called directly.  These methods register a key with the editor in edit mode. */
++ (void)preregisterVariableKey:(OptimizelyVariableKey *)key;
++ (void)preregisterBlockKey:(OptimizelyCodeBlocksKey *)key;
 
 #pragma mark - Properties
+/** @name Properties */
 
-/** NSString property that is your project Id */
+/** Provides a mapping of all the experiments currently active for the user to the variation
+ *  they're bucketed into for that experiment
+ */
+@property (nonatomic, strong, readonly) NSDictionary *activeExperiments;
+
+
+/** The The current Optimizely project id. */
 @property (readonly, strong) NSString *projectId;
 
-/** NSString property that is the current SDK version */
+/** The current SDK version. */
 @property (readonly, strong) NSString *sdkVersion;
 
-/** Optional NSString property that is the current app version
-   We default this value from bundle if not provided */
-@property (nonatomic, strong) NSString *appVersion;
-
-/** Using this you can set the user id idenifying this user
- * This is optional, the default value is vendor id
+/** A unique identifier for the current user.
+ * If a custom identifier is provided, it must be set prior to calling `+startWithProjectId:launchOptions:`.
+ * Defaults to the device UUIDString if no identifier is provided.
  */
 @property (nonatomic, strong) NSString *userId;
 
-/** Optional Output more verbose logs, helps in debugging
- * Optimizely related issues
+/** When set to true, provides verbose logging details that may be useful for debugging.
  */
 @property (nonatomic) BOOL verboseLogging;
 
-/**The frequency (in seconds) at which new events are sent and experiment
- * data file is fetched from server. (default value is 2 minutes)
+/**The frequency (in seconds) at which events are sent to Optimizley and the experiment
+ * data file is fetched from server. Defaults to 2 minutes.
  *
  * Setting this to zero or negative value will disable automatic sending
- * of events and you will have to manually dispatch events and fetch new data file
- * using dispatch or dispatchEvent / fetchNewDataFile.
+ * of events and you will need to send events manually using `-dispatch`.
  */
 @property (nonatomic) NSTimeInterval dispatchInterval;
+
+/** NSTimeInterval which controls timeout for first download of
+ * config file.
+ */
+@property (nonatomic) NSTimeInterval networkTimeout;
+
+/** @name Integrations*/
+/**
+ *  This activates the Optimizely SDK's Mixpanel integration. This behaves identically to web,
+ *  which you can read about [here](https://help.optimizely.com/hc/en-us/articles/200040025-Integrating-Optimizely-with-Mixpanel),
+ *  except that it cannot (yet) be activated through the website.
+ *  @warning This currently *must* be called after `startOptimizelyWithAPIToken: launchOptions:` returns!
+ */
++ (void)activateMixpanelIntegration;
+
+#pragma mark - Variable getters
+/** @name Deprecated Methods */
+
+/* These methods will be removed in a future release */
+
+/**  @deprecated.  Use `+trackEvent`.
+ *
+ * This method informs the server that a custom goal with key `description` occured.
+ *
+ * @param description The string uniquely identifying the custom goal you want to track
+ * @see -dispatch
+ */
+- (void)trackEvent:(NSString *)description __attribute((deprecated("Use [Optimizely trackEvent:]")));
+
+/**  @deprecated.  Use `+stringForKey:`.
+ *
+ * This method registers an NSString so that it can be changed via the Optimizely web editor
+ *
+ * @param key A key uniquely defining the variable
+ * @param defaultValue The value this variable should take on in the absence of an
+ * experimental change
+ * @return The value of this variable in the active experiment (default if no active experiment)
+ */
+- (NSString *)stringForKey:(NSString *)key defaultValue:(NSString *)defaultValue __attribute((deprecated("Use [Optimizely stringForKey:]")));
+
+/**  @deprecated.  Use `+colorForKey:`.
+ *
+ * This method registers an UIColor so that it can be changed via the Optimizely web editor
+ *
+ * @param key A key uniquely defining the variable
+ * @param defaultValue The value this variable should take on in the absence of an
+ * experimental change
+ * @return The value of this variable in the active experiment (default if no active experiment)
+ */
+- (UIColor *)colorForKey:(NSString *)key defaultValue:(UIColor *)defaultValue  __attribute((deprecated("Use [Optimizely colorForKey:]")));
+
+/**  @deprecated.  Use `+numberForKey:`.
+ *
+ * This method registers an NSNumber so that it can be changed via the Optimizely web editor
+ *
+ * @param key A key uniquely defining the variable
+ * @param defaultValue The value this variable should take on in the absence of an
+ * experimental change
+ * @return The value of this variable in the active experiment (default if no active experiment)
+ */
+- (NSNumber *)numberForKey:(NSString *)key defaultValue:(NSNumber *)defaultValue  __attribute((deprecated("Use [Optimizely numberForKey:]")));
+
+/**  @deprecated.  Use `+pointForKey:`.
+ *
+ * This method registers an CGPoint so that it can be changed via the Optimizely web editor
+ *
+ * @param key A key uniquely defining the variable
+ * @param defaultValue The value this variable should take on in the absence of an
+ * experimental change
+ * @return The value of this variable in the active experiment (default if no active experiment)
+ */
+- (CGPoint)pointForKey:(NSString *)key defaultValue:(CGPoint)defaultValue  __attribute((deprecated("Use [Optimizely pointForKey:]")));
+
+/**  @deprecated.  Use `+sizeForKey:`.
+ *
+ * This method registers an CGSize so that it can be changed via the Optimizely web editor
+ *
+ * @param key A key uniquely defining the variable
+ * @param defaultValue The value this variable should take on in the absence of an
+ * experimental change
+ * @return The value of this variable in the active experiment (default if no active experiment)
+ */
+- (CGSize)sizeForKey:(NSString *)key defaultValue:(CGSize)defaultValue  __attribute((deprecated("Use [Optimizely sizeForKey:]")));
+
+/**  @deprecated.  Use `+rectForKey:`.
+ *
+ * This method registers an CGRect so that it can be changed via the Optimizely web editor
+ *
+ * @param key A key uniquely defining the variable
+ * @param defaultValue The value this variable should take on in the absence of an
+ * experimental change
+ * @return The value of this variable in the active experiment (default if no active experiment)
+ */
+- (CGRect)rectForKey:(NSString *)key defaultValue:(CGRect)defaultValue __attribute((deprecated("Use [Optimizely rectForKey:]")));
+
+/**  @deprecated.  Use `+boolForKey:`.
+ *
+ * This method registers a BOOL so that it can be changed via the Optimizely web editor
+ *
+ * @param key A key uniquely defining the variable
+ * @param defaultValue The value this variable should take on in the absence of an
+ * experimental change
+ * @return The value of this variable in the active experiment (default if no active experiment)
+ */
+- (BOOL)boolForKey:(NSString *)key defaultValue:(BOOL)defaultValue __attribute((deprecated("Use [Optimizely boolForKey:]")));
+
+/**  @deprecated.  Use `+codeBlocksWithKey: blockOne:...`.
+ *
+ * This method allows you to define a code block based experiment
+ *
+ * @param codeTestKey A unique key that describes this test
+ * @param blocks A dictionary that maps descriptive NSString keys to (void (^)(void)) blocks for each
+ * variation of this test.
+ * @param defaultBlock This block will be executed if no active experiment involves this code test.
+ */
+- (void)codeTest:(NSString *)codeTestKey
+      withBlocks:(NSDictionary *)blocks
+    defaultBlock:(void (^)(void))defaultBlock __attribute((deprecated("Use [Optimizely codeTestWithKey: blockOne:...]")));
 
 @end
