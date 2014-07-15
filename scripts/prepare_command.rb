@@ -11,10 +11,10 @@ def suppress_warnings
 end
 
 BUILD_PHASE_NAME = "Label Optimizely Views"
-SHELL_SCRIPT = "python \"$PODS_ROOT/Optimizely-iOS-SDK/scripts/OptimizelyPrepareNibs.py\""
+SHELL_SCRIPT = "python \"$PODS_ROOT/Optimizely-iOS-SDK/scripts/OptimizelyPrepareNibs.rb\""
 
 # This was a prior way of referencing the script and will be deprecated
-OLD_SHELL_SCRIPT = "python \"$SRCROOT/Pods/Optimizely-iOS-SDK/scripts/OptimizelyPrepareNibs.py\""
+OLD_SHELL_SCRIPT = "python \"$SRCROOT/Pods/Optimizely-iOS-SDK/scripts/OptimizelyPrepareNibs.rb\""
 
 # Find main project file by looking in the Podfile declaration
 xcodeproj_path = nil
@@ -24,19 +24,19 @@ begin
       xcodeproj_path = Pod::Command::IPC::Podfile::Pod::Podfile.from_file(filename).to_hash["target_definitions"].first["user_project_path"]
   }
 rescue
-  nil 
+  nil
 end
 
 
 if xcodeproj_path
   # If declared in Podfile, prepend two directories up so that project path is relative to this script
   xcodeproj_path = "../../" + xcodeproj_path
-  
+
   # xcodeproj extension may or may not be specified
   if xcodeproj_path.split('.').last != 'xcodeproj'
     xcodeproj_path = xcodeproj_path + '.xcodeproj'
   end
-  
+
   # Verify file is valid
   if(!File.exists?(xcodeproj_path))
     xcodeproj_path = nil
@@ -51,7 +51,7 @@ if !xcodeproj_path
 end
 
 if !xcodeproj_path
-    print "Could not locate project, please add the OptimizelyPrepareNibs.py build phase manually"
+    print "Could not locate project, please add the OptimizelyPrepareNibs.rb build phase manually"
 else
     # Open project
     project = Xcodeproj::Project.open(xcodeproj_path)
@@ -66,7 +66,7 @@ else
         if phase.shell_script == SHELL_SCRIPT
             install_build_phase = false
         end
-        
+
         #if a project has the old version, just update it, save and exit
         if phase.shell_script == OLD_SHELL_SCRIPT
             phase.shell_script = SHELL_SCRIPT
