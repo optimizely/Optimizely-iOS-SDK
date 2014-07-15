@@ -13,8 +13,9 @@ end
 BUILD_PHASE_NAME = "Label Optimizely Views"
 SHELL_SCRIPT = "python \"$PODS_ROOT/Optimizely-iOS-SDK/scripts/OptimizelyPrepareNibs.rb\""
 
-# This was a prior way of referencing the script and will be deprecated
-OLD_SHELL_SCRIPT = "python \"$SRCROOT/Pods/Optimizely-iOS-SDK/scripts/OptimizelyPrepareNibs.rb\""
+# These shell scripts were deprecated as of 7/15/14 and 5/28/14 respectively.
+DEPRECATED_SHELL_SCRIPTS = ["python \"$PODS_ROOT/Optimizely-iOS-SDK/scripts/OptimizelyPrepareNibs.py\"", 
+                            "python \"$SRCROOT/Pods/Optimizely-iOS-SDK/scripts/OptimizelyPrepareNibs.py\""]
 
 # Find main project file by looking in the Podfile declaration
 xcodeproj_path = nil
@@ -68,7 +69,7 @@ else
         end
 
         #if a project has the old version, just update it, save and exit
-        if phase.shell_script == OLD_SHELL_SCRIPT
+        if DEPRECATED_SHELL_SCRIPTS.include?(phase.shell_script)
             phase.shell_script = SHELL_SCRIPT
             install_build_phase = false
             project.save()
