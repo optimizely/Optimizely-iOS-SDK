@@ -11,7 +11,7 @@ def suppress_warnings
 end
 
 BUILD_PHASE_NAME = "Label Optimizely Views"
-SHELL_SCRIPT = "python \"$PODS_ROOT/Optimizely-iOS-SDK/scripts/OptimizelyPrepareNibs.rb\""
+SHELL_SCRIPT = "ruby \"$PODS_ROOT/Optimizely-iOS-SDK/scripts/OptimizelyPrepareNibs.rb\""
 
 # These shell scripts were deprecated as of 7/15/14 and 5/28/14 respectively.
 DEPRECATED_SHELL_SCRIPTS = ["python \"$PODS_ROOT/Optimizely-iOS-SDK/scripts/OptimizelyPrepareNibs.py\"", 

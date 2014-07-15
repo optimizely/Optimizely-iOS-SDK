@@ -83,7 +83,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
                       launchOptions:(NSDictionary *)launchOptions
           experimentsLoadedCallback:(OptimizelySuccessBlock)experimentsLoadedCallback;
 
-/** This method allows you to add custom tags with string value for taregting.
+/** This method allows you to add custom tags with string value for targeting.
  *
  * @param tagKey Key for custom tag
  * @param tagValue Value for custom tag
