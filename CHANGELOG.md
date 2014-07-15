@@ -5,7 +5,7 @@ July 15, 2014
 
 - Option to reload experiments on app foregrounding. [Learn More](http://developers.optimizely.com/ios/help/html/Classes/Optimizely.html#//api/name/shouldReloadExperimentsOnForegrounding).
 - Ability to target experiments based on custom tags. [Learn More](http://developers.optimizely.com/ios/#customtags).
-- Improved tagging of views in storybord/xib files.
+- Improved `OptimizelyPrepareNibs.rb` script which replaces `OptimizelyPrepareNibs.py` and plays nicely with source control.
 
 ## 0.5.51
 July 3, 2014
