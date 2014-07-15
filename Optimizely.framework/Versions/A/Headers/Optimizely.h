@@ -83,6 +83,15 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
                       launchOptions:(NSDictionary *)launchOptions
           experimentsLoadedCallback:(OptimizelySuccessBlock)experimentsLoadedCallback;
 
+/** This method allows you to add custom tags with string value for taregting.
+ *
+ * @param tagKey Key for custom tag
+ * @param tagValue Value for custom tag
+ * @warning This method should be called before +startOptimizelyWithAPIToken
+ */
+
++ (void)setValue:(NSString *)tagValue forCustomTag:(NSString *)tagKey;
+
 
 /** This method is intended to notify Optimizely that the app has been opened via URL and the
  * user wishes to enter edit mode.  Typically, this should be placed in `application:handleOpenURL:`
@@ -138,7 +147,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
 + (void)trackEvent:(NSString *)description;
 
 #pragma mark - Variable getters
-/** @name Experiment Variables */
+/** @name Live Variables */
 
 /** Returns the NSString idenitified by the provided key.
  *
@@ -285,6 +294,21 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * config file.
  */
 @property (nonatomic) NSTimeInterval networkTimeout;
+
+/**
+ * Indicates whether experiments should be reloaded on foregrounding.  Defaults to false.
+ *
+ * @discussion By default, Optimizely ensures that a user will never have an inconsistent
+ * experience as a result of an experiment activation.  In practice, this means that once a view becomes
+ * visible, a variable is read, or a code block is executed, its value/appearance will not change for the
+ * duration of the app run (applicationDidFinishLaunching:withOptions: is called).
+ *
+ * When shouldReloadExperimentsOnForegrounding is set to true, experiments may be activated when
+ * an application returns to the foreground, regardless of whether applicationDidFinishLaunching:withOptions: is called.
+ * Developers should be aware that Optimizely values may change throughout the duration of the app run and that this may
+ * have unintended consequences on statistical validity.
+ */
+@property (assign) BOOL shouldReloadExperimentsOnForegrounding;
 
 /** @name Integrations*/
 /**

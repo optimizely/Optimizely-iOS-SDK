@@ -1,5 +1,12 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 0.5.52
+July 15, 2014
+
+- Option to reload experiments on app foregrounding. [Learn More](http://developers.optimizely.com/ios/help/html/Classes/Optimizely.html#//api/name/shouldReloadExperimentsOnForegrounding).
+- Ability to target experiments based on custom tags. [Learn More](http://developers.optimizely.com/ios/#customtags).
+- Improved tagging of views in storybord/xib files.
+
 ## 0.5.51
 July 3, 2014
 
