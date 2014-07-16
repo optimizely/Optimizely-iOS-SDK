@@ -1,5 +1,12 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 0.6.52
+July 15, 2014
+
+- Option to reload experiments on app foregrounding. [Learn More](http://developers.optimizely.com/ios/help/html/Classes/Optimizely.html#//api/name/shouldReloadExperimentsOnForegrounding).
+- Ability to target experiments based on custom tags. [Learn More](http://developers.optimizely.com/ios/#customtags).
+- Improved `OptimizelyPrepareNibs.rb` script which replaces `OptimizelyPrepareNibs.py` and plays nicely with source control. **Note: For manual installs, please follow steps 5 and 6 in the [manual install process](http://developers.optimizely.com/ios/#manualinstall) to upgrade to this new script.**
+
 ## 0.5.51
 July 3, 2014
 
