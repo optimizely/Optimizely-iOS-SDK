@@ -83,7 +83,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
                       launchOptions:(NSDictionary *)launchOptions
           experimentsLoadedCallback:(OptimizelySuccessBlock)experimentsLoadedCallback;
 
-/** This method allows you to add custom tags with string value for targeting.
+/** This method allows you to add custom tags for targeting.
  *
  * @param tagKey Key for custom tag
  * @param tagValue Value for custom tag
@@ -304,9 +304,9 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * duration of the app run (applicationDidFinishLaunching:withOptions: is called).
  *
  * When shouldReloadExperimentsOnForegrounding is set to true, experiments may be activated when
- * an application returns to the foreground, regardless of whether applicationDidFinishLaunching:withOptions: is called.
- * Developers should be aware that Optimizely values may change throughout the duration of the app run and that this may
- * have unintended consequences on statistical validity.
+ * an application is foregrounded, regardless of whether it is a fresh launch.  Developers should be aware that Optimizely
+ * values may change throughout the duration of the app run and that this may have unintended consequences on statistical validity.
+ * We recommend targeting your experiments such that all users will have a consistent value for shouldReloadExperimentsOnForegrounding.
  */
 @property (assign) BOOL shouldReloadExperimentsOnForegrounding;
 
