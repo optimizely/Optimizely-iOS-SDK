@@ -1,5 +1,12 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 0.7.53
+August 5, 2014
+- New traffic allocation support for bucketing less than 100% of users
+- Improved robustness of startOptimizely for use with older XCode projects
+- Various bug fixes and performance enhancements
+- Improved debugging of custom goals
+
 ## 0.6.52
 July 15, 2014
 
