@@ -11,37 +11,48 @@ To remove the OptimizelyID tags added by this script, email support@optimizely.c
 """
 
 script_name = File.basename(__FILE__)
+# Add local Ruby folder to load path
+$LOAD_PATH.unshift("#{ENV['HOME']}/.gem/ruby/#{RUBY_VERSION}") unless $LOAD_PATH.include?("#{ENV['HOME']}/.gem/ruby/#{RUBY_VERSION}")
 
-def check_dependencies(gem_name, *gem_ver_reqs)
-    gdep = Gem::Dependency.new(gem_name, *gem_ver_reqs)
-    found_gspec = gdep.matching_specs.sort_by(&:version).last
+begin
+  require 'rubygems'
+rescue LoadError => e
+  abort "error: Please install the RubyGems package manager: https://rubygems.org/pages/download"
+end
 
-    if not found_gspec
-      puts "Dependency '#{gdep}' not satisfied; installing..."
-      ver_args = gdep.requirements_list.map{|s| ['-v', s] }.flatten
-      # multi-arg is safer, to avoid injection attacks
-      system('gem', 'install', gem_name, *ver_args)
+begin
+    gem 'nokogiri', '~>1.5.2'
+    require 'nokogiri'
+rescue LoadError => e
+    puts "Dependency 'nokogiri' not satisfied; installing..."
+    begin
+      success = system('gem install --user-install nokogiri --version "~>1.5.2"')
+      if not success # Propogate system call exceptions back to program
+        raise $?
+      end
+    rescue Exception => e
+      abort "error: Encountered exception #{e} while installing dependency 'nokogiri'.\n
+            run 'gem install --user-install nokogiri --version \"~>1.5.2\""
+            # Nokogiri 1.6.1 won't work for Xcode 5.1 command line tools. Will need to
+            # ignore unused command line arguments.
+            # http://stackoverflow.com/a/22703901/2014694
     end
 end
 
 begin
-    check_dependencies('nokogiri', '~> 1.6.1')
-    require 'nokogiri'
-rescue LoadError => e
-    abort "Encountered exception: #{e}\n
-           Please install nokogiri gem."
-    # Nokogiri 1.6.1 won't work for Xcode 5.1 command line tools. Will need to
-    # ignore unused command line arguments.
-    # See: http://stackoverflow.com/a/22703901/2014694
-end
-begin
     require 'pathname'
 rescue LoadError
     puts "Dependency 'pathname' not satisfied; installing..."
-    system('gem', 'install', 'pathname')
-rescue Exception => e
-  abort "Encountered exception while installing dependency 'pathname'.\n
-            run 'gem install pathname' to install pathname"
+    begin
+      # Propogate system call exceptions back to program
+      success = system('gem install --user-install pathname')
+      if not success
+        raise $?
+      end
+    rescue Exception => e
+      abort "error: Encountered exception #{e} while installing dependency 'pathname'.\n
+            run 'gem install --user-install pathname' to install pathname."
+    end
 end
 
 class Old_format
@@ -88,7 +99,7 @@ class Old_format
         file = File.new(file_path, "r")
         dom = Nokogiri.XML(file)
 
-        file_name = Pathname.new(file_path).basename.sub_ext('')       
+        file_name = Pathname.new(file_path).basename.sub_ext('')
 
         # Get all view nodes in this file that Optimizely supports
         @@view_classes.each { |tag| @views << dom.xpath("//object[@class=\"#{tag}\"]") }
@@ -101,7 +112,7 @@ class Old_format
             file_change_made = true
 
             view_node_tag = view_class.first()
-            
+
             object_records_array = dom.xpath("//object[@key=\"objectRecords\"]")
 
             # used as DOM root from which userDefinedRuntimeAttributes will be added
@@ -112,7 +123,7 @@ class Old_format
                 view_node_ref_num = view_node.attribute('id')
 
                 optimizely_id = "_#{file_name}-#{view_node_class}-#{view_node_ref_num}"
-                
+
                 # Get objectID with corresponding reference number
                 reference_node_of_IBObjectRecord = object_records_array.xpath("//object[@class=\"IBObjectRecord\"]//reference[@key=\"object\" and @ref=\"#{view_node_ref_num}\"]").first()
                 begin
@@ -144,7 +155,7 @@ class Old_format
                     string_with_key_NSkey0.set_attribute("key", "NS.key.0")
                     string_with_key_NSkey0.content = "IBUserDefinedRuntimeAttributesPlaceholderName"
                     object_with_class_NSMutableDictionary_key_IBAttributePlaceholdersKey.add_child(string_with_key_NSkey0)
-                end 
+                end
 
                 # Create <object class="IBUIUserDefinedRuntimeAttributesPlacholder" key="NS.object.0">
                 object_with_class_IBUIUserDefRuntimeAttribPlaceholder = object_with_class_NSMutableDictionary_key_IBAttributePlaceholdersKey.xpath("object[@class=\"IBUIUserDefinedRuntimeAttributesPlaceholder\" and \
@@ -210,14 +221,14 @@ class Old_format
       # Write new modified contents out to original file
       if file_change_made
         begin
-          File.open("#{file_path}", 'w') { |f| f.write(dom.to_xml(:indent => 1)) } 
+          File.open("#{file_path}", 'w') { |f| f.write(dom.to_xml(:indent => 1)) }
         rescue Exception => e
           puts "Failed to save changes to #{file_path}"
           puts "Check write permission on file."
         end
       end
     end
-    
+
 end
 
 class New_format
@@ -259,7 +270,7 @@ class New_format
       file = File.new(file_path, "r")
       dom = Nokogiri.XML(file) do |config|
         config.default_xml.noblanks
-      end 
+      end
 
       file_name = Pathname.new(file_path).basename.sub_ext('')
 
@@ -274,13 +285,13 @@ class New_format
 
           file_change_made = true
           view_node_tag = view_class.first().name() # Used for OptimizelyID tag
-          
+
           # A file may contain multiple view objects of the same class. Need to tag each separately.
           # For example, a file may contain multiple button objects. Thus, iterate through and process each button object.
           view_class.each do |view_node|
               view_node_id = view_node.attribute('id')
               value = "_#{file_name}-#{view_node_tag}-#{view_node_id}"
-              
+
               userDefinedRuntimeAttributes_node = view_node.xpath('userDefinedRuntimeAttributes').first()
 
               if userDefinedRuntimeAttributes_node.nil? # Search for the <userDefinedRuntimeAttrs> tag, which encloses <userDefinedRuntimeAttribute>
@@ -301,10 +312,10 @@ class New_format
       end
 
       # Write new modified contents out to original file
-      if file_change_made  
+      if file_change_made
         begin
-          File.open("#{file_path}", 'w') { |f| f.write(dom.to_xml(:indent => 4)) } 
-          
+          File.open("#{file_path}", 'w') { |f| f.write(dom.to_xml(:indent => 4)) }
+
         rescue Exception => e
           puts "Failed to save changes to #{file_path}"
           puts "Check write permission on file."
@@ -351,7 +362,7 @@ def main()
 
     view_files = get_full_path(project_dir, get_view_files(project_dir))
     puts "Configuring OptimizelyIDs for the following files:"
-    view_files.each { |path| puts(path) }        
+    view_files.each { |path| puts(path) }
     view_files.each { |path| install_optimizely(path) }
 
 end
