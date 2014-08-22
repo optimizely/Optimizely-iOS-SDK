@@ -260,10 +260,11 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
 #pragma mark - Properties
 /** @name Properties */
 
-/** Provides a mapping of all the experiments currently active for the user to the variation
- *  they're bucketed into for that experiment
+/** Provides an array of all the experiments currently active for the user to the variation
+ *  they're bucketed into for that experiment. The metadata includes experiment Id, variation Id,
+ *  experiment description and variation description.
  */
-@property (nonatomic, strong, readonly) NSDictionary *activeExperiments;
+@property (nonatomic, strong, readonly) NSArray *activeExperiments;
 
 
 /** The The current Optimizely project id. */
@@ -309,6 +310,8 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * We recommend targeting your experiments such that all users will have a consistent value for shouldReloadExperimentsOnForegrounding.
  */
 @property (assign) BOOL shouldReloadExperimentsOnForegrounding;
+
+#pragma mark - Integrations
 
 /** @name Integrations*/
 /**

@@ -1,7 +1,18 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 0.7.54
+August 22, 2014
+
+- Google Analytics Integration! You can now send information about active
+  experiments and variations to Google Analytics via our new integration
+  with Universal Analytics!
+- Surface Experiment and Variation Descriptions to developer via the
+   `activeExperiments` property
+- Fixed a bug where changing button text animated the change
+
 ## 0.7.53
 August 5, 2014
+
 - New traffic allocation support for bucketing less than 100% of users
 - Improved robustness of startOptimizely for use with older XCode projects
 - Various bug fixes and performance enhancements
