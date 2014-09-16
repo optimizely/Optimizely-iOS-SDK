@@ -1,5 +1,16 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 0.7.55
+September 16, 2014
+
+- Image uploading: you can now upload new images in the Optimizely editor and swap
+  them in variations
+- Added support for changing  UIImageView's `contentMode` property when changing
+  images in a variation
+- Added callbacks for live variables so that a developer can be notified when live
+  variables are updated
+- Fixed a bug with MixPanel integration
+
 ## 0.7.54
 August 22, 2014
 
