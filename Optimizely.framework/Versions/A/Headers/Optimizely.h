@@ -146,6 +146,13 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  */
 + (void)trackEvent:(NSString *)description;
 
+/** This method registers a callback method for when a given variable is changed.
+ *
+ * @param key The Optimizely key associated with the variable you want to watch
+ * @param callback The callback method that will be invoked whenever the variable is changed. It takes in two parameters, the first being the key of the changed variable and the second is the variable's new value
+ */
++ (void)registerCallbackForVariableWithKey:(OptimizelyVariableKey *)key callback:(void (^)(NSString *, id))callback;
+
 #pragma mark - Variable getters
 /** @name Live Variables */
 
