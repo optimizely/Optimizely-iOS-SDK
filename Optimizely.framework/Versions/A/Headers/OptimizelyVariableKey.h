@@ -56,7 +56,7 @@
 + (OptimizelyVariableKey *)optimizelyKeyWithKey:(NSString *)key defaultCGSize:(CGSize)defaultValue;
 + (OptimizelyVariableKey *)optimizelyKeyWithKey:(NSString *)key defaultCGRect:(CGRect)defaultValue;
 + (OptimizelyVariableKey *)optimizelyKeyWithKey:(NSString *)key defaultBOOL:(BOOL)defaultValue;
-
+- (BOOL)isEqualToOptimizelyVariableKey:(OptimizelyVariableKey *)key;
 @end
 
 #define _OptimizelyVariableKey(key, type, defVal) OptimizelyVariableKey * key; \
