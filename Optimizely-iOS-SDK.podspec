@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
   s.source           = { :git => "https://github.com/optimizely/Optimizely-iOS-SDK.git", :tag => "0.7.55" }
 
-  s.frameworks = 'CFNetwork', 'Foundation', 'Security', 'SystemConfiguration', 'UIKit'
+  s.frameworks = 'AudioToolbox', 'CFNetwork', 'Foundation', 'Security', 'SystemConfiguration', 'UIKit'
   s.libraries = 'icucore', 'sqlite3'
   
   s.preserve_paths      = "Optimizely.framework", "scripts/*"
