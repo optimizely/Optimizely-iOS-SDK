@@ -341,7 +341,7 @@ end
 
 def get_view_files(project_dir)
     Dir.chdir(project_dir)
-    view_files = Dir.glob('**/*.{storyboard,xib}')
+    view_files = Dir.glob('**/*.{storyboard,xib}').reject { |f| File.fnmatch('**LaunchScreen.xib', f) }
     return view_files
 end
 
