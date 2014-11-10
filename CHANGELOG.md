@@ -1,5 +1,13 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 0.8.57
+November 10, 2014
+
+- New Visual Editor: Optimizely now has a brand new visual editor that makes it easy to create your A/B tests.
+- Removed the need for `OptimizelyPrepareNibs.rb`. you no longer need to run this script to use the visual editor.
+- New gesture for entering into Edit Mode: just draw the Optimizely O to get into edit mode
+- Optimizely URL Scheme is now required for edit mode
+
 ## 0.7.55
 September 16, 2014
 
