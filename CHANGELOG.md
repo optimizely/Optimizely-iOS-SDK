@@ -3,6 +3,8 @@
 ## 0.8.57
 November 10, 2014
 
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
 - New Visual Editor: Optimizely now has a brand new visual editor that makes it easy to create your A/B tests.
 - Removed the need for `OptimizelyPrepareNibs.rb`. you no longer need to run this script to use the visual editor.
 - New gesture for entering into Edit Mode: just draw the Optimizely O to get into edit mode
