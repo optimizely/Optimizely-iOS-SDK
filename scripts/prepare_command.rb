@@ -56,7 +56,7 @@ if xcodeproj_path
     main_target = project.targets.first
 
     # Check if build phase exists
-    phases = main_target.build_phases
+    phases = main_target.shell_script_build_phases
     phase_to_remove = nil
     # Get our shell script build phase
     phases.each do |phase|
@@ -66,9 +66,9 @@ if xcodeproj_path
         end
     end
     # delete it and save the project file
-    phases.delete(phase_to_remove)
-    project.save()
+    # It wont stick unless we remove it from main_target.build_phases
+    if phase_to_remove
+        main_target.build_phases.delete(phase_to_remove)
+        project.save()
+    end
 end
-
-
-
