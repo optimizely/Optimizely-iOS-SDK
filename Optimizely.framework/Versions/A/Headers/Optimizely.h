@@ -25,7 +25,7 @@
 typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
 
 @interface UIView (Optimizely)
-@property NSString *optimizelyId;
+@property (nonatomic, strong) NSString *optimizelyId;
 @end
 
 
@@ -116,6 +116,12 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  */
 + (void)disableSwizzle;
 
+/** This method enables the Optimizely gesture that launches your app into edit mode for builds
+ *  of your app downloaded from the app store.
+ *  @warning Must be called before `+startWithProjectId:launchOptions:`.
+ */
++ (void)enableGestureInAppStoreApp;
+
 /** @name Events and Goal Tracking */
 
 /** This method immediately starts a network request that sends tracked events
@@ -145,6 +151,14 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * @see +dispatch
  */
 + (void)trackEvent:(NSString *)description;
+
+/** This method informs Optimizely that a revenue goal custom event with key `description` occured.
+ *
+ * @param description A unique string identifying the revenue goal custom event
+ * @param revenueAmount The $ amount associated with the event
+ * @see +dispatch
+ */
++ (void)trackRevenue:(NSNumber *)revenueAmount;
 
 /** This method registers a callback method for when a given variable is changed.
  *
@@ -273,6 +287,15 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  */
 @property (nonatomic, strong, readonly) NSArray *activeExperiments;
 
+/**
+ * Whether to dynamically generate optimizelyIds
+ *
+ * @discussion By default, Optimizely will generate an id
+ * for your views that will allow you to target most views without
+ * explicitly setting an optimizelyId. If you'd like the old behavior
+ * of only seeing views that are tagged explicitly, set this to YES.
+ */
+@property (nonatomic) BOOL shouldNotGenerateDynamicIds;
 
 /** The The current Optimizely project id. */
 @property (readonly, strong) NSString *projectId;
@@ -304,19 +327,26 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
 @property (nonatomic) NSTimeInterval networkTimeout;
 
 /**
- * Indicates whether experiments should be reloaded on foregrounding.  Defaults to false.
+ * Indicates whether experiments should be reloaded on foregrounding.  Defaults to true.
  *
- * @discussion By default, Optimizely ensures that a user will never have an inconsistent
- * experience as a result of an experiment activation.  In practice, this means that once a view becomes
- * visible, a variable is read, or a code block is executed, its value/appearance will not change for the
- * duration of the app run (applicationDidFinishLaunching:withOptions: is called).
+ * @discussion By default, Optimizely will activate experiments at two times: the first time
+ * an app launches, and when an app is foregrounded. In practice, many app launches are actually
+ * foregrounding events as opposed to a full fresh launch. This is because apps are frequently
+ * kept in memory and sometimes do not go through a fresh launch for extended periods of time,
+ * and so experiments are activated again when foregrounding. Developers should be aware that
+ * Optimizely values may change throughout the duration of the app run and that this may have
+ * unintended consequences on statistical validity.
  *
- * When shouldReloadExperimentsOnForegrounding is set to true, experiments may be activated when
- * an application is foregrounded, regardless of whether it is a fresh launch.  Developers should be aware that Optimizely
- * values may change throughout the duration of the app run and that this may have unintended consequences on statistical validity.
- * We recommend targeting your experiments such that all users will have a consistent value for shouldReloadExperimentsOnForegrounding.
+ * If you want to ensure that a user will never have an inconsistent experience as a result
+ * of experiment activation, set this value to false so that experiments are only activated
+ * when the app launches from a completely clean start. Setting this value to false means
+ * that once a view becomes visible, a variable is read, or a code block is executed,
+ * its value/appearance will not change for the duration of the app run
+ * (applicationDidFinishLaunching:withOptions: is called).
  */
 @property (assign) BOOL shouldReloadExperimentsOnForegrounding;
+
+
 
 #pragma mark - Integrations
 
