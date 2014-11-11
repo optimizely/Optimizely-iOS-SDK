@@ -28,7 +28,6 @@ rescue
   nil
 end
 
-
 if xcodeproj_path
   # If declared in Podfile, prepend two directories up so that project path is relative to this script
   xcodeproj_path = "../../" + xcodeproj_path
@@ -51,42 +50,25 @@ if !xcodeproj_path
   end
 end
 
-if !xcodeproj_path
-    print "Could not locate project, please add the OptimizelyPrepareNibs.rb build phase manually"
-else
+if xcodeproj_path
     # Open project
     project = Xcodeproj::Project.open(xcodeproj_path)
     main_target = project.targets.first
 
-    # What to install
-    install_build_phase = true
-
-    # Check if build phase already exists
+    # Check if build phase exists
     phases = main_target.shell_script_build_phases
+    phase_to_remove = nil
+    # Get our shell script build phase
     phases.each do |phase|
         if phase.shell_script == SHELL_SCRIPT
-            install_build_phase = false
-        end
-
-        #if a project has the old version, just update it, save and exit
-        if DEPRECATED_SHELL_SCRIPTS.include?(phase.shell_script)
-            phase.shell_script = SHELL_SCRIPT
-            install_build_phase = false
-            project.save()
+            phase_to_remove = phase
+            break
         end
     end
-
-    # Install shell script build phase if necessary
-    if install_build_phase
-        phase = main_target.new_shell_script_build_phase(BUILD_PHASE_NAME)
-        phase.shell_script = SHELL_SCRIPT
-        # Move new script phase to the beginning
-        phases = main_target.build_phases
-        popped_phase = phases.pop
-        phases.unshift popped_phase
+    # delete it and save the project file
+    # It wont stick unless we remove it from main_target.build_phases
+    if phase_to_remove
+        main_target.build_phases.delete(phase_to_remove)
         project.save()
     end
 end
-
-
-
