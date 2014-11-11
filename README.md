@@ -5,7 +5,7 @@ This is a beta release of our iOS optimization product. Your [feedback](mailto:s
 While we have taken every effort to test and ensure that our SDK works in a variety of apps, there may still be bugs in our beta release. Please read the Technical FAQ before submitting your app to the App Store with the Optimizely SDK integrated.
 
 ## Requirements
-We support all build targets for iOS 6.0 and above.
+We support all build targets for iOS 7.0 and above.
 
 ## Getting Started and FAQ
 
