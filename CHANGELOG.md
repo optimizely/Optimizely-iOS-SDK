@@ -1,5 +1,12 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 1.0.59
+November 17, 2014
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Disable automatic tagging of UITableView and UICollectionView sub views.
+
 ## 1.0.58
 November 17, 2014
 
