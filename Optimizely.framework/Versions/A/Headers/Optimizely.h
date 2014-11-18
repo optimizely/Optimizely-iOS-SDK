@@ -152,10 +152,9 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  */
 + (void)trackEvent:(NSString *)description;
 
-/** This method informs Optimizely that a revenue goal custom event with key `description` occured.
+/** This method informs Optimizely that a revenue goal custom event occured.
  *
- * @param description A unique string identifying the revenue goal custom event
- * @param revenueAmount The $ amount associated with the event
+ * @param revenueAmount The revenue amount in cents associated with the event
  * @see +dispatch
  */
 + (void)trackRevenue:(NSNumber *)revenueAmount;

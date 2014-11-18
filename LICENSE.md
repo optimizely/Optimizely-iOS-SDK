@@ -1,3 +1,3 @@
 License
 ===
-By using this SDK and your Optimizely account, you agree to abide by the [Optimizely iOS Beta Terms of Service](http://developers.optimizely.com/ios/terms).
+Usage is covered by Optimizely's terms of service that you agree to when signing up for Optimizely.
