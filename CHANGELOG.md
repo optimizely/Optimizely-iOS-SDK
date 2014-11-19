@@ -1,5 +1,12 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 1.0.60
+November 19, 2014
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Fix a crash for some uses of UIImagePickerController
+
 ## 1.0.59
 November 17, 2014
 
