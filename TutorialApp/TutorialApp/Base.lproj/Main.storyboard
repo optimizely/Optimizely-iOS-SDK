@@ -687,11 +687,72 @@
                             <outlet property="delegate" destination="aNI-8x-Vtl" id="R8G-pG-R5w"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Optimizely" id="hP4-za-6Rf"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Optimizely" id="hP4-za-6Rf">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="6JA-tM-TPl">
+                            <connections>
+                                <segue destination="Fbf-UP-SCd" kind="modal" id="xCi-Ur-YMo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="infoButton" destination="6JA-tM-TPl" id="dUI-Zi-n2J"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hhY-td-58s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1155" y="-571"/>
+        </scene>
+        <!--Info View Controller-->
+        <scene sceneID="p9H-uG-wjc">
+            <objects>
+                <viewController id="Fbf-UP-SCd" customClass="InfoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BU3-8y-HCx"/>
+                        <viewControllerLayoutGuide type="bottom" id="aQg-Cg-T9H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="I7Q-fR-Coz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="backgroundImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="mA4-4E-fQJ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U98-Rn-I2G">
+                                <rect key="frame" x="37" y="109" width="247" height="324"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="324" id="2aq-U6-3yO"/>
+                                    <constraint firstAttribute="width" constant="247" id="gfx-I5-utD"/>
+                                </constraints>
+                                <string key="text">Optimizely's iOS SDK is enables you to make your iOS app more engaging.
+
+This sample app will take you through implementing and utilizing the core functionality of Optimizely.  Feel free to take a look at the code for reference.
+
+Please open your browser to developers.optimizely.com/ios to get started.
+</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="U98-Rn-I2G" secondAttribute="centerY" constant="13" id="FP3-gg-x7n"/>
+                            <constraint firstItem="aQg-Cg-T9H" firstAttribute="top" secondItem="mA4-4E-fQJ" secondAttribute="bottom" id="fKn-sG-QCx"/>
+                            <constraint firstAttribute="centerX" secondItem="U98-Rn-I2G" secondAttribute="centerX" id="gsa-Ak-ilE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mA4-4E-fQJ" secondAttribute="trailing" id="kIQ-Zd-iCD"/>
+                            <constraint firstItem="mA4-4E-fQJ" firstAttribute="leading" secondItem="I7Q-fR-Coz" secondAttribute="leadingMargin" id="lGj-cz-mSo"/>
+                            <constraint firstItem="mA4-4E-fQJ" firstAttribute="top" secondItem="I7Q-fR-Coz" secondAttribute="topMargin" id="rto-0d-sIE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="instructionsLabel" destination="U98-Rn-I2G" id="RCV-Df-O9D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2od-aX-Oot" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-783" y="-572"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="c4O-WV-Y84">
@@ -713,6 +774,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="backgroundImage.png" width="329" height="577"/>
         <image name="gear1.png" width="46" height="46"/>
         <image name="gear2.png" width="73" height="58"/>
         <image name="gear3.png" width="46" height="46"/>

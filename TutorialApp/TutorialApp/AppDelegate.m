@@ -47,7 +47,7 @@
     // your target (i.e. the blue icon at the top that says TutorialApp) > Info > URL Types
     // Paste your Project ID there (e.g. it should look like optly123456
     [Optimizely startOptimizelyWithAPIToken:
-     @"AAMseu0A6cJKXYL7RiH_TgxkvTRMOCvS~591171746"
+     @"AAMseu0A6cJKXYL7RiH_TgxkvTRMOCvS~123456"
                               launchOptions:launchOptions];
     
     // [OPTIMIZELY] (OPTIONAL) Mixpanel Integration Instructions and order

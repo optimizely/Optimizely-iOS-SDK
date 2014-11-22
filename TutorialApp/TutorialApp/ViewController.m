@@ -17,8 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //self.items = @[@"Visual Editor", @"Live Variables", @"Code Blocks"];
-    // Do any additional setup after loading the view, typically from a nib.
     
     // Style Optly Onboarding modal
     self.optlyOnboardModal.layer.cornerRadius = 5;

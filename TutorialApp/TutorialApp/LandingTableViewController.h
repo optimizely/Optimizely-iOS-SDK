@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface LandingTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *infoButton;
+
 
 @end
 

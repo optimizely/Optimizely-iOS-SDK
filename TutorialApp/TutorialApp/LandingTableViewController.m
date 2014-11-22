@@ -39,7 +39,14 @@
     
     self.tableView.backgroundView = tempImageView;
     
+    // Create text for info button
+    self.infoButton.title = @"\u24d8";
     
+    
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    self.infoButton.title = @"\u24d8";
 }
 
 - (void)didReceiveMemoryWarning {

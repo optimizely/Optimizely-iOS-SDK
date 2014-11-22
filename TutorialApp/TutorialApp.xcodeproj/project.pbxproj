@@ -69,6 +69,8 @@
 		E8D5EFE71A0DEB8000F65AA9 /* widgetCoLogo_red.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D5EFAB1A0DEB8000F65AA9 /* widgetCoLogo_red.png */; };
 		E8D5EFE81A0DEB8000F65AA9 /* widgetCoLogo_red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8D5EFAC1A0DEB8000F65AA9 /* widgetCoLogo_red@3x.png */; };
 		E8D5EFEB1A10996A00F65AA9 /* DiscountCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D5EFEA1A10996A00F65AA9 /* DiscountCollectionReusableView.m */; };
+		E8FFDEAD1A1F9F5A00B5068B /* Letter-I-inside-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FFDEAC1A1F9F5A00B5068B /* Letter-I-inside-circle.png */; };
+		E8FFDEB01A2021F100B5068B /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FFDEAF1A2021F100B5068B /* InfoViewController.m */; };
 		F06ECC7419D38E6800F5A8A7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0B1860519D379720001CDB3 /* CFNetwork.framework */; };
 		F06ECC7519D38E7200F5A8A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0B1860719D379790001CDB3 /* Foundation.framework */; };
 		F06ECC7619D38E8000F5A8A7 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F0B1860919D379840001CDB3 /* libicucore.dylib */; };
@@ -160,6 +162,9 @@
 		E8D5EFAC1A0DEB8000F65AA9 /* widgetCoLogo_red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "widgetCoLogo_red@3x.png"; sourceTree = "<group>"; };
 		E8D5EFE91A10996A00F65AA9 /* DiscountCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountCollectionReusableView.h; sourceTree = "<group>"; };
 		E8D5EFEA1A10996A00F65AA9 /* DiscountCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountCollectionReusableView.m; sourceTree = "<group>"; };
+		E8FFDEAC1A1F9F5A00B5068B /* Letter-I-inside-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Letter-I-inside-circle.png"; sourceTree = "<group>"; };
+		E8FFDEAE1A2021F100B5068B /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		E8FFDEAF1A2021F100B5068B /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		F06ECC7119D379D700F5A8A7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F06ECC7B19D395D200F5A8A7 /* LiveVariablesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveVariablesViewController.m; sourceTree = "<group>"; };
 		F06ECC7D19D395E700F5A8A7 /* LiveVariablesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveVariablesViewController.h; sourceTree = "<group>"; };
@@ -220,6 +225,7 @@
 		E8D5EF611A0DD8DE00F65AA9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E8FFDEAC1A1F9F5A00B5068B /* Letter-I-inside-circle.png */,
 				E836F31B1A1F2D32005E5D7F /* appicon180180.png */,
 				E836F31C1A1F2D32005E5D7F /* AppIcon8080.png */,
 				E836F31D1A1F2D32005E5D7F /* AppIcon8787.png */,
@@ -336,6 +342,8 @@
 				E8081EEE1A1B996200EACE11 /* CodeBlocksViewController.m */,
 				E8081EF01A1B9F2900EACE11 /* CodeBlocksOnboardViewController.h */,
 				E8081EF11A1B9F2900EACE11 /* CodeBlocksOnboardViewController.m */,
+				E8FFDEAE1A2021F100B5068B /* InfoViewController.h */,
+				E8FFDEAF1A2021F100B5068B /* InfoViewController.m */,
 				F0B185FC19D35C3A0001CDB3 /* Resources */,
 				F08828AE19D0CCFF0065E091 /* Supporting Files */,
 			);
@@ -436,6 +444,7 @@
 				E8D5EF671A0DDA9600F65AA9 /* codeBlocksIcon@2x.png in Resources */,
 				E8D5EF5B1A0C1F8C00F65AA9 /* Gotham-Medium.otf in Resources */,
 				E8D5EFB01A0DEB8000F65AA9 /* backgroundImage@x2.png in Resources */,
+				E8FFDEAD1A1F9F5A00B5068B /* Letter-I-inside-circle.png in Resources */,
 				E8D5EF5C1A0C1F8C00F65AA9 /* Gotham-MediumItalic.otf in Resources */,
 				E8D5EFC11A0DEB8000F65AA9 /* gear2@2x.png in Resources */,
 				E8D5EFB11A0DEB8000F65AA9 /* backgroundImage@x3.png in Resources */,
@@ -488,6 +497,7 @@
 			files = (
 				F06ECC7C19D395D200F5A8A7 /* LiveVariablesViewController.m in Sources */,
 				E8D5EF6A1A0DDB4F00F65AA9 /* VariationTableViewCell.m in Sources */,
+				E8FFDEB01A2021F100B5068B /* InfoViewController.m in Sources */,
 				F08828B719D0CCFF0065E091 /* ViewController.m in Sources */,
 				F08828B419D0CCFF0065E091 /* AppDelegate.m in Sources */,
 				E8D5EFEB1A10996A00F65AA9 /* DiscountCollectionReusableView.m in Sources */,
