@@ -691,7 +691,7 @@
                     <navigationItem key="navigationItem" title="Optimizely" id="hP4-za-6Rf">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="6JA-tM-TPl">
                             <connections>
-                                <segue destination="Fbf-UP-SCd" kind="modal" id="xCi-Ur-YMo"/>
+                                <segue destination="Fbf-UP-SCd" kind="push" id="7k6-Cs-OfF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -716,7 +716,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="backgroundImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="mA4-4E-fQJ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="mA4-4E-fQJ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U98-Rn-I2G">
@@ -739,13 +739,14 @@ Please open your browser to developers.optimizely.com/ios to get started.
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="U98-Rn-I2G" secondAttribute="centerY" constant="13" id="FP3-gg-x7n"/>
-                            <constraint firstItem="aQg-Cg-T9H" firstAttribute="top" secondItem="mA4-4E-fQJ" secondAttribute="bottom" id="fKn-sG-QCx"/>
+                            <constraint firstItem="aQg-Cg-T9H" firstAttribute="top" secondItem="mA4-4E-fQJ" secondAttribute="bottom" constant="-44" id="fKn-sG-QCx"/>
                             <constraint firstAttribute="centerX" secondItem="U98-Rn-I2G" secondAttribute="centerX" id="gsa-Ak-ilE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="mA4-4E-fQJ" secondAttribute="trailing" id="kIQ-Zd-iCD"/>
-                            <constraint firstItem="mA4-4E-fQJ" firstAttribute="leading" secondItem="I7Q-fR-Coz" secondAttribute="leadingMargin" id="lGj-cz-mSo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mA4-4E-fQJ" secondAttribute="trailing" constant="-16" id="kIQ-Zd-iCD"/>
+                            <constraint firstItem="mA4-4E-fQJ" firstAttribute="leading" secondItem="I7Q-fR-Coz" secondAttribute="leadingMargin" constant="-16" id="lGj-cz-mSo"/>
                             <constraint firstItem="mA4-4E-fQJ" firstAttribute="top" secondItem="I7Q-fR-Coz" secondAttribute="topMargin" id="rto-0d-sIE"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="cij-Tr-eW0"/>
                     <connections>
                         <outlet property="instructionsLabel" destination="U98-Rn-I2G" id="RCV-Df-O9D"/>
                     </connections>
