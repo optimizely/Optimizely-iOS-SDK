@@ -45,7 +45,9 @@
     
     // [OPTIMIZELY] (REQUIRED) Replace this line with your API token, and don't forget to go to
     // your target (i.e. the blue icon at the top that says TutorialApp) > Info > URL Types
-    // Paste your Project ID there (e.g. it should look like optly123456
+    // Paste your Project ID there (e.g. it should look like optly123456, replace 123456 with your project id)
+    // Replace @"AAMseu0A6cJKXYL7RiH_TgxkvTRMOCvS~123456" with your API Token from your Optimizely Dashboard
+    // optimizely.com/dashboard
     [Optimizely startOptimizelyWithAPIToken:
      @"AAMseu0A6cJKXYL7RiH_TgxkvTRMOCvS~123456"
                               launchOptions:launchOptions];
