@@ -17,7 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.instructionsLabel setFont:[UIFont fontWithName:@"Gotham-Medium" size:16]];
+    [self.instructionsLabel setFont:[UIFont fontWithName:@"Gotham-Light" size:16]];
+    // Optimizely logo for status bar
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"smallWhiteLogoforStatusBar.png"]];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
 }
 
