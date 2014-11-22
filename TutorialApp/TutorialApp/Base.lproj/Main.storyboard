@@ -725,7 +725,7 @@
                                     <constraint firstAttribute="height" constant="324" id="2aq-U6-3yO"/>
                                     <constraint firstAttribute="width" constant="247" id="gfx-I5-utD"/>
                                 </constraints>
-                                <string key="text">Optimizely's iOS SDK is enables you to make your iOS app more engaging.
+                                <string key="text">Optimizely's iOS SDK enables you to make your iOS app more engaging.
 
 This sample app will take you through implementing and utilizing the core functionality of Optimizely.  Feel free to take a look at the code for reference.
 
