@@ -1,5 +1,13 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 1.0.70
+December 5, 2014
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Added the ability to black list views classes from Id generation
+- Fix for scroll view delegate bug
+
 ## 1.0.60
 November 19, 2014
 

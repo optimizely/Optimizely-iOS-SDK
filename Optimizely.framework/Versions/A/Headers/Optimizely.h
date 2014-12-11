@@ -157,7 +157,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * @param revenueAmount The revenue amount in cents associated with the event
  * @see +dispatch
  */
-+ (void)trackRevenue:(NSNumber *)revenueAmount;
++ (void)trackRevenue:(int)revenueAmount;
 
 /** This method registers a callback method for when a given variable is changed.
  *
@@ -277,6 +277,12 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
 + (void)preregisterVariableKey:(OptimizelyVariableKey *)key;
 + (void)preregisterBlockKey:(OptimizelyCodeBlocksKey *)key;
 
+/**
+ * Stores the set of classes that Optimizely will ignore generating OptimizelyIds for.
+ * @param viewSubclassesToIgnoreForTagging A set of all the string class names that you want Optmizely to ignore generating Ids for.
+ */
++ (void)ignoreUIViewSubclassesWithNames:(NSSet *)viewSubclassesToIgnoreForTagging;
+
 #pragma mark - Properties
 /** @name Properties */
 
@@ -344,8 +350,6 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * (applicationDidFinishLaunching:withOptions: is called).
  */
 @property (assign) BOOL shouldReloadExperimentsOnForegrounding;
-
-
 
 #pragma mark - Integrations
 
