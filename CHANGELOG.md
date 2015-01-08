@@ -1,5 +1,16 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 1.0.74
+January 8, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Added the ability to edit UIButton images
+- Enabled editing of individual table view cells
+- Better interactions with other SDKs
+- The Optimizely SDK will work with iOS6+ devices, but experiments will only run on iOS7+
+- Other bug fixes
+
 ## 1.0.70
 December 5, 2014
 
