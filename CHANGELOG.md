@@ -1,5 +1,13 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 1.0.75
+January 14, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Added a NSNotification for when we get new experiment data
+- Fixed a bug with downloading our JSON config
+
 ## 1.0.74
 January 8, 2015
 
