@@ -348,6 +348,9 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * that once a view becomes visible, a variable is read, or a code block is executed,
  * its value/appearance will not change for the duration of the app run
  * (applicationDidFinishLaunching:withOptions: is called).
+ *
+ * If a foregrounding event results in new experiment data, Optimizely will trigger an
+ * NSNotification with the key "OptimizelyNewDataFileLoaded."
  */
 @property (assign) BOOL shouldReloadExperimentsOnForegrounding;
 
