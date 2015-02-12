@@ -1,5 +1,15 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 1.0.76
+February 11, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Urgent fix for an issue with counting visitors in experiments. For more information please visit our [Optiverse page](https://community.optimizely.com/t5/Mobile-Apps/Known-Issue-Mobile-results-are-over-counting-visitors/m-p/9096)
+- Added manual activation through refreshExperimentData
+- Added notifications for when an experiment is viewed and when we load new experiment data
+- Other minor bug fixes
+
 ## 1.0.75
 January 14, 2015
 

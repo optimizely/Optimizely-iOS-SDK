@@ -87,7 +87,10 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  *
  * @param tagKey Key for custom tag
  * @param tagValue Value for custom tag
- * @warning This method should be called before +startOptimizelyWithAPIToken
+ * @warning Ideally this method should be called before +startOptimizelyWithAPIToken because we will then use these tags to
+ * determine which experiments to activate for the user. But if you want to add additional tags after Optimizely has started
+ * you can use `+refreshExperimentData` to force Optimizely to try activating experiments while taking into account your new
+ * tags.
  */
 
 + (void)setValue:(NSString *)tagValue forCustomTag:(NSString *)tagKey;
@@ -165,6 +168,14 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * @param callback The callback method that will be invoked whenever the variable is changed. It takes in two parameters, the first being the key of the changed variable and the second is the variable's new value
  */
 + (void)registerCallbackForVariableWithKey:(OptimizelyVariableKey *)key callback:(void (^)(NSString *, id))callback;
+
+
+/** This method manually refreshes all currently running experiments so as to take into account
+ * the most recent targeting conditions and tags.
+ *
+ * Note: The use of this method may invalidate statistical results.
+ */
++ (void)refreshExperimentData;
 
 #pragma mark - Variable getters
 /** @name Live Variables */
@@ -289,6 +300,9 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
 /** Provides an array of all the experiments currently active for the user to the variation
  *  they're bucketed into for that experiment. The metadata includes experiment Id, variation Id,
  *  experiment description and variation description.
+ *
+ *  When an experimenet is viewed, Optimizely will trigger an NSNotification with the key "OptimizelyExperimentViewedNotification".
+ *  The userInfo will have metadata which includes experiment Id, variation Id, experiment description and variation description.
  */
 @property (nonatomic, strong, readonly) NSArray *activeExperiments;
 
@@ -350,9 +364,21 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * (applicationDidFinishLaunching:withOptions: is called).
  *
  * If a foregrounding event results in new experiment data, Optimizely will trigger an
- * NSNotification with the key "OptimizelyNewDataFileLoaded."
+ * NSNotification with the key "OptimizelyNewDataFileLoadedNotification".
  */
 @property (assign) BOOL shouldReloadExperimentsOnForegrounding;
+
+#pragma mark - NSNotification Keys
+
+/**
+ *  Constant NSNotification key that is triggered when an experiment is viewed by the user. The userInfo in the notification
+ *  will have metadata which includes experiment Id, variation Id, experiment description and variation description.
+ */
+extern NSString *const OptimizelyExperimentViewedNotification;
+/**
+ *  Constant NSNotification key that is triggered when Optimizely loads new experiment data.
+ */
+extern NSString *const OptimizelyNewDataFileLoadedNotification;
 
 #pragma mark - Integrations
 
