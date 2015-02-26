@@ -1,4 +1,9 @@
-
+//
+//  OptimizelyCodeBlocksKey.h
+//  Optimizely
+//
+//  Created by Optimizely Engineering on 2/19/15.
+//  Copyright (c) 2015 Optimizely Engineering. All rights reserved.
 
 /** This class defines a key that can be used to define an Optimizely code blocks experiment.
  *
