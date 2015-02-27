@@ -1,5 +1,18 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 1.0.78
+February 26, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Goals are now triggered based on whether or not the user has ever viewed a given experiment in their lifetime
+- Added notification for when a goal is triggered
+- Added allExperiments and viewedExperiments which return an array of OptimizelyExperimentData objects that store data pertaining to the current state of each experiment
+- Updated our analytics integrations to utilize viewedExperiments
+- Added the ability for the developer to disable the Optimizely Gesture
+- Removed session and retention goals
+- activeExperiments deprecated, please use allExperiments or viewedExperiments
+
 ## 1.0.76
 February 11, 2015
 

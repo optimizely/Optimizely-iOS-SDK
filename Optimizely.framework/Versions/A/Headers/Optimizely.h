@@ -19,8 +19,9 @@
 //       - Rama Ranganath
 //       - Hemant Verma
 
-#import "OptimizelyVariableKey.h"
 #import "OptimizelyCodeBlocksKey.h"
+#import "OptimizelyExperimentData.h"
+#import "OptimizelyVariableKey.h"
 
 typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
 
@@ -89,7 +90,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * @param tagValue Value for custom tag
  * @warning Ideally this method should be called before +startOptimizelyWithAPIToken because we will then use these tags to
  * determine which experiments to activate for the user. But if you want to add additional tags after Optimizely has started
- * you can use `+refreshExperimentData` to force Optimizely to try activating experiments while taking into account your new
+ * you can use `+refreshExperiments` to force Optimizely to try activating experiments while taking into account your new
  * tags.
  */
 
@@ -175,7 +176,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  *
  * Note: The use of this method may invalidate statistical results.
  */
-+ (void)refreshExperimentData;
++ (void)refreshExperiments;
 
 #pragma mark - Variable getters
 /** @name Live Variables */
@@ -297,14 +298,28 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
 #pragma mark - Properties
 /** @name Properties */
 
-/** Provides an array of all the experiments currently active for the user to the variation
+/**
+ *  @deprecated.  Use `allExperiments` or `visitedExperiments`.
+ *
+ *  Provides an array of all the experiments currently active for the user to the variation
  *  they're bucketed into for that experiment. The metadata includes experiment Id, variation Id,
  *  experiment description and variation description.
  *
  *  When an experimenet is viewed, Optimizely will trigger an NSNotification with the key "OptimizelyExperimentViewedNotification".
  *  The userInfo will have metadata which includes experiment Id, variation Id, experiment description and variation description.
  */
-@property (nonatomic, strong, readonly) NSArray *activeExperiments;
+@property (readonly, strong, nonatomic) NSArray *activeExperiments __attribute((deprecated("Use allExperiments or visitedExperiments")));
+
+/**
+ *  This returns a list of `OptimizelyExperimentData` objects that will encompass all experiments.
+ */
+@property (readonly, strong, nonatomic) NSArray *allExperiments;
+
+/**
+ *  This returns a list of `OptimizelyExperimentData` objects that will encompass all experiments that the user
+ *  has viewed across all sessions. To get a list of all experiments, use `allExperiments`.
+ */
+@property (readonly, strong, nonatomic) NSArray *visitedExperiments;
 
 /**
  * Whether to dynamically generate optimizelyIds
@@ -330,7 +345,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
 
 /** When set to true, provides verbose logging details that may be useful for debugging.
  */
-@property (nonatomic) BOOL verboseLogging;
+@property (nonatomic, readwrite) BOOL verboseLogging;
 
 /**The frequency (in seconds) at which events are sent to Optimizley and the experiment
  * data file is fetched from server. Defaults to 2 minutes.
@@ -338,12 +353,12 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * Setting this to zero or negative value will disable automatic sending
  * of events and you will need to send events manually using `-dispatch`.
  */
-@property (nonatomic) NSTimeInterval dispatchInterval;
+@property (nonatomic, readwrite) NSTimeInterval dispatchInterval;
 
 /** NSTimeInterval which controls timeout for first download of
  * config file.
  */
-@property (nonatomic) NSTimeInterval networkTimeout;
+@property (nonatomic, readwrite) NSTimeInterval networkTimeout;
 
 /**
  * Indicates whether experiments should be reloaded on foregrounding.  Defaults to true.
@@ -366,19 +381,31 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * If a foregrounding event results in new experiment data, Optimizely will trigger an
  * NSNotification with the key "OptimizelyNewDataFileLoadedNotification".
  */
-@property (assign) BOOL shouldReloadExperimentsOnForegrounding;
+@property (nonatomic, readwrite) BOOL shouldReloadExperimentsOnForegrounding;
+
+/**
+ * BOOL indicating whether or not you want to disable the Optimizely Gesture.
+ */
+@property (nonatomic, readwrite) BOOL disableGesture;
 
 #pragma mark - NSNotification Keys
 
 /**
  *  Constant NSNotification key that is triggered when an experiment is viewed by the user. The userInfo in the notification
- *  will have metadata which includes experiment Id, variation Id, experiment description and variation description.
+ *  will have metadata which includes experiment Id, variation Id, experiment description and variation description. For more
+ *  information on visited experiments, see the `visitedExperiments`.
  */
-extern NSString *const OptimizelyExperimentViewedNotification;
+extern NSString *const OptimizelyExperimentVisitedNotification;
 /**
  *  Constant NSNotification key that is triggered when Optimizely loads new experiment data.
  */
 extern NSString *const OptimizelyNewDataFileLoadedNotification;
+/**
+ *  Constant NSNotification key that is triggered when an Optimizely goal is triggered. The userInfo in the notification
+ *  will have metadata which includes an array of experiments pertaining to this goal and the goal description. This notification
+ *  is only fired in normal mode when a conversion is counted for 1 or more experiments.
+ */
+extern NSString *const OptimizelyGoalTriggeredNotification;
 
 #pragma mark - Integrations
 
