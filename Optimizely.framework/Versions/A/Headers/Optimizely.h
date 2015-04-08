@@ -305,7 +305,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  *  they're bucketed into for that experiment. The metadata includes experiment Id, variation Id,
  *  experiment description and variation description.
  *
- *  When an experimenet is viewed, Optimizely will trigger an NSNotification with the key "OptimizelyExperimentViewedNotification".
+ *  When an experimenet is viewed, Optimizely will trigger an NSNotification with the key "OptimizelyExperimentVisitedNotification".
  *  The userInfo will have metadata which includes experiment Id, variation Id, experiment description and variation description.
  */
 @property (readonly, strong, nonatomic) NSArray *activeExperiments __attribute((deprecated("Use allExperiments or visitedExperiments")));
@@ -340,6 +340,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
 /** A unique identifier for the current user.
  * If a custom identifier is provided, it must be set prior to calling `+startWithProjectId:launchOptions:`.
  * Defaults to the device UUIDString if no identifier is provided.
+ * Setting the `userId` to nil will reset the UUID.
  */
 @property (nonatomic, strong) NSString *userId;
 
