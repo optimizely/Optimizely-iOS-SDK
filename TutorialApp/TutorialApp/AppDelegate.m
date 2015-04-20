@@ -38,7 +38,7 @@
     // [OPTIMIZELY] (OPTIONAL) Add this line of code if you would like to enable "Edit Mode" in your live app
     // Please note that adding this line will allow anyone to edit your app with
     // Optimizely in the app store
-    [Optimizely enableGestureInAppStoreApp];
+    // [Optimizely enableGestureInAppStoreApp];
     
     // [OPTIMIZELY] (OPTIONAL) Customize network call timing (By default network calls are made every 2 minutes)
     // [Optimizely sharedInstance].dispatchInterval = 120;
@@ -48,15 +48,39 @@
     // Paste your Project ID there (e.g. it should look like optly123456, replace 123456 with your project id)
     // Replace @"AAMseu0A6cJKXYL7RiH_TgxkvTRMOCvS~123456" with your API Token from your Optimizely Dashboard
     // optimizely.com/dashboard
+    
     [Optimizely startOptimizelyWithAPIToken:
      @"AAMseu0A6cJKXYL7RiH_TgxkvTRMOCvS~123456"
                               launchOptions:launchOptions];
+    
+    NSArray *optlyAllExperiments = [Optimizely sharedInstance].allExperiments;
     
     // [OPTIMIZELY] (OPTIONAL) Mixpanel Integration Instructions and order
     // Optimizely Mixpanel Integration goes here
     // Mixpanel Activation goes here
     
     // GA Example
+    
+    // [OPTIMIZELY] (DEBUG) Subscribe to the OptimizelyExperimentVisitedNotification to know when an experiment
+    // is visited, which means the visitor has see the experience you created
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(experimentReceivedNotification:)
+                                                 name:OptimizelyExperimentVisitedNotification
+                                               object:nil];
+    
+    // [OPTIMIZELY] (DEBUG) Subscribe to the OptimizelyNewDataFileLoadedNotification to know when
+    // a new Optimizely data file has been updated
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(dataFileReceivedNotification:)
+                                                 name:OptimizelyNewDataFileLoadedNotification
+                                               object:nil];
+    
+    // [OPTIMIZELY] (DEBUG) Subscribe to the OptimizelyGoalTriggeredNotification to know when
+    // a goal has triggered
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(goalReceivedNotification:)
+                                                 name:OptimizelyGoalTriggeredNotification
+                                               object:nil];
     
 
     // Change NavBar Background color
@@ -69,6 +93,33 @@
                                                             }];
 
     return YES;
+}
+
+- (void) experimentReceivedNotification:(NSNotification *)notification {
+    // An experiment is marked as visited when a user as viewed the experience you have created
+    NSLog(@"Experiment visited %@!", notification.name);
+    NSArray *optlyAllExperiments = [Optimizely sharedInstance].allExperiments;
+    NSArray *optlyVisitedExperiments = [Optimizely sharedInstance].visitedExperiments;
+    for (OptimizelyExperimentData *data in [Optimizely sharedInstance].visitedExperiments) {
+        NSLog(@"All Experiments: %@, %@, %@, %u, visitedEVER: %s, visitedCount: %ld", data.experimentName, data.experimentId, data.variationName, data.state, data.visitedEver ? "true" : "false", (unsigned long) data.visitedCount);
+        
+    }
+}
+
+- (void) dataFileReceivedNotification:(NSNotification *)notification {
+    // This notification will be triggered once the new data file has been loaded
+    NSLog(@"Data viewed %@!", notification.name);
+    NSArray *optlyAllExperiments = [Optimizely sharedInstance].allExperiments;
+    for (OptimizelyExperimentData *data in [Optimizely sharedInstance].allExperiments) {
+//        NSLog(@"All Experiments: %@, %@, %@, %u, visitedEVER: %s, visitedCount: %ld", data.experimentName, data.experimentId, data.variationName, data.state, data.visitedEver ? "true" : "false", (unsigned long) data.visitedCount);
+        
+    }
+}
+
+- (void) goalReceivedNotification:(NSNotification *)notification {
+    // Only experiments that have been visited will trigger this notification
+    NSLog(@"Goal viewed %@!", notification.name);
+    NSArray *optlyVisitedExperiments = [Optimizely sharedInstance].visitedExperiments;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
