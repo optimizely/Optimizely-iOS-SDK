@@ -20,6 +20,9 @@
 // [OPTIMIZELY] Examples of how to declare live variables (Part 1 of 2)
 OptimizelyVariableKeyForNumber(liveVariableNumberofItems, [NSNumber numberWithInt: 4]);
 OptimizelyVariableKeyForNumber(liveVariableDiscount, [NSNumber numberWithFloat: 0.10]);
+OptimizelyVariableKeyForBool(liveVariableBool, NO);
+OptimizelyVariableKeyForString(liveVariableString, @"Test");
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,8 +32,8 @@ OptimizelyVariableKeyForNumber(liveVariableDiscount, [NSNumber numberWithFloat: 
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.title = @"Live Variables";
     self.navigationController.title = @"Live Variables";
+    bool test = [Optimizely boolForKey:liveVariableBool];
     
-   
     
     // Create list of objects
     self.storeItems = [NSMutableDictionary dictionary];
@@ -73,7 +76,11 @@ OptimizelyVariableKeyForNumber(liveVariableDiscount, [NSNumber numberWithFloat: 
     
     // Set Product Name
     UILabel *title = (UILabel *)[cell.contentView viewWithTag:1];
-    title.text = [self.storeItems objectForKey:@"productname"][(long)indexPath.row];
+    // PAM TEST
+    //title.text = [self.storeItems objectForKey:@"productname"][(long)indexPath.row];
+    NSString *testString = [Optimizely stringForKey:liveVariableString];
+    NSLog(@"%@", testString);
+    title.text = testString;
     title.font = [UIFont fontWithName:@"Gotham-Medium" size:10];
     
     // Set Image
