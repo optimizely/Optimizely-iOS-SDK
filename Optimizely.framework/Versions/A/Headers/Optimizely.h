@@ -419,6 +419,13 @@ extern NSString *const OptimizelyGoalTriggeredNotification;
  */
 + (void)activateMixpanelIntegration;
 
+/**
+ *  This activates the Optimizely SDK's Amplitude integration. You can read more about this
+ *  [here](https://help.optimizely.com/hc/en-us/articles/204963198).
+ *  @warning This currently *must* be called after `startOptimizelyWithAPIToken: launchOptions:` returns!
+ */
++ (void)activateAmplitudeIntegration;
+
 #pragma mark - Variable getters
 /** @name Deprecated Methods */
 
