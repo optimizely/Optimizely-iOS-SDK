@@ -1,4 +1,18 @@
 # Optimizely-iOS-SDK CHANGELOG
+## 1.0.80
+April 29, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Added Amplitude User Properties integration
+- More bug fixes
+
+## 1.0.79-RC
+April 8, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Just a bunch of bug fixes
 
 ## 1.0.78
 February 26, 2015
