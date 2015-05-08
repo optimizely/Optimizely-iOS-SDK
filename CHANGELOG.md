@@ -1,4 +1,13 @@
 # Optimizely-iOS-SDK CHANGELOG
+## 1.0.81
+May 8, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Fixed an issue with the linker when using FMDB
+- Other bug fixes 
+
+
 ## 1.0.80
 April 29, 2015
 
