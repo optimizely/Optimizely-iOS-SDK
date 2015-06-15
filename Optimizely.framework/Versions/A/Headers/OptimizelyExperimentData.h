@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Optimizely Engineering. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 /**
  *  Type describing the current state of the experiment
  */
