@@ -1,6 +1,6 @@
 # Optimizely-iOS-SDK CHANGELOG
 
-## 1.0.84-RC
+## 1.0.84
 June 15, 2015
 
 **Optimizely versions 0.8 (and up) require iOS 7 or higher.**
