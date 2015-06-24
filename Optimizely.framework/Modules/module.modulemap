@@ -1,6 +1,0 @@
-framework module Optimizely {
-    umbrella header "Optimizely.h"
-    
-    export *
-    module * { export * }
-}

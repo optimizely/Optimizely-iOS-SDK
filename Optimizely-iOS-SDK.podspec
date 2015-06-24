@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Optimizely-iOS-SDK"
-  s.version          = "1.0.84"
+  s.version          = "1.0.85"
   s.summary          = "Optimizely is the #1 optimization platform in the world."
   s.homepage         = "http://www.optimizely.com"
   s.license          = { :type => 'Commercial', :text => 'See http://developers.optimizely.com/ios/terms' }
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.xcconfig = { 'OTHER_LDFLAGS' => '-ObjC' }
 
-  s.source           = { :git => "https://github.com/optimizely/Optimizely-iOS-SDK.git", :tag => "1.0.84" }
+  s.source           = { :git => "https://github.com/optimizely/Optimizely-iOS-SDK.git", :tag => "1.0.85" }
 
   s.frameworks = 'AudioToolbox', 'CFNetwork', 'Foundation', 'MobileCoreServices', 'Security', 'SystemConfiguration', 'UIKit'
   s.libraries = 'icucore', 'sqlite3'
