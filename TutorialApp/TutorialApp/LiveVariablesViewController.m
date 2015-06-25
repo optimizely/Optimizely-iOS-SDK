@@ -32,8 +32,6 @@ OptimizelyVariableKeyForString(liveVariableString, @"Test");
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.title = @"Live Variables";
     self.navigationController.title = @"Live Variables";
-    bool test = [Optimizely boolForKey:liveVariableBool];
-    
     
     // Create list of objects
     self.storeItems = [NSMutableDictionary dictionary];
