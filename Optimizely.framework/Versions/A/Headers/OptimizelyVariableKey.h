@@ -1,10 +1,13 @@
 //
-//  OptimizelyKey.h
+//  OptimizelyVariableKey.h
 //  Optimizely
 //
 //  Created by Optimizely Engineering on 5/13/14.
 //  Copyright (c) 2014 Optimizely Engineering. All rights reserved.
 //
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /** This class defines a key that can be used to retrieve Optimizely live variables.
  *

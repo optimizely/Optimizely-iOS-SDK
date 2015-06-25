@@ -19,6 +19,9 @@
 //       - Rama Ranganath
 //       - Hemant Verma
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 #import "OptimizelyCodeBlocksKey.h"
 #import "OptimizelyExperimentData.h"
 #import "OptimizelyVariableKey.h"
