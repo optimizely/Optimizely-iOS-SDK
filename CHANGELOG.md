@@ -1,12 +1,18 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 1.0.87
+June 26, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Fixed Namespace issue with SocketRocket's SRHTTPResponseErrorKey
+
 ## 1.0.86
 June 25, 2015
 
 **Optimizely versions 0.8 (and up) require iOS 7 or higher.**
 
 - Added synchronized tags to view operations
-- Fixed Namespace issue with SocketRocket's SRHTTPResponseErrorKey
 - Moved to FMDB's queue implementation
 - Fixed issue with DatePickers
 
