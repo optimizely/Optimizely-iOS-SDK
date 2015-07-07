@@ -128,7 +128,7 @@ OptimizelyVariableKeyForBool(liveVariableBool, NO);
         DiscountCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
         
         // [OPTIMIZELY] Examples of how to use live variable values (Part 2 of 2)
-        float discountVal = 0.1; //[[Optimizely numberForKey:liveVariableDiscount] floatValue];
+        float discountVal = [[Optimizely numberForKey:liveVariableDiscount] floatValue];
         NSString *title = [[NSString alloc]initWithFormat:@"TAKE %0.0f%% OFF FROM NOW UNTIL 9/15",discountVal * 100];
         headerView.discountLabel.text = title;
         [headerView.discountLabel center];
