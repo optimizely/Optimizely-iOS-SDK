@@ -21,7 +21,6 @@
 OptimizelyVariableKeyForNumber(liveVariableNumberofItems, [NSNumber numberWithInt: 4]);
 OptimizelyVariableKeyForNumber(liveVariableDiscount, [NSNumber numberWithFloat: 0.10]);
 OptimizelyVariableKeyForBool(liveVariableBool, NO);
-OptimizelyVariableKeyForString(liveVariableString, @"Test");
 
 
 - (void)viewDidLoad {
@@ -40,6 +39,17 @@ OptimizelyVariableKeyForString(liveVariableString, @"Test");
     [self.storeItems setObject:[NSArray arrayWithObjects:@"3.99", @"6.99", @"9.99", @"12.99", @"15.99", @"18.99", nil] forKey:@"originalprice"];
     [self.storeItems setObject:[NSArray arrayWithObjects:@"Standard Widget", @"Standard Widget Pack", @"Deluxe Widget", @"Deluxe Widget Pack", @"Premium Widget", @"Premium Widget Pack", nil] forKey:@"productname"];
     [self.storeItems setObject:[NSArray arrayWithObjects:@"gear1.png", @"gear2.png", @"gear3.png", @"gear4.png", @"gear6.png", @"gear5.png", nil] forKey:@"productimg"];
+    
+    
+    // [OPTIMIZELY] Example of how to use the variable callback method.
+    // There may be times where you want the changed value of the variable to be reflected in your app
+    // without the screen being refreshed while you're making experiment changes.
+    // To do so, you can use the registerCallbackForVariableWithKey method.
+    // The following variable liveVariableNumberofItems represents the number of widgets shown on the screen
+    [Optimizely registerCallbackForVariableWithKey:liveVariableNumberofItems callback:^(NSString *key, id value){
+        NSLog(@"The order of sales items has changed: %@ is now %@\n", key, value);
+        [self.collectionView reloadData];
+    }];
     
 }
 
@@ -77,10 +87,7 @@ OptimizelyVariableKeyForString(liveVariableString, @"Test");
     // Set Product Name
     UILabel *title = (UILabel *)[cell.contentView viewWithTag:1];
     // PAM TEST
-    //title.text = [self.storeItems objectForKey:@"productname"][(long)indexPath.row];
-    NSString *testString = [Optimizely stringForKey:liveVariableString];
-    NSLog(@"%@", testString);
-    title.text = testString;
+    title.text = [self.storeItems objectForKey:@"productname"][(long)indexPath.row];
     title.font = [UIFont fontWithName:@"Gotham-Medium" size:10];
     
     // Set Image
@@ -107,9 +114,8 @@ OptimizelyVariableKeyForString(liveVariableString, @"Test");
     
     // [OPTIMIZELY] Examples of how to use live variable values (Part 2 of 2)
     float discountPrice = origPriceVal - (origPriceVal * [[Optimizely numberForKey:liveVariableDiscount] floatValue]);
-    
     salePrice.text = [NSString stringWithFormat:@"$%.02f", discountPrice];
-    //origPrice.font = [UIFont fontWithName:@"Gotham-Medium" size:10];
+    origPrice.font = [UIFont fontWithName:@"Gotham-Medium" size:10];
     
     return cell;
 }
@@ -122,7 +128,7 @@ OptimizelyVariableKeyForString(liveVariableString, @"Test");
         DiscountCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
         
         // [OPTIMIZELY] Examples of how to use live variable values (Part 2 of 2)
-        float discountVal = [[Optimizely numberForKey:liveVariableDiscount] floatValue];
+        float discountVal = 0.1; //[[Optimizely numberForKey:liveVariableDiscount] floatValue];
         NSString *title = [[NSString alloc]initWithFormat:@"TAKE %0.0f%% OFF FROM NOW UNTIL 9/15",discountVal * 100];
         headerView.discountLabel.text = title;
         [headerView.discountLabel center];

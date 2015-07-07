@@ -49,9 +49,12 @@
     // Replace @"AAMseu0A6cJKXYL7RiH_TgxkvTRMOCvS~123456" with your API Token from your Optimizely Dashboard
     // optimizely.com/dashboard
     
-    [Optimizely startOptimizelyWithAPIToken:
-     @"AAMseu0A6cJKXYL7RiH_TgxkvTRMOCvS~123456"
-                              launchOptions:launchOptions];
+    [Optimizely setValue:@"true" forCustomTag:@"logged_in"];
+    
+    // Google Analytics Initialization goes here https://help.optimizely.com/hc/en-us/articles/204628347 e.g.
+    // id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"<YOUR_TRACKING_ID>"];
+    
+    [Optimizely startOptimizelyWithAPIToken:@"abcde~123456" launchOptions:launchOptions];
     
     NSArray *optlyAllExperiments = [Optimizely sharedInstance].allExperiments;
     
@@ -59,7 +62,7 @@
     // Optimizely Mixpanel Integration goes here
     // Mixpanel Activation goes here
     
-    // GA Example
+    // Google Analytics Tracking call
     
     // [OPTIMIZELY] (DEBUG) Subscribe to the OptimizelyExperimentVisitedNotification to know when an experiment
     // is visited, which means the visitor has see the experience you created
