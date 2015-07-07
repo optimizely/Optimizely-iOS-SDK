@@ -49,6 +49,11 @@
     // Replace @"AAMseu0A6cJKXYL7RiH_TgxkvTRMOCvS~123456" with your API Token from your Optimizely Dashboard
     // optimizely.com/dashboard
     
+    // [OPTIMIZELY] (OPTIONAL) Google Analytics Example
+    // https://help.optimizely.com/hc/en-us/articles/204628347
+    // Initialize Google Analytics prior to startOptimizely e.g.
+    // id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"YOUR_GA_TRACKING_ID"];
+    
     [Optimizely startOptimizelyWithAPIToken:
      @"AAMseu0A6cJKXYL7RiH_TgxkvTRMOCvS~123456"
                               launchOptions:launchOptions];
@@ -57,7 +62,7 @@
     // Optimizely Mixpanel Integration goes here
     // Mixpanel Activation goes here
     
-    // GA Example
+    
     
     // [OPTIMIZELY] (DEBUG) Subscribe to the OptimizelyExperimentVisitedNotification to know when an experiment
     // is visited, which means the visitor has see the experience you created
