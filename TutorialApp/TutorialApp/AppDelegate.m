@@ -56,8 +56,6 @@
     
     [Optimizely startOptimizelyWithAPIToken:@"abcde~123456" launchOptions:launchOptions];
     
-    NSArray *optlyAllExperiments = [Optimizely sharedInstance].allExperiments;
-    
     // [OPTIMIZELY] (OPTIONAL) Mixpanel Integration Instructions and order
     // Optimizely Mixpanel Integration goes here
     // Mixpanel Activation goes here
@@ -101,10 +99,8 @@
 - (void) experimentReceivedNotification:(NSNotification *)notification {
     // An experiment is marked as visited when a user as viewed the experience you have created
     NSLog(@"Experiment visited %@!", notification.name);
-    NSArray *optlyAllExperiments = [Optimizely sharedInstance].allExperiments;
-    NSArray *optlyVisitedExperiments = [Optimizely sharedInstance].visitedExperiments;
     for (OptimizelyExperimentData *data in [Optimizely sharedInstance].visitedExperiments) {
-        NSLog(@"All Experiments: %@, %@, %@, %u, visitedEVER: %s, visitedCount: %ld", data.experimentName, data.experimentId, data.variationName, data.state, data.visitedEver ? "true" : "false", (unsigned long) data.visitedCount);
+        NSLog(@"All Experiments: %@, %@, %@, %lu, visitedEVER: %s, visitedCount: %ld", data.experimentName, data.experimentId, data.variationName, (unsigned long)data.state, data.visitedEver ? "true" : "false", (unsigned long) data.visitedCount);
         
     }
 }
@@ -112,9 +108,8 @@
 - (void) dataFileReceivedNotification:(NSNotification *)notification {
     // This notification will be triggered once the new data file has been loaded
     NSLog(@"Data viewed %@!", notification.name);
-    NSArray *optlyAllExperiments = [Optimizely sharedInstance].allExperiments;
     for (OptimizelyExperimentData *data in [Optimizely sharedInstance].allExperiments) {
-//        NSLog(@"All Experiments: %@, %@, %@, %u, visitedEVER: %s, visitedCount: %ld", data.experimentName, data.experimentId, data.variationName, data.state, data.visitedEver ? "true" : "false", (unsigned long) data.visitedCount);
+        NSLog(@"All Experiments: %@, %@, %@, %lu, visitedEVER: %s, visitedCount: %ld", data.experimentName, data.experimentId, data.variationName, (unsigned long)data.state, data.visitedEver ? "true" : "false", (unsigned long) data.visitedCount);
         
     }
 }
@@ -122,7 +117,6 @@
 - (void) goalReceivedNotification:(NSNotification *)notification {
     // Only experiments that have been visited will trigger this notification
     NSLog(@"Goal viewed %@!", notification.name);
-    NSArray *optlyVisitedExperiments = [Optimizely sharedInstance].visitedExperiments;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{

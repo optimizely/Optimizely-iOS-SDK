@@ -1,5 +1,110 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 1.0.87
+June 26, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Fixed Namespace issue with SocketRocket's SRHTTPResponseErrorKey
+
+## 1.0.86
+June 25, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Added synchronized tags to view operations
+- Moved to FMDB's queue implementation
+- Fixed issue with DatePickers
+
+## 1.0.84
+June 15, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Adding a module map so that you no longer need a bridging header for Swift. Instead you can simply call "import Optimizely"
+- A couple bug fixes
+
+## 1.0.82-RC
+June 10, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Just a couple of bug fixes
+
+## 1.0.81
+May 8, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Fixed an issue with the linker when using FMDB
+- Other bug fixes 
+
+
+## 1.0.80
+April 29, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Added Amplitude User Properties integration
+- More bug fixes
+
+## 1.0.79-RC
+April 8, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Just a bunch of bug fixes
+
+## 1.0.78
+February 26, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Goals are now triggered based on whether or not the user has ever viewed a given experiment in their lifetime
+- Added notification for when a goal is triggered
+- Added allExperiments and viewedExperiments which return an array of OptimizelyExperimentData objects that store data pertaining to the current state of each experiment
+- Updated our analytics integrations to utilize viewedExperiments
+- Added the ability for the developer to disable the Optimizely Gesture
+- Removed session and retention goals
+- activeExperiments deprecated, please use allExperiments or viewedExperiments
+
+## 1.0.76
+February 11, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Urgent fix for an issue with counting visitors in experiments. For more information please visit our [Optiverse page](https://community.optimizely.com/t5/Mobile-Apps/Known-Issue-Mobile-results-are-over-counting-visitors/m-p/9096)
+- Added manual activation through refreshExperimentData
+- Added notifications for when an experiment is viewed and when we load new experiment data
+- Other minor bug fixes
+
+## 1.0.75
+January 14, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Added a NSNotification for when we get new experiment data
+- Fixed a bug with downloading our JSON config
+
+## 1.0.74
+January 8, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Added the ability to edit UIButton images
+- Enabled editing of individual table view cells
+- Better interactions with other SDKs
+- The Optimizely SDK will work with iOS6+ devices, but experiments will only run on iOS7+
+- Other bug fixes
+
+## 1.0.70
+December 5, 2014
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Added the ability to black list views classes from Id generation
+- Fix for scroll view delegate bug
+
 ## 1.0.60
 November 19, 2014
 
