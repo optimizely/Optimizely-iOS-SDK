@@ -1,5 +1,10 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 1.0.88
+July 20, 2015
+
+- Fixed exception when using images in UISegementedControl
+
 ## 1.0.87
 June 26, 2015
 
