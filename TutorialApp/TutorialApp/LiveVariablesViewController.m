@@ -10,6 +10,8 @@
 #import "DiscountCollectionReusableView.h"
 #import <Optimizely/Optimizely.h>
 
+#define kCellsPerRow 2
+
 @interface LiveVariablesViewController ()
 
 @end
@@ -21,6 +23,7 @@
 OptimizelyVariableKeyForNumber(liveVariableNumberofItems, [NSNumber numberWithInt: 4]);
 OptimizelyVariableKeyForNumber(liveVariableDiscount, [NSNumber numberWithFloat: 0.10]);
 OptimizelyVariableKeyForBool(liveVariableBool, NO);
+
 
 
 - (void)viewDidLoad {
@@ -42,6 +45,11 @@ OptimizelyVariableKeyForBool(liveVariableBool, NO);
         NSLog(@"The order of sales items has changed: %@ is now %@\n", key, value);
         [self.collectionView reloadData];
     }];
+    
+    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    CGFloat availableWidthForCells = CGRectGetWidth(self.collectionView.frame) - flowLayout.sectionInset.left - flowLayout.sectionInset.right - flowLayout.minimumInteritemSpacing * (kCellsPerRow - 1);
+    CGFloat cellWidth = availableWidthForCells / kCellsPerRow;
+    flowLayout.itemSize = CGSizeMake(cellWidth, flowLayout.itemSize.height);
     
 }
 
@@ -65,6 +73,7 @@ OptimizelyVariableKeyForBool(liveVariableBool, NO);
         return [[Optimizely numberForKey:liveVariableNumberofItems] integerValue];
     }
 }
+
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"CollectionCell";
@@ -109,8 +118,33 @@ OptimizelyVariableKeyForBool(liveVariableBool, NO);
     salePrice.text = [NSString stringWithFormat:@"$%.02f", discountPrice];
     //origPrice.font = [UIFont fontWithName:@"Gotham-Medium" size:10];
     
+    // force layout
+    [salePrice setNeedsLayout];
+    [salePrice layoutIfNeeded];
+    
+    // get the fitting size
+    CGSize s = [salePrice systemLayoutSizeFittingSize: UILayoutFittingCompressedSize];
+    NSLog( @"fittingSize: %@", NSStringFromCGSize( s ));
+    
+    // force layout
+    [origPrice setNeedsLayout];
+    [origPrice layoutIfNeeded];
+    
+    // get the fitting size
+    CGSize s_origPrice = [origPrice systemLayoutSizeFittingSize: UILayoutFittingCompressedSize];
+    NSLog( @"fittingSize: %@", NSStringFromCGSize( s ));
+    
+    // force layout
+    [im setNeedsLayout];
+    [im layoutIfNeeded];
+    
+    // get the fitting size
+    CGSize s_im = [origPrice systemLayoutSizeFittingSize: UILayoutFittingCompressedSize];
+    NSLog( @"fittingSize: %@", NSStringFromCGSize( s ));
+    
     return cell;
 }
+
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
