@@ -28,6 +28,26 @@
 
 typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
 
+/**
+ * Enumeration type showing the status of the current Optimizely singleton's state,
+ * regarding whether it has started, is in the process of starting up, or has not been
+ * started.
+ *
+ * This enumeration is accessible through the property startingState, accessed through the
+ * `+sharedInstance` method. To start the Optimizely singleton, you need to call
+ */
+typedef NS_ENUM (NSInteger, OptimizelyInitializationState) {
+    /** The Optimizely singleton has not started. */
+    OptimizelyInitializationStateIsNotStarted,
+    /**
+     * The Optimizely singleton is starting and initializing required components.
+     * This helps to avoid double initialization.
+     */
+    OptimizelyInitializationStateIsStarting,
+    /** The Optimizely singleton has started and all required components are initialized. */
+    OptimizelyInitializationStateIsStarted
+};
+
 @interface UIView (Optimizely)
 @property (nonatomic, strong) NSString *optimizelyId;
 @end
@@ -300,7 +320,6 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
 
 #pragma mark - Properties
 /** @name Properties */
-
 /**
  *  @deprecated.  Use `allExperiments` or `visitedExperiments`.
  *
@@ -351,7 +370,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  */
 @property (nonatomic, readwrite) BOOL verboseLogging;
 
-/**The frequency (in seconds) at which events are sent to Optimizley and the experiment
+/**The frequency (in seconds) at which events are sent to Optimizely and the experiment
  * data file is fetched from server. Defaults to 2 minutes.
  *
  * Setting this to zero or negative value will disable automatic sending
@@ -391,6 +410,9 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * BOOL indicating whether or not you want to disable the Optimizely Gesture.
  */
 @property (nonatomic, readwrite) BOOL disableGesture;
+
+/** This returns the initialization state of the Optimizely singleton. */
+@property (nonatomic, readonly) OptimizelyInitializationState startingState;
 
 #pragma mark - NSNotification Keys
 

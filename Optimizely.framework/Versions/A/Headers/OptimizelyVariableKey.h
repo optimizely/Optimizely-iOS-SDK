@@ -64,6 +64,8 @@
 - (BOOL)isEqualToOptimizelyVariableKey:(OptimizelyVariableKey *)key;
 @end
 
+#if __has_feature(objc_arc)
+
 #define _OptimizelyVariableKey(key, type, defVal) OptimizelyVariableKey * key; \
     static void __attribute__((constructor)) initialize_ ## key() { \
         @autoreleasepool { \
@@ -71,6 +73,17 @@
             [Optimizely preregisterVariableKey:key]; \
         } \
     }
+
+#else
+
+#define _OptimizelyVariableKey(key, type, defVal) OptimizelyVariableKey * key; \
+    static void __attribute__((constructor)) initialize_ ## key() { \
+        key = [OptimizelyVariableKey optimizelyKeyWithKey:@#key default ## type:defVal]; \
+        [key retain]; \
+        [Optimizely preregisterVariableKey:key]; \
+    }
+
+#endif
 
 /** Defines an OptimizelyKey for variables of type NSString
  * @param key The name of this OptimizelyKey.
