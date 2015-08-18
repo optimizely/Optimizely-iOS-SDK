@@ -71,6 +71,8 @@
 		E8D5EFEB1A10996A00F65AA9 /* DiscountCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D5EFEA1A10996A00F65AA9 /* DiscountCollectionReusableView.m */; };
 		E8FFDEAD1A1F9F5A00B5068B /* Letter-I-inside-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FFDEAC1A1F9F5A00B5068B /* Letter-I-inside-circle.png */; };
 		E8FFDEB01A2021F100B5068B /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FFDEAF1A2021F100B5068B /* InfoViewController.m */; };
+		F02A90F31B83B486002AC338 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A90F21B83B486002AC338 /* MobileCoreServices.framework */; };
+		F02A90F51B83B48B002AC338 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A90F41B83B48B002AC338 /* AudioToolbox.framework */; };
 		F06ECC7419D38E6800F5A8A7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0B1860519D379720001CDB3 /* CFNetwork.framework */; };
 		F06ECC7519D38E7200F5A8A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0B1860719D379790001CDB3 /* Foundation.framework */; };
 		F06ECC7619D38E8000F5A8A7 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F0B1860919D379840001CDB3 /* libicucore.dylib */; };
@@ -165,6 +167,8 @@
 		E8FFDEAC1A1F9F5A00B5068B /* Letter-I-inside-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Letter-I-inside-circle.png"; sourceTree = "<group>"; };
 		E8FFDEAE1A2021F100B5068B /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		E8FFDEAF1A2021F100B5068B /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		F02A90F21B83B486002AC338 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		F02A90F41B83B48B002AC338 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		F06ECC7119D379D700F5A8A7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F06ECC7B19D395D200F5A8A7 /* LiveVariablesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveVariablesViewController.m; sourceTree = "<group>"; };
 		F06ECC7D19D395E700F5A8A7 /* LiveVariablesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveVariablesViewController.h; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F02A90F51B83B48B002AC338 /* AudioToolbox.framework in Frameworks */,
+				F02A90F31B83B486002AC338 /* MobileCoreServices.framework in Frameworks */,
 				F06ECC7A19D38EA500F5A8A7 /* UIKit.framework in Frameworks */,
 				F06ECC7919D38E9C00F5A8A7 /* SystemConfiguration.framework in Frameworks */,
 				F06ECC7819D38E9400F5A8A7 /* Security.framework in Frameworks */,
@@ -305,6 +311,8 @@
 		F08828A219D0CCFF0065E091 = {
 			isa = PBXGroup;
 			children = (
+				F02A90F41B83B48B002AC338 /* AudioToolbox.framework */,
+				F02A90F21B83B486002AC338 /* MobileCoreServices.framework */,
 				F06ECC7319D37B0C00F5A8A7 /* Framework */,
 				F08828AD19D0CCFF0065E091 /* TutorialApp */,
 				F08828AC19D0CCFF0065E091 /* Products */,
@@ -613,7 +621,7 @@
 				);
 				INFOPLIST_FILE = TutorialApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -631,7 +639,7 @@
 				);
 				INFOPLIST_FILE = TutorialApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

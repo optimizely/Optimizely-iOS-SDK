@@ -1,19 +1,23 @@
 # Optimizely-iOS-SDK CHANGELOG
 
 ## 1.1.0
-August 20, 2015
+August 17, 2015
 
 **Optimizely versions 0.8 (and up) require iOS 7 or higher.**
 
-- Launched mobile audiences!
-- Launched the redesign of preview mode!
+- Audiences: now you can better target experiences
+- New goals dialog: better view and tap goals, detection of custom goals 
+- New Preview feature for better QA
+- iOS 9 compatibility
 - Removed the need for the -ObjC linker flag when integrating the SDK
-- Added iOS 9 compatibility
-- Fixed a couple concurrency bugs
-- Added new UILabel properties
+- New UILabel properties
+- Fixed some concurrency bugs
+
 
 ## 1.0.88
 July 20, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
 
 - Fixed exception when using images in UISegementedControl
 
