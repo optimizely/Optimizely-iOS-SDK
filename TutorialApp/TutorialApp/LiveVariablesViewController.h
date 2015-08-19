@@ -11,7 +11,7 @@
 @interface LiveVariablesViewController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property NSMutableDictionary *storeItems;
 @property (weak, nonatomic) IBOutlet UICollectionReusableView *headerView;
-
+@property UILabel *salePrice;
 
 
 
