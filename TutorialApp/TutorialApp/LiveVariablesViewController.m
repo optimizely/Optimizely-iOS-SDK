@@ -183,6 +183,9 @@ OptimizelyVariableKeyForBool(liveVariableBool, NO);
     
     // [OPTIMIZELY] Example of how to use revenue tracking goal
     [Optimizely trackRevenue:discountPrice_int];
+    
+    // [OPTIMIZELY] Example of how to use track event
+    [Optimizely trackEvent:@"item_selected"];
 }
 
 
