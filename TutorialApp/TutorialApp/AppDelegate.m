@@ -35,11 +35,6 @@
     // should not be included when your app is in production
     [Optimizely sharedInstance].verboseLogging = YES;
     
-    // [OPTIMIZELY] (OPTIONAL) Add this line of code if you would like to enable "Edit Mode" in your live app
-    // Please note that adding this line will allow anyone to edit your app with
-    // Optimizely in the app store
-    // [Optimizely enableGestureInAppStoreApp];
-    
     // [OPTIMIZELY] (OPTIONAL) Customize network call timing (By default network calls are made every 2 minutes)
     // [Optimizely sharedInstance].dispatchInterval = 120;
     
@@ -54,8 +49,24 @@
     // Initialize Google Analytics prior to startOptimizely e.g.
     // id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"YOUR_GA_TRACKING_ID"];
     
+    // [OPTIMIZELY] (OPTIONAL) Programmatically enable the editor
+    //[Optimizely enableEditor];
+    
+    // [OPTIMIZELY] (OPTIONAL) Programmatically disable the visual editor by disabling swizzling
+    //[Optimizely disableSwizzle];
+    
+    // [OPTIMIZELY] (OPTIONAL) Example Custom Tag
+    // If you have information about your users on the client side in your app, based on those
+    // values you can set the value of the custom tag.
+    // These values should be set prior to startOptimizely or before refreshExperiments is called.
+    // For the refreshExperiments example, you can go to the CodeBlocksViewController.m file.
+    NSString *returning_customer = @"true";
+    if (returning_customer) {
+       [Optimizely setValue:returning_customer forCustomTag:@"returning_customer"];
+    }
+    
     [Optimizely startOptimizelyWithAPIToken:
-     @"AAMseu0A6cJKXYL7RiH_TgxkvTRMOCvS~123456"
+     @"ABCDEF~123456"
                               launchOptions:launchOptions];
     
     // [OPTIMIZELY] (OPTIONAL) Mixpanel Integration Instructions and order

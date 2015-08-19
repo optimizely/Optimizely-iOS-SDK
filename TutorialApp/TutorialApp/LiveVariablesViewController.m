@@ -107,7 +107,7 @@ OptimizelyVariableKeyForBool(liveVariableBool, NO);
     //origPrice.font = [UIFont fontWithName:@"Gotham-Medium" size:10];
     
     // Sale price
-    UILabel *salePrice = (UILabel *)[cell.contentView viewWithTag:4];
+    self.salePrice = (UILabel *)[cell.contentView viewWithTag:4];
     
     float origPriceVal = [[self.storeItems objectForKey:@"originalprice"][(long)indexPath.row] floatValue];
     NSLog(@"%.02f",origPriceVal);
@@ -115,15 +115,16 @@ OptimizelyVariableKeyForBool(liveVariableBool, NO);
     // [OPTIMIZELY] Examples of how to use live variable values (Part 2 of 2)
     float discountPrice = origPriceVal - (origPriceVal * [[Optimizely numberForKey:liveVariableDiscount] floatValue]);
     
-    salePrice.text = [NSString stringWithFormat:@"$%.02f", discountPrice];
+    
+    self.salePrice.text = [NSString stringWithFormat:@"$%.02f", discountPrice];
     //origPrice.font = [UIFont fontWithName:@"Gotham-Medium" size:10];
     
     // force layout
-    [salePrice setNeedsLayout];
-    [salePrice layoutIfNeeded];
+    [self.salePrice setNeedsLayout];
+    [self.salePrice layoutIfNeeded];
     
     // get the fitting size
-    CGSize s = [salePrice systemLayoutSizeFittingSize: UILayoutFittingCompressedSize];
+    CGSize s = [self.salePrice systemLayoutSizeFittingSize: UILayoutFittingCompressedSize];
     NSLog( @"fittingSize: %@", NSStringFromCGSize( s ));
     
     // force layout
@@ -168,6 +169,20 @@ OptimizelyVariableKeyForBool(liveVariableBool, NO);
     }
     
     return reusableview;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    float origPriceVal = [[self.storeItems objectForKey:@"originalprice"][(long)indexPath.row] floatValue];
+    NSLog(@"%.02f",origPriceVal);
+    
+    // [OPTIMIZELY] Example of how to use live variable values (Part 2 of 2)
+    float discountPrice = origPriceVal - (origPriceVal * [[Optimizely numberForKey:liveVariableDiscount] floatValue]);
+    discountPrice = discountPrice * 100;
+    int discountPrice_int = (int) discountPrice;
+    
+    // [OPTIMIZELY] Example of how to use revenue tracking goal
+    [Optimizely trackRevenue:discountPrice_int];
 }
 
 
