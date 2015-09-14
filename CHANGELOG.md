@@ -1,5 +1,13 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 1.1.3
+September 14, 2015
+
+**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
+
+- Added Localytics integration
+- Fixed a stability bug with live variables
+
 ## 1.1.0
 August 17, 2015
 
