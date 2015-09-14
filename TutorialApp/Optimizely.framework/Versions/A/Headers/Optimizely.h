@@ -451,6 +451,13 @@ extern NSString *const OptimizelyGoalTriggeredNotification;
  */
 + (void)activateAmplitudeIntegration;
 
+/**
+ *  This activates the Optimizely SDK's Localytics integration. You can read more about this
+ *  [here](https://help.optimizely.com/hc/en-us/articles/209645787)
+ *  @warning This currently *must* be called before `startOptimizelyWithAPIToken: launchOptions:` returns!
+ */
++ (void)activateLocalyticsIntegration;
+
 #pragma mark - Variable getters
 /** @name Deprecated Methods */
 
