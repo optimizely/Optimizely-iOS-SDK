@@ -6,6 +6,7 @@ September 14, 2015
 **Optimizely versions 0.8 (and up) require iOS 7 or higher.**
 
 - Added Localytics integration
+- Fixed a soft keyboard bug with UITextField
 - Fixed a stability bug with live variables
 
 ## 1.1.0
