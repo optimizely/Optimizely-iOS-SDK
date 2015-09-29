@@ -57,6 +57,16 @@ OptimizelyCodeBlocksKeyWithBlockNames(OnboardingFunnel,
 */
 - (IBAction)signInAccount:(id)sender {
     
+    // [OPTIMIZELY] (OPTIONAL) Example Custom Tag
+    // If you have information about your users on the client side in your app, based on those
+    // values you can set the value of the custom tag.
+    // These values should be set prior to startOptimizely or before refreshExperiments is called.
+    NSString *returning_customer = @"true";
+    if (returning_customer) {
+        [Optimizely setValue:returning_customer forCustomTag:@"returning_customer"];
+        [Optimizely refreshExperiments];
+    }
+    
     // [OPTIMIZELY] Examples of how to implement code blocks (different flow)
     [Optimizely codeBlocksWithKey:OnboardingFunnel
                      blockOne:^{
