@@ -131,17 +131,9 @@ OptimizelyVariableKeyForBool(liveVariableBool, NO);
     [origPrice setNeedsLayout];
     [origPrice layoutIfNeeded];
     
-    // get the fitting size
-    CGSize s_origPrice = [origPrice systemLayoutSizeFittingSize: UILayoutFittingCompressedSize];
-    NSLog( @"fittingSize: %@", NSStringFromCGSize( s ));
-    
     // force layout
     [im setNeedsLayout];
     [im layoutIfNeeded];
-    
-    // get the fitting size
-    CGSize s_im = [origPrice systemLayoutSizeFittingSize: UILayoutFittingCompressedSize];
-    NSLog( @"fittingSize: %@", NSStringFromCGSize( s ));
     
     return cell;
 }
