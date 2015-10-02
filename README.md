@@ -17,4 +17,4 @@ For a technical overview, please refer to our **[Technical FAQ](https://help.opt
 We want your feedback! For any and all questions, comments, or kudos, please get in touch with us at [support@optimizely.com](mailto:support@optimizely.com).
 
 ## Legal
-Usage is covered by Optimizely's terms of service that you agree to when signing up for Optimizely.
+Usage of this Optimizely SDK is covered by the Optimizely SDK License Agreement located at LICENSE.md. For developers with a current subscription for the Optimizely Service that includes access to the Optimizely SDK for mobile products, the Optimizely SDK License Agreement does not apply. Instead, your agreement with Optimizely for the Optimizely Service with mobile applies.
