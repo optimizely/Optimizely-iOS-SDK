@@ -3,4 +3,7 @@ framework module Optimizely {
     
     export *
     module * { export * }
+    
+    link "sqlite3"
+    link "icucore"
 }

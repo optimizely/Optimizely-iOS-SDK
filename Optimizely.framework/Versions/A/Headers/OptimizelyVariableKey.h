@@ -2,8 +2,8 @@
 //  OptimizelyVariableKey.h
 //  Optimizely
 //
-//  Created by Optimizely Engineering on 5/13/14.
-//  Copyright (c) 2014 Optimizely Engineering. All rights reserved.
+//  Created by Optimizely on 5/13/14.
+//  Copyright (c) 2014-2015 Optimizely. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

@@ -2,8 +2,8 @@
 //  OptimizelyCodeBlocksKey.h
 //  Optimizely
 //
-//  Created by Optimizely Engineering on 2/19/15.
-//  Copyright (c) 2015 Optimizely Engineering. All rights reserved.
+//  Created by Optimizely on 2/19/15.
+//  Copyright (c) 2015 Optimizely. All rights reserved.
 
 #import <Foundation/Foundation.h>
 

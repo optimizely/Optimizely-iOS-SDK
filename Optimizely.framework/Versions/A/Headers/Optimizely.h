@@ -1,23 +1,16 @@
 //
-//  Copyright (c) 2014 Optimizely. All rights reserved.
+//  Optimizely.h
+//  Optimizely
 //
-//  Optimizely iOS SDK Uses Following Open Source Libraries
+//  Copyright (c) 2014-2015 Optimizely. All rights reserved.
+//
+//  Optimizely iOS SDK Uses the Following Open Source Libraries
 //       - AFDownloadRequestOperation
 //       - AFNetworking
 //       - CTObjectiveCRuntimeAdditions
 //       - FMDB
 //       - NSDateRFC1123
 //       - SocketRocket
-//
-//  Contributors
-//       - Kasra Kyanzadeh
-//       - Yonatan Kogan
-//       - Marco Sgrignuoli
-//       - Richard Klafter
-//       - Alex Medearis
-//       - Chrix Finne
-//       - Rama Ranganath
-//       - Hemant Verma
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -182,16 +175,24 @@ typedef NS_ENUM (NSInteger, OptimizelyInitializationState) {
 /** This method informs Optimizely that a revenue goal custom event occured.
  *
  * @param revenueAmount The revenue amount in cents associated with the event
+ * @param description: a description of the revenue
  * @see +dispatch
  */
-+ (void)trackRevenue:(int)revenueAmount;
++ (void)trackRevenue:(int)revenueAmount withDescription:(NSString *)description;
 
 /** This method registers a callback method for when a given variable is changed.
- *
+ * Method signature is: void (^callback)(NSString *, id)
  * @param key The Optimizely key associated with the variable you want to watch
  * @param callback The callback method that will be invoked whenever the variable is changed. It takes in two parameters, the first being the key of the changed variable and the second is the variable's new value
  */
 + (void)registerCallbackForVariableWithKey:(OptimizelyVariableKey *)key callback:(void (^)(NSString *, id))callback;
+
+/** This method registers a callback method for when a given code block is changed.
+ * Method signature is: void (^callback)()
+ * @param key The Optimizely key associated with the code block you want to watch
+ * @param callback The callback method that will be invoked whenever the code block is changed.
+ */
++ (void)registerCallbackForCodeBlockWithKey:(OptimizelyCodeBlocksKey *)key callback:(void (^)())callback;
 
 
 /** This method manually refreshes all currently running experiments so as to take into account
@@ -200,6 +201,43 @@ typedef NS_ENUM (NSInteger, OptimizelyInitializationState) {
  * Note: The use of this method may invalidate statistical results.
  */
 + (void)refreshExperiments;
+
+/** This method gets the experiment data for a given experimentId
+ *
+ * @param experimentId The id of the particular experiment.
+ * The ID is available in the bottom of the experiment details panel from the project view.
+ *
+ * @return OptimizelyExperimentData returns the experiment data if the experiment is found. returns nil otherwise
+ */
+
++ (OptimizelyExperimentData *)getExperimentDataById:(NSString *)experimentId;
+
+/** This method determines whether a user is in a particular audience.
+ *
+ * @param audienceId: The audienceId that we're trying to check against
+ *
+ * @return BOOL true if user satisfies the audience conditions, false otherwise
+ */
++ (BOOL)isUserInAudience:(NSString *)audienceId;
+
+/** This method resets the bucketing metadata that is cached on device.
+ * This will also clear the random user id, so that next time the experiment is activated, the user will be bucketed as a fresh user.
+ * This will also clear the Optimizely DataFile from storage.
+ */
++ (void)resetUserBucketing;
+
+/** This method returns a copy of all audiences that are defined in the data file.
+ * If this is called before Optimizely starts, it will return an empty array.
+ * If there are no audiences, it will return an empty array.
+ * Each audience will be an index in the NSArray represented by a NSDictionary.
+ * Each NSDictionary will have 3 keys: @"name", @"audience_id", and @"conditions"
+ * @"name" keys to a NSString of the audience name in the web editor.
+ * @"audience_id" keys to a NSString of the unique audience identifier.
+ * @"conditions" keys to a JSON representation of the audience conditions.
+ *
+ * @return NSArray of all audiences.
+ */
++ (NSArray *)getAudiences;
 
 #pragma mark - Variable getters
 /** @name Live Variables */
@@ -415,7 +453,14 @@ typedef NS_ENUM (NSInteger, OptimizelyInitializationState) {
 @property (nonatomic, readonly) OptimizelyInitializationState startingState;
 
 #pragma mark - NSNotification Keys
-
+/**
+ *  Constant NSNotification key that is triggered when Optimizely has completed startup.
+ */
+extern NSString *const OptimizelyStartedNotification;
+/**
+ *  Constant NSNotification key that is triggered when Optimizely has failed to startup.
+ */
+extern NSString *const OptimizelyFailedToStartNotification;
 /**
  *  Constant NSNotification key that is triggered when an experiment is viewed by the user. The userInfo in the notification
  *  will have metadata which includes experiment Id, variation Id, experiment description and variation description. For more
@@ -463,7 +508,7 @@ extern NSString *const OptimizelyGoalTriggeredNotification;
 
 /* These methods will be removed in a future release */
 
-/**  @deprecated.  Use `+trackEvent`.
+/**  @deprecated.  Use `+trackEvent:`.
  *
  * This method informs the server that a custom goal with key `description` occured.
  *
@@ -471,6 +516,15 @@ extern NSString *const OptimizelyGoalTriggeredNotification;
  * @see -dispatch
  */
 - (void)trackEvent:(NSString *)description __attribute((deprecated("Use [Optimizely trackEvent:]")));
+
+/**  @deprecated. Use `+trackRevenue: withDescription:`.
+ *
+ * This method informs Optimizely that a revenue goal custom event occured.
+ *
+ * @param revenueAmount The revenue amount in cents associated with the event
+ * @see +dispatch
+ */
++ (void)trackRevenue:(int)revenueAmount __attribute((deprecated("Use [Optimizely trackRevenue: withDescription: ] instead")));
 
 /**  @deprecated.  Use `+stringForKey:`.
  *
