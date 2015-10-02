@@ -1,5 +1,14 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 1.2.0
+October 5, 2015
+
+- Added multi-target goals (Tap and View)
+- Added description field to trackRevenue
+- Fixed a bit code issue with Xcode 7
+- Fixed a force touch issue with the Optimizely edit gesture on iPhone 6S/6S Plus
+- Improved swizzling logic in cases where there are no visual experiments
+
 ## 1.1.3
 September 14, 2015
 
