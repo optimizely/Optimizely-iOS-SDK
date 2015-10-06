@@ -1,5 +1,11 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 1.2.1
+October 6, 2015
+
+- Fixed warnings stemming from Xcode 7 and static libraries
+- Re-added armv7s which was removed by default in Xcode 7
+
 ## 1.2.0
 October 5, 2015
 
