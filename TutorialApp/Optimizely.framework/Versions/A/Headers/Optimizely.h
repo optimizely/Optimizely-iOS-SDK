@@ -240,21 +240,6 @@ typedef NS_ENUM (NSInteger, OptimizelyInitializationState) {
  */
 + (NSArray *)getAudiences;
 
-/** Activates a manual experiment with the given id. If it passes targeting, the experiment
- * will be bucketed and marked as visited. This must be called after startOptimizelyWithAPIToken.
- *
- * @param experimentId The id of the experiment you wish to activate
- * @return boolean depending on whether or not we successfully activated the experiment. Turn on verbose logging for more debugging info
- */
-+ (BOOL)activateManualExperiment:(NSString *)experimentId;
-
-/** Activates all manual experiments in your data file. If it passes targeting, the experiments
- * will be bucketed and marked as visited. This must be called after startOptimizelyWithAPIToken.
- *
- * @return boolean depending on whether or not we were able to activate all manual experiments. Turn on verbose logging for more debugging info.
- */
-+ (BOOL)activateAllManualExperiments;
-
 #pragma mark - Variable getters
 /** @name Live Variables */
 
