@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <SystemConfiguration/SystemConfiguration.h>
 
 /** This class defines a key that can be used to retrieve Optimizely live variables.
  *
