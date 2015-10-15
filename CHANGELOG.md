@@ -1,5 +1,10 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 1.2.2
+October 12, 2015
+
+- Fixed more warnings in Xcode 7
+
 ## 1.2.1
 October 6, 2015
 
@@ -30,7 +35,7 @@ August 17, 2015
 **Optimizely versions 0.8 (and up) require iOS 7 or higher.**
 
 - Audiences: now you can better target experiences
-- New goals dialog: better view and tap goals, detection of custom goals 
+- New goals dialog: better view and tap goals, detection of custom goals
 - New Preview feature for better QA
 - iOS 9 compatibility
 - Removed the need for the -ObjC linker flag when integrating the SDK
@@ -82,7 +87,7 @@ May 8, 2015
 **Optimizely versions 0.8 (and up) require iOS 7 or higher.**
 
 - Fixed an issue with the linker when using FMDB
-- Other bug fixes 
+- Other bug fixes
 
 
 ## 1.0.80
@@ -172,9 +177,9 @@ November 17, 2014
 - Optimizely for iOS is out of beta!
 - Adds support for Universal User ID (beta). Target experiments to identified users, and variation bucketing + counting will be consistent across multiple iOS devices. [Learn More](http://developers.optimizely.com/ios/#uuid)
 - Default tracking of session frequency and length for all new experiments
-- Revenue goals 
+- Revenue goals
 - New retention reports
-- New goal metrics 
+- New goal metrics
 - New Visual Editor: Optimizely now has a brand new visual editor that makes it easy to create your A/B tests
 - Removed the need for `OptimizelyPrepareNibs.rb`. you no longer need to run this script to use the visual editor
 - New gesture for entering into Edit Mode: just draw the Optimizely O to get into edit mode
@@ -251,10 +256,10 @@ June 13, 2014
 June 12, 2014
 
 - Internal logging improvements.
-- Fixes a bug where Code Blocks weren't applied in Edit Mode 
-  (now they work like Live Variables - you don't have to use 
+- Fixes a bug where Code Blocks weren't applied in Edit Mode
+  (now they work like Live Variables - you don't have to use
   Preview to see the changes).
-- Fixes slowness in the Editor due to unnecessary socket messages 
+- Fixes slowness in the Editor due to unnecessary socket messages
   using Live Variables.
 
 ## 0.5.46

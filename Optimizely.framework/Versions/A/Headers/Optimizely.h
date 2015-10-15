@@ -14,6 +14,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <SystemConfiguration/SystemConfiguration.h>
 
 #import "OptimizelyCodeBlocksKey.h"
 #import "OptimizelyExperimentData.h"
