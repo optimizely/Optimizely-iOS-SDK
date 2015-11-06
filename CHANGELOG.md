@@ -1,5 +1,26 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 1.3.0
+November 6, 2015
+
+*Announcements:*
+*Twitter Fabric Integration.* We're excited to announce our partnership with Fabric, Twitter's modular mobile platform that makes it easy for developers to install and maintain SDKs within their apps. Find out more [here](https://blog.optimizely.com/2015/10/21/optimizely-twitter-fabric/)
+
+*New Features:*
+- *Developer Improvements.* We've added a litany of testing methods to our SDK to help you debug your experiments much more quickly and easily
+isUserInAudience - Check if the user is in a particular audience
+getExperimentDataById - Get an experiment's metadata with that experiment's ID
+resetUserBucketing - Remove a user's bucketing information for all experiments
+forceVariationOfExperiment - Force a user into a certain experiment variation
+- *Manual activation.* You can now manually specify, in code, when you want your experiments to activate (by default, all active experiments are activated when start Optimizely is called). Some important use cases include setting additional targeting metadata before activating an experiment and only bucketing users who visit a certain activity in your app
+- *New notification types:*
+OptimizelyFailedToStartNotification 
+OptimizelyStartedNotification
+- *Code Block Callbacks in Edit Mode.* Please note that code block callbacks will only work in edit mode
+
+*Bug Fixes:*
+- Fixed bug in language Audience condition
+
 ## 1.2.2
 October 12, 2015
 
