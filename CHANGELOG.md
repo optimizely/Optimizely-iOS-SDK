@@ -1,7 +1,9 @@
 # Optimizely-iOS-SDK CHANGELOG
 
 ## 1.3.2
-November 19, 2015
+November 20, 2015
+
+**Optimizely will no longer support Xcode 6**
 
 *Bug Fixes:*
 - Fixed a bug with preview mode and visual experiments
