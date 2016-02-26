@@ -1,5 +1,19 @@
 # Optimizely-iOS-SDK CHANGELOG
 
+## 1.4.0
+February 25, 2015
+
+####New Features:
+- [Optimizely getDimensions] API: Get an Array of all OptimizelyDimensions in the SDK.
+- [Optimizely getUniversalUserId] API: Get the publisher provided User Id.
+- [Optimizely getOptimizelyEndUserId] API: Get the Optimizely generated User Id.
+
+####Bug Fixes:
+- Fixed an issue with sending Revenue goals with empty string for description
+
+####Deprecated:
+- [Optimizely getUserId] API: User [Optimizely getUniversalUserId] or [Optimizely getOptimizelyEndUserId] instead.
+
 ## 1.3.2
 November 20, 2015
 
