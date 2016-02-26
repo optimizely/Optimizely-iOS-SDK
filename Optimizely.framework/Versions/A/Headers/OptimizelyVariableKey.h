@@ -6,9 +6,7 @@
 //  Copyright (c) 2014-2015 Optimizely. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <SystemConfiguration/SystemConfiguration.h>
 
 /** This class defines a key that can be used to retrieve Optimizely live variables.
  *
