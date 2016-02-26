@@ -6,9 +6,7 @@
 //  Copyright (c) 2015 Optimizely. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <SystemConfiguration/SystemConfiguration.h>
 
 /**
  *  Type describing the current state of the experiment
