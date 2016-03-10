@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleShortVersionString</key>
-	<string>1.4.0</string>
+	<string>1.4.2</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.optimizely.sdk.ios</string>
 </dict>
