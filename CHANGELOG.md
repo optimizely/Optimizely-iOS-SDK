@@ -1,20 +1,48 @@
-# Optimizely-iOS-SDK CHANGELOG
+# Optimizely iOS SDK Changelog
 
-## 1.4.0
-February 25, 2015
+### 1.4.2
+March 9, 2016
 
-####New Features:
-- [Optimizely getDimensions] API: Get an Array of all OptimizelyDimensions in the SDK.
-- [Optimizely getUniversalUserId] API: Get the publisher provided User Id.
-- [Optimizely getOptimizelyEndUserId] API: Get the Optimizely generated User Id.
+*Bug Fixes:*
 
-####Bug Fixes:
-- Fixed an issue with sending Revenue goals with empty string for description
+* We made a merge error and the internal version is 1.4.2 instead of 1.4.0. We are trying to make all affected files consistent with 1.4.2 since customers are already using 1.4.2.
 
-####Deprecated:
-- [Optimizely getUserId] API: User [Optimizely getUniversalUserId] or [Optimizely getOptimizelyEndUserId] instead.
+### 1.4.1
+Skipped
 
-## 1.3.2
+### 1.4.0
+February 25, 2016
+
+*New Features:*
+
+  * *Plugins Rearchitecture:* We've spent some time thinking about how Optimizely can integrate with other plugins. We want to enable 3rd parties to build point solutions that leverage Optimizely's platform in new ways.
+    * `[Optimizely registerPlugin:(id<OptimizelyPlugin>) plugin]` - register a plugin.
+    * Use this method if your app is in Swift instead of `[Optimizely activateAmplitudeIntegration]`, `[Optimizely activateLocalyticsIntegration]`, or `[Optimizely activateMixpanelIntegration]`.
+    * If are using a custom Plugin in Objective-C, use the `OptimizelyRegisterPlugin` macro from OptimizelyPlugin.h
+  * *Developer Improvements:* We want to enable customers to use the [offline conversions](https://help.optimizely.com/hc/en-us/articles/200040195-Tracking-offline-conversion-events-with-Optimizely) API to its full potential, so we've exposed essential parameters needed to send offline conversion events.
+    * `[Optimizely getDimensions]` - get an NSArray of all OptimizelyDimensions in the SDK.
+    * `[Optimizely sharedInstance].universalUserId` - your custom Universal User Id for the end user. Set the universalUserId to identify the end user across devices. More info can be found [here](https://help.optimizely.com/hc/en-us/articles/203626830-Universal-User-ID-Beta)
+    * `[Optimizely sharedInstance].optimizelyEndUserId` - read only property to get the Optimizely End User Id created by the Optimizely SDK.
+  * *New Headers:*
+    * OptimizelyDimension.h - A representation of the data in an individual Optimizely Dimension. Read more about Dimensions [here](https://help.optimizely.com/hc/en-us/articles/200040865-Dimensions-Capture-visitor-data-through-the-API).
+    * OptimizelyPlugin.h - Integrations allow customers to track Optimizely experiments in an external tool. A plugin written on the Optimizely platform can edit views, live variables, and code blocks. [Read more](http://developers.optimizely.com/integrations/#mobile-analytics).
+
+*Bug Fixes:*
+
+* Fixed an issue with tracking revenue goals with an empty string description.
+
+*Deprecated Methods:*
+
+* `[Optimizely sharedInstance].userId` is now deprecated. Please use either `universalUserId` or `optimizelyEndUserId` instead.
+
+*Breaking Changes:*
+
+* *Optimizely Plugins:* These methods are no longer needed to activate the Optimizely Integrations. The integrations must be activated from the web editor by flipping them to the ON position. Read more about integrations [here](https://help.optimizely.com/hc/en-us/articles/203729580-Introduction-to-Optimizely-Integrations).
+  * [`[Optimizely activateAmplitudeIntegration]`](https://help.optimizely.com/hc/en-us/articles/204963198-Integrating-Optimizely-with-Amplitude-for-iOS-and-Android) - activate the Amplitude integration via the Integrations tab in the web editor.
+  * [`Optimizely activateLocalyticsIntegration]`](https://help.optimizely.com/hc/en-us/articles/209645787-Integrating-Optimizely-with-Localytics-for-iOS-and-Android) - activate the Localytics integration via the Integrations tab in the web editor.
+  * [`[Optimizely activateMixpanelIntegration]`](https://help.optimizely.com/hc/en-us/articles/200040025-Integrating-Optimizely-with-Mixpanel-Web-iOS-and-Android-) -  activate the Mixpanel integration via the Integrations tab in the web editor.
+
+### 1.3.2
 November 20, 2015
 
 **Optimizely will no longer support Xcode 6**
@@ -22,7 +50,7 @@ November 20, 2015
 *Bug Fixes:*
 - Fixed a bug with preview mode and visual experiments
 
-## 1.3.1
+### 1.3.1
 November 10, 2015
 
 **Optimizely will no longer support Xcode 6**
@@ -30,7 +58,7 @@ November 10, 2015
 *Bug Fixes:*
 - Fixed issue when archiving with the SDK
 
-## 1.3.0
+### 1.3.0
 November 6, 2015
 
 *Announcements:*
@@ -38,332 +66,41 @@ November 6, 2015
 
 *New Features:*
 - *Developer Improvements.* We've added a litany of testing methods to our SDK to help you debug your experiments much more quickly and easily
-isUserInAudience - Check if the user is in a particular audience
-getExperimentDataById - Get an experiment's metadata with that experiment's ID
-resetUserBucketing - Remove a user's bucketing information for all experiments
-forceVariationOfExperiment - Force a user into a certain experiment variation
+  - isUserInAudience - Check if the user is in a particular audience
+  - getExperimentDataById - Get an experiment's metadata with that experiment's ID
+  - resetUserBucketing - Remove a user's bucketing information for all experiments
+  - forceVariationOfExperiment - Force a user into a certain experiment variation
+Read more in-depth descriptions [here](/ios/reference/index.html#debugging-your-experiments)
 - *Manual activation.* You can now manually specify, in code, when you want your experiments to activate (by default, all active experiments are activated when start Optimizely is called). Some important use cases include setting additional targeting metadata before activating an experiment and only bucketing users who visit a certain activity in your app
+Read more in-depth descriptions [here](/ios/reference/index.html#experiment-activation-modes)
 - *New notification types:*
-OptimizelyFailedToStartNotification 
-OptimizelyStartedNotification
+  - OptimizelyFailedToStartNotification
+  - OptimizelyStartedNotification
 - *Code Block Callbacks in Edit Mode.* Please note that code block callbacks will only work in edit mode
 
 *Bug Fixes:*
 - Fixed bug in language Audience condition
 
-## 1.2.2
+### 1.2.2
 October 12, 2015
 
+*Bug Fixes*
 - Fixed more warnings in Xcode 7
 
-## 1.2.1
+### 1.2.1
 October 6, 2015
 
+*Bug Fixes*
 - Fixed warnings stemming from Xcode 7 and static libraries
 - Re-added armv7s which was removed by default in Xcode 7
 
-## 1.2.0
+### 1.2.0
 October 5, 2015
 
-- Added multi-target goals (Tap and View)
-- Added description field to trackRevenue
-- Fixed a bit code issue with Xcode 7
-- Fixed a force touch issue with the Optimizely edit gesture on iPhone 6S/6S Plus
-- Improved swizzling logic in cases where there are no visual experiments
-
-## 1.1.3
-September 14, 2015
-
-**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
-
-- Added Localytics integration
-- Fixed a soft keyboard bug with UITextField
-- Fixed a stability bug with live variables
-
-## 1.1.0
-August 17, 2015
-
-**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
-
-- Audiences: now you can better target experiences
-- New goals dialog: better view and tap goals, detection of custom goals
-- New Preview feature for better QA
-- iOS 9 compatibility
-- Removed the need for the -ObjC linker flag when integrating the SDK
-- New UILabel properties
-- Fixed some concurrency bugs
-
-
-## 1.0.88
-July 20, 2015
-
-**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
-
-- Fixed exception when using images in UISegementedControl
-
-## 1.0.87
-June 26, 2015
-
-**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
-
-- Fixed Namespace issue with SocketRocket's SRHTTPResponseErrorKey
-
-## 1.0.86
-June 25, 2015
-
-**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
-
-- Added synchronized tags to view operations
-- Moved to FMDB's queue implementation
-- Fixed issue with DatePickers
-
-## 1.0.84
-June 15, 2015
-
-**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
-
-- Adding a module map so that you no longer need a bridging header for Swift. Instead you can simply call "import Optimizely"
-- A couple bug fixes
-
-## 1.0.82-RC
-June 10, 2015
-
-**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
-
-- Just a couple of bug fixes
-
-## 1.0.81
-May 8, 2015
-
-**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
-
-- Fixed an issue with the linker when using FMDB
-- Other bug fixes
-
-
-## 1.0.80
-April 29, 2015
-
-**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
-
-- Added Amplitude User Properties integration
-- More bug fixes
-
-## 1.0.79-RC
-April 8, 2015
-
-**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
-
-- Just a bunch of bug fixes
-
-## 1.0.78
-February 26, 2015
-
-**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
-
-- Goals are now triggered based on whether or not the user has ever viewed a given experiment in their lifetime
-- Added notification for when a goal is triggered
-- Added allExperiments and viewedExperiments which return an array of OptimizelyExperimentData objects that store data pertaining to the current state of each experiment
-- Updated our analytics integrations to utilize viewedExperiments
-- Added the ability for the developer to disable the Optimizely Gesture
-- Removed session and retention goals
-- activeExperiments deprecated, please use allExperiments or viewedExperiments
-
-## 1.0.76
-February 11, 2015
-
-**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
-
-- Urgent fix for an issue with counting visitors in experiments. For more information please visit our [Optiverse page](https://community.optimizely.com/t5/Mobile-Apps/Known-Issue-Mobile-results-are-over-counting-visitors/m-p/9096)
-- Added manual activation through refreshExperimentData
-- Added notifications for when an experiment is viewed and when we load new experiment data
-- Other minor bug fixes
-
-## 1.0.75
-January 14, 2015
-
-**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
-
-- Added a NSNotification for when we get new experiment data
-- Fixed a bug with downloading our JSON config
-
-## 1.0.74
-January 8, 2015
-
-**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
-
-- Added the ability to edit UIButton images
-- Enabled editing of individual table view cells
-- Better interactions with other SDKs
-- The Optimizely SDK will work with iOS6+ devices, but experiments will only run on iOS7+
-- Other bug fixes
-
-## 1.0.70
-December 5, 2014
-
-**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
-
-- Added the ability to black list views classes from Id generation
-- Fix for scroll view delegate bug
-
-## 1.0.60
-November 19, 2014
-
-**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
-
-- Fix a crash for some uses of UIImagePickerController
-
-## 1.0.59
-November 17, 2014
-
-**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
-
-- Disable automatic tagging of UITableView and UICollectionView sub views.
-
-## 1.0.58
-November 17, 2014
-
-**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
-
-- Optimizely for iOS is out of beta!
-- Adds support for Universal User ID (beta). Target experiments to identified users, and variation bucketing + counting will be consistent across multiple iOS devices. [Learn More](http://developers.optimizely.com/ios/#uuid)
-- Default tracking of session frequency and length for all new experiments
-- Revenue goals
-- New retention reports
-- New goal metrics
-- New Visual Editor: Optimizely now has a brand new visual editor that makes it easy to create your A/B tests
-- Removed the need for `OptimizelyPrepareNibs.rb`. you no longer need to run this script to use the visual editor
-- New gesture for entering into Edit Mode: just draw the Optimizely O to get into edit mode
-- Optimizely URL Scheme is now required for edit mode
-- Fixed bugs found in 0.8.57
-
-
-## 0.8.57
-November 10, 2014
-
-**Optimizely versions 0.8 (and up) require iOS 7 or higher.**
-
-- New Visual Editor: Optimizely now has a brand new visual editor that makes it easy to create your A/B tests.
-- Removed the need for `OptimizelyPrepareNibs.rb`. you no longer need to run this script to use the visual editor.
-- New gesture for entering into Edit Mode: just draw the Optimizely O to get into edit mode
-- Optimizely URL Scheme is now required for edit mode
-
-## 0.7.55
-September 16, 2014
-
-- Image uploading: you can now upload new images in the Optimizely editor and swap
-  them in variations
-- Added support for changing  UIImageView's `contentMode` property when changing
-  images in a variation
-- Added callbacks for live variables so that a developer can be notified when live
-  variables are updated
-- Fixed a bug with MixPanel integration
-
-## 0.7.54
-August 22, 2014
-
-- Google Analytics Integration! You can now send information about active
-  experiments and variations to Google Analytics via our new integration
-  with Universal Analytics!
-- Surface Experiment and Variation Descriptions to developer via the
-   `activeExperiments` property
-- Fixed a bug where changing button text animated the change
-
-## 0.7.53
-August 5, 2014
-
-- New traffic allocation support for bucketing less than 100% of users
-- Improved robustness of startOptimizely for use with older XCode projects
-- Various bug fixes and performance enhancements
-- Improved debugging of custom goals
-
-## 0.6.52
-July 15, 2014
-
-- Option to reload experiments on app foregrounding. [Learn More](http://developers.optimizely.com/ios/help/html/Classes/Optimizely.html#//api/name/shouldReloadExperimentsOnForegrounding).
-- Ability to target experiments based on custom tags. [Learn More](http://developers.optimizely.com/ios/#customtags).
-- Improved `OptimizelyPrepareNibs.rb` script which replaces `OptimizelyPrepareNibs.py` and plays nicely with source control. **Note: For manual installs, please follow steps 5 and 6 in the [manual install process](http://developers.optimizely.com/ios/#manualinstall) to upgrade to this new script.**
-
-## 0.5.51
-July 3, 2014
-
-- New Live Variables and Code Blocks syntax which allows instantaneous discovery in
-  the Editor. The prior syntax is now deprecated but will be supported in future
-  SDKs for at least 6 months. [Learn More](http://developers.optimizely.com/ios/#variables).
-- Optimizely now integrates with Mixpanel! [Learn More](http://developers.optimizely.com/ios/help/html/Classes/Optimizely.html#//api/name/activateMixpanelIntegration).
-- The currently active experiments (and the variation for each experiment
-  that the user is bucketed in) are now available as a property of the
-  Optimizely singleton. [Learn More](http://developers.optimizely.com/ios/help/html/Classes/Optimizely.html#//api/name/activeExperiments).
-- Option to specify data file download timeout. [Learn More](http://developers.optimizely.com/ios/help/html/Classes/Optimizely.html#//api/name/networkTimeout).
-
-## 0.5.48
-
-June 13, 2014
-
-- Fixes constraint conflict when status bar is hidden
-
-## 0.5.47
-
-June 12, 2014
-
-- Internal logging improvements.
-- Fixes a bug where Code Blocks weren't applied in Edit Mode
-  (now they work like Live Variables - you don't have to use
-  Preview to see the changes).
-- Fixes slowness in the Editor due to unnecessary socket messages
-  using Live Variables.
-
-## 0.5.46
-
-June 09, 2014
-
-- Fixes a bug where the app was not receiving messages from the editor when launched from a URL instead of from Xcode.
-
-## 0.5.45
-
-May 27, 2014
-
-- Fixes a bug related to app backgrounding.
-- Fixes a bug where not calling +startOptimizely leaves variables nil rather than the defaultValue.
-- Fixes bug related to visitor segmenting.
-
-## 0.5.44
-
-May 21, 2014
-
-- Launch edit mode from URL
-- Secured entering preview mode via URL
-- Fix "Unknown App" issue
-- Bug fixes, enhancements
-- Fixes discrepancy between published SDK version and SDK version used for targeting (they are now one and the same).
-
-## 0.4.42
-
-May 5, 2014
-
-- Changes default background event flush timer to every 2 minutes; adds a flag to change this value (timer was 20 minutes in SDK 0.4.37, which caused results delays for some apps; previously, a flush would only occur after an app had been active for at least 20 minutes and in the foreground, or after 25 events queued up)
-- Adds manual event flush capability
-- Adds manual experiment fetch capability (trigger fetches of experiment changes to be applied on next app start)
-- Adds verbose logging option
-- To target this SDK in an experiment, please target SDK version "0.4.42". This discrepancy will be fixed in an upcoming release.
-
-## 0.4.37
-
-April 25, 2014
-
-- iOS 6 fixes
-- Improved preview mode
-- Simplified variables
-- Numerous bugfixes
-- To target this SDK in an experiment, please target SDK version "0.3.37". This discrepancy will be fixed in an upcoming release.
-
-## 0.4.32
-
-April 7, 2014
-
-- Numerous bugfixes, including fix for issue where visitors are bucketed incorrectly.
-- To target this SDK in an experiment, please target SDK version "0.3.32". This discrepancy will be fixed in an upcoming release.
-
-## 0.3.0
-
-Initial Developer Preview Release
+*New Features*
+- *Audience targeting.* Improve your app’s retention by creating audiences of similar users and targeting them with relevant content.
+- *Connection-free changes.* Make changes to Live Variables and Code Blocks without connecting your device to Optimizely.
+- *Streamlined goal setting.* Save time during instrumentation with a faster and more accurate goal selection experience.
+- *Multi-target goals.* Accurately test entirely different variations by connecting multiple view or tap events to a single goal.
+- *Advanced preview and QA modes.* Release new features confidently with a rebuilt preview mode that allows you to simulate a live user experience in real time.
+- *Localytics integration.* See the impact your Optimizely experiments have on the key business metrics you track using Localytics.
