@@ -23,7 +23,7 @@
 @required
 
 /**
- * Each plugin must choose a unique identifier. The bundle name of the plugin is usually
+ * Each plugin must have a unique identifier. The bundle name of the plugin is usually
  * sufficient. For example: 'com.optimizely.crashreporting'
  * This property will be queried after the plugin initialization but before start is called.
  */
