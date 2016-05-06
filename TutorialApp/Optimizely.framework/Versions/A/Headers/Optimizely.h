@@ -16,7 +16,7 @@
 #import "OptimizelyExperimentData.h"
 #import "OptimizelyVariableKey.h"
 #import "OptimizelyPlugin.h"
-#import "OptimizelyDimension.h"
+#import "OptimizelyAttribute.h"
 
 /**
  * Wrapper for a callback handler block
@@ -29,7 +29,7 @@ typedef void (^OptimizelySuccessBlock)(BOOL success, NSError *error);
  * started.
  *
  * This enumeration is accessible through the property startingState, accessed through the
- * `+sharedInstance` method. To start the Optimizely singleton, you need to call
+ * `+sharedInstance` method.
  */
 typedef NS_ENUM (NSInteger, OptimizelyInitializationState) {
     /** The Optimizely singleton has not started. */
@@ -41,6 +41,26 @@ typedef NS_ENUM (NSInteger, OptimizelyInitializationState) {
     OptimizelyInitializationStateIsStarting,
     /** The Optimizely singleton has started and all required components are initialized. */
     OptimizelyInitializationStateIsStarted
+};
+
+/**
+ * Enumeration type describes the current running mode of Optimizely
+ */
+typedef NS_ENUM (NSUInteger, OptimizelyRunningMode) {
+    /** Optimizely is running as it would for a generic user.
+     * Experiments are loaded from a data file and there is no connection
+     * to the editor.
+     */
+    OptimizelyRunningModeNormal,
+    /** The app is available to be edited on the web client.
+     * Socket connections are open to the editor.
+     */
+    OptimizelyRunningModeEdit,
+    /** The app is previewing variation(s) for some set of experiments.
+     * The device **may** be connected to the editor in order to send
+     * debug logs, if that was specified in the preview config file.
+     */
+    OptimizelyRunningModePreview,
 };
 
 @interface UIView (Optimizely)
@@ -177,7 +197,7 @@ typedef NS_ENUM (NSInteger, OptimizelyInitializationState) {
 /** This method informs Optimizely that a revenue goal custom event occured.
  *
  * @param revenueAmount The revenue amount in cents associated with the event
- * @param description The description of the revenue. This will only be shown in the raw event log
+ * @param description The description of the revenue. This will only be shown in the raw event log.
  * @see +dispatch
  */
 + (void)trackRevenue:(int)revenueAmount withDescription:(NSString *)description;
@@ -228,13 +248,6 @@ typedef NS_ENUM (NSInteger, OptimizelyInitializationState) {
  */
 + (NSArray *)getAudiences;
 
-/** This method returns a copy of all dimensions that are defined in the data file.
- * If this is called before Optimizely starts, it will return an empty array.
- * If there are no dimensions, it will return an empty array.
- * Each dimension will be an index in the NSArray represented by an instance of the OptimizelyDimension class.
- */
-+ (NSArray *)getDimensions;
-
 /** Activates a manual experiment with the given id. If it passes targeting, the experiment
  * will be bucketed and marked as visited. This must be called after startOptimizelyWithAPIToken.
  *
@@ -263,6 +276,57 @@ typedef NS_ENUM (NSInteger, OptimizelyInitializationState) {
  * @param experimentId The id of the experiment you are bucketing within.
  */
 + (void)forceVariation:(NSString *)variationId ofExperiment:(NSString *)experimentId;
+
+#pragma mark - Optimizely Attributes
+
+/** This method returns a copy of all attributes that are defined in the data file.
+ * If this is called before Optimizely starts, it will return an empty array.
+ * If there are no attributes, it will return an empty array.
+ * Each attribute will be an index in the NSArray represented by an instance of the OptimizelyAttribute class.
+ */
++ (NSArray *)getAttributes;
+
+/** This method gets the current value of the Optimizely Attribute object with the input attribute Id.
+ * If attribute Id is nil, it will return nil.
+ * If this method is called before Optimizely is started, it will return what is currently stored.
+ * After Optimizely is started, if there is no corresponding OptimizelyAttribute object with that attribute Id, it will return nil.
+ * @param attributeId The id of the OptimizelyAttribute object whose value is being queried.
+ * @return The value of the OptimizelyAttribute object if found.
+ */
++ (NSString *)getAttributeValueForAttributeId:(NSString *)attributeId;
+
+/** This method gets the current value of the Optimizely Attribute object with the input attribute API Name.
+ * If attribute API Name is nil, it will return nil.
+ * If this method is called before Optimizely is started, it will return what is currently stored.
+ * After Optimizely is started, if there is no corresponding OptimizelyAttribute object with that attribute API Name, it will return nil.
+ * @param attributeApiName The API Name of the OptimizelyAttribute object whose value is being queried.
+ * @return The value of the OptimizelyAttribute object if found.
+ */
++ (NSString *)getAttributeValueForAttributeApiName:(NSString *)attributeApiName;
+
+/** This method sets the value for a attribute with the corresponding Id.
+ * If attributeId is nil, it will return NO.
+ * If this method is called before Optimizely is started, it will return YES.
+ *   It will be unable to check if the attributeId is valid and will only store the key value pair.
+ * If this method is called after Optimizely is started, it will return YES if it properly sets the value.
+ * If there is no corresponding OptimizelyAttribute, it will return NO.
+ * @param value The value to set the OptimizelyAttribute to.
+ * @param attributeId The attribute Id of the OptimizelyAttribute you want to modify.
+ * @return YES if the value is successfully set. NO otherwise
+ */
++ (BOOL)setValue:(NSString *)value forAttributeId:(NSString *)attributeId;
+
+/** This method sets the value for a attribute with the corresponding API Name.
+ * If attributeApiName is nil, it will return NO.
+ * If this method is called before Optimizely is started, it will return YES.
+ *   It will be unable to check if the attributeApiName is valid and will only store the key value pair.
+ * If this method is called after Optimizely is started, it will return YES if it properly sets the value.
+ * If there is no corresponding OptimizelyAttribute, it will return NO.
+ * @param value The value to set the OptimizelyAttribute to.
+ * @param attributeApiName The attribute API Name of the OptimizelyAttribute you want to modify.
+ * @return YES if the value is successfully set. NO otherwise
+ */
++ (BOOL)setValue:(NSString *)value forAttributeApiName:(NSString *)attributeApiName;
 
 #pragma mark - Variable getters
 /** @name Live Variables */
@@ -316,7 +380,7 @@ typedef NS_ENUM (NSInteger, OptimizelyInitializationState) {
  */
 + (BOOL)boolForKey:(OptimizelyVariableKey *)key;
 
-/** This method registers a callback method for when a given variable is changed.
+/** This method registers a callback that is run when the given variable is changed.
  *
  *  Method signature is: void (^callback)(NSString *, id)
  *  @param key The Optimizely key associated with the variable you want to watch
@@ -379,7 +443,7 @@ typedef NS_ENUM (NSInteger, OptimizelyInitializationState) {
                 blockFour:(void (^)(void))blockFour
              defaultBlock:(void (^)(void))defaultBlock;
 
-/** This method registers a callback method for when a given code block is changed.
+/** This method registers a callback that is run when the given code block is changed.
  *
  *  Method signature is: void (^callback)()
  *  @param key The Optimizely key associated with the code block you want to watch
@@ -393,7 +457,7 @@ typedef NS_ENUM (NSInteger, OptimizelyInitializationState) {
 
 /**
  * Stores the set of classes that Optimizely will ignore generating OptimizelyIds for.
- * @param viewSubclassesToIgnoreForTagging A set of all the string class names that you want Optmizely to ignore generating Ids for.
+ * @param viewSubclassesToIgnoreForTagging A set of all string class names for which Optimizely will not generate IDs.
  */
 + (void)ignoreUIViewSubclassesWithNames:(NSSet *)viewSubclassesToIgnoreForTagging;
 
@@ -427,15 +491,15 @@ typedef NS_ENUM (NSInteger, OptimizelyInitializationState) {
 /** The current SDK version. */
 @property (readonly, strong) NSString *sdkVersion;
 
-/** A unique identifier for the current user set by you, that can be used to identifier end users across platforms.
+/** A unique identifier that can be set. It is used to identify end users across platforms.
  * If a custom identifier is provided, it must be set prior to calling `+startWithProjectId:launchOptions:`.
  * Setting the `universalUserId` to nil will clear the UUID.
  */
 @property (nonatomic, readwrite, strong) NSString *universalUserId;
 
 /**
- * This is a Unique ID generated by the Optimizely SDK.
- * An Optimizely End User ID is assigned to each of your end users who successfully start the SDK.
+ * This is a unique ID generated by the Optimizely SDK.
+ * An Optimizely End User ID is assigned to each of the end users who successfully start the SDK.
  */
 @property (nonatomic, readonly, strong) NSString *optimizelyEndUserId;
 
@@ -487,6 +551,12 @@ typedef NS_ENUM (NSInteger, OptimizelyInitializationState) {
 /** This returns the initialization state of the Optimizely singleton. */
 @property (nonatomic, readonly) OptimizelyInitializationState startingState;
 
+/** Returns the running mode of Optimizely.
+ * The default value is OptimizelyRunningModeNormal.
+ */
+@property (nonatomic, readonly) OptimizelyRunningMode mode;
+
+
 #pragma mark - NSNotification Keys
 /**
  *  Constant NSNotification key that is triggered when Optimizely has completed startup.
@@ -515,7 +585,7 @@ extern NSString *const OptimizelyGoalTriggeredNotification;
 
 #pragma mark - Integrations
 /**
- * Register the given plugin. This function should be called by the end user if the
+ * Registers the given plugin. This function should be called by the end user if the
  * plugin that they wish to use does not implement auto-registry, or if your project is
  * written in Swift (which lacks macro support). Plugin maintainers
  * should prefer using the OptimizelyRegisterPlugin macro from OptimizelyPlugin.h
@@ -527,6 +597,15 @@ extern NSString *const OptimizelyGoalTriggeredNotification;
 /** @name Deprecated Methods and Properties */
 
 /* These methods will be removed in a future release */
+
+/** @deprecated. Use `+getAttributes`.
+ *
+ * This method returns a copy of all dimensions that are defined in the data file.
+ * If this is called before Optimizely starts, it will return an empty array.
+ * If there are no dimensions, it will return an empty array.
+ * Each dimension will be an index in the NSArray represented by an instance of the OptimizelyAttribute class.
+ */
++ (NSArray *)getDimensions __attribute((deprecated("Use [Optimizely getAttributes]")));
 
 /**  @deprecated.  Use `+trackEvent:`.
  *
@@ -636,19 +715,19 @@ extern NSString *const OptimizelyGoalTriggeredNotification;
       withBlocks:(NSDictionary *)blocks
     defaultBlock:(void (^)(void))defaultBlock __attribute((deprecated("Use [Optimizely codeTestWithKey: blockOne:...]")));
 
-/** @deprecated.  Use `allExperiments` or `visitedExperiments`.
+/**  @deprecated.  Use `allExperiments` or `visitedExperiments`.
  *
- *  Provides an array of all the experiments currently active for the user to the variation
- *  they're bucketed into for that experiment. The metadata includes experiment Id, variation Id,
- *  experiment description and variation description.
+ * Provides an array of all the experiments currently active for the user to the variation
+ * they're bucketed into for that experiment. The metadata includes experiment Id, variation Id,
+ * experiment description and variation description.
  *
- *  When an experimenet is viewed, Optimizely will trigger an NSNotification with the key "OptimizelyExperimentVisitedNotification".
- *  The userInfo will have metadata which includes experiment Id, variation Id, experiment description and variation description.
+ * When an experimenet is viewed, Optimizely will trigger an NSNotification with the key "OptimizelyExperimentVisitedNotification".
+ * The userInfo will have metadata which includes experiment Id, variation Id, experiment description and variation description.
  */
 @property (readonly, strong, nonatomic) NSArray *activeExperiments __attribute((deprecated("Use allExperiments or visitedExperiments")));
 
-/** @deprecated. Use `optimizelyEndUserId` for Optimizely's randomly generated end user Id
- *  or `universalUserId` to access the read/write property that developers can edit.
+/**  @deprecated. Use `optimizelyEndUserId` for Optimizely's randomly generated end user Id
+ * or `universalUserId` to access the read/write property that developers can edit.
  */
 @property (nonatomic, strong) NSString *userId __attribute((deprecated("use optimizelyEndUserId or universalUserId")));
 @end
