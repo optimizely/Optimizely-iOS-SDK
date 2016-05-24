@@ -1,4 +1,31 @@
 # Optimizely iOS SDK Changelog
+### 1.5.0
+May 23, 2016
+
+*New Features:*
+* **Optimizely Attributes:** You can now create Optimizely Attributes for iOS in the project dashboard. These attributes can be used to segment results on the results page and for audience targeting. New APIs to get and set the value for attributes have been created. More details can be found [here](https://help.optimizely.com/Target_Your_Visitors/Mobile_Attributes).
+
+  * You can set an attribute’s value by using either ```[Optimizely setValue:(NSString *)value forAttributeId:(NSString*)attributeId]``` or ```[Optimizely setValue:(NSString *)value forAttributeApiName:(NSString *)attributeApiName].```
+  * You can get an attribute’s current value by using either ```[Optimizely getAttributeValueForAttributeId:(NSString *)attributeId] ``` or ```[Optimizely getAttributeValueForAttributeApiName:(NSString *)attributeApiName].```
+  * You can get a copy of all attributes by calling [Optimizely getAttributes]. This replaces the previous ``` [Optimizely getDimensions] ``` call.
+
+* **New Headers:**
+OptimizelyAttribute.h - Represents an Optimizely Attribute. Read more about Optimizely Attributes [here](https://help.optimizely.com/Target_Your_Visitors/Mobile_Attributes)
+
+* **New APIs:**
+Added an API to access the Optimizely running mode:
+ ```[Optimizely sharedInstance].runningMode.```
+
+*Bug Fixes:*
+* Fixed sending Localytics Name + Variation without parenthesis.
+* Fixed memory leak caused by not releasing an allocated memory in a non-arc source file.
+* Improved editor stability.
+* Refactored kill switch file retrieval to reduce Optimizely startup time.
+
+*Deprecations:*
+
+* ```[Optimizely getDimensions]``` is now deprecated. Please use ```[Optimizely getAttributes]```.
+* OptimizelyDimension.h: This class is now deprecated. Please use Optimizely Attribute.
 
 ### 1.4.2
 March 9, 2016
