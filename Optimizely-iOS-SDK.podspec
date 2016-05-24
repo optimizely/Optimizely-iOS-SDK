@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '6.0'
   s.requires_arc = true
 
-  s.source           = { :git => "https://github.com/optimizely/Optimizely-iOS-SDK.git", ::tag => s.version.to_s}
+  s.source           = { :git => "https://github.com/optimizely/Optimizely-iOS-SDK.git", :tag => s.version.to_s}
 
   s.frameworks = 'AudioToolbox', 'CFNetwork', 'Foundation', 'MobileCoreServices', 'Security', 'SystemConfiguration', 'UIKit'
   s.libraries = 'icucore', 'sqlite3'
