@@ -1,5 +1,4 @@
-# Optimizely iOS SDK Changelog
-### 1.5.0
+# 1.5.0
 May 23, 2016
 
 *New Features:*
@@ -27,17 +26,17 @@ Added an API to access the Optimizely running mode:
 * ```[Optimizely getDimensions]``` is now deprecated. Please use ```[Optimizely getAttributes]```.
 * OptimizelyDimension.h: This class is now deprecated. Please use Optimizely Attribute.
 
-### 1.4.2
+# 1.4.2
 March 9, 2016
 
 *Bug Fixes:*
 
 * We made a merge error and the internal version is 1.4.2 instead of 1.4.0. We are trying to make all affected files consistent with 1.4.2 since customers are already using 1.4.2.
 
-### 1.4.1
+# 1.4.1
 Skipped
 
-### 1.4.0
+# 1.4.0
 February 25, 2016
 
 *New Features:*
@@ -69,7 +68,7 @@ February 25, 2016
   * [`Optimizely activateLocalyticsIntegration]`](https://help.optimizely.com/hc/en-us/articles/209645787-Integrating-Optimizely-with-Localytics-for-iOS-and-Android) - activate the Localytics integration via the Integrations tab in the web editor.
   * [`[Optimizely activateMixpanelIntegration]`](https://help.optimizely.com/hc/en-us/articles/200040025-Integrating-Optimizely-with-Mixpanel-Web-iOS-and-Android-) -  activate the Mixpanel integration via the Integrations tab in the web editor.
 
-### 1.3.2
+# 1.3.2
 November 20, 2015
 
 **Optimizely will no longer support Xcode 6**
@@ -77,7 +76,7 @@ November 20, 2015
 *Bug Fixes:*
 - Fixed a bug with preview mode and visual experiments
 
-### 1.3.1
+# 1.3.1
 November 10, 2015
 
 **Optimizely will no longer support Xcode 6**
@@ -85,7 +84,7 @@ November 10, 2015
 *Bug Fixes:*
 - Fixed issue when archiving with the SDK
 
-### 1.3.0
+# 1.3.0
 November 6, 2015
 
 *Announcements:*
@@ -108,20 +107,20 @@ Read more in-depth descriptions [here](/ios/reference/index.html#experiment-acti
 *Bug Fixes:*
 - Fixed bug in language Audience condition
 
-### 1.2.2
+# 1.2.2
 October 12, 2015
 
 *Bug Fixes*
 - Fixed more warnings in Xcode 7
 
-### 1.2.1
+# 1.2.1
 October 6, 2015
 
 *Bug Fixes*
 - Fixed warnings stemming from Xcode 7 and static libraries
 - Re-added armv7s which was removed by default in Xcode 7
 
-### 1.2.0
+# 1.2.0
 October 5, 2015
 
 *New Features*
