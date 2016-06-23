@@ -2,6 +2,7 @@
 May 23, 2016
 
 *New Features:*
+
 * **Optimizely Attributes:** You can now create Optimizely Attributes for iOS in the project dashboard. These attributes can be used to segment results on the results page and for audience targeting. New APIs to get and set the value for attributes have been created. More details can be found [here](https://help.optimizely.com/Target_Your_Visitors/Mobile_Attributes).
 
   * You can set an attribute’s value by using either ```[Optimizely setValue:(NSString *)value forAttributeId:(NSString*)attributeId]``` or ```[Optimizely setValue:(NSString *)value forAttributeApiName:(NSString *)attributeApiName].```
@@ -16,6 +17,7 @@ Added an API to access the Optimizely running mode:
  ```[Optimizely sharedInstance].runningMode.```
 
 *Bug Fixes:*
+
 * Fixed sending Localytics Name + Variation without parenthesis.
 * Fixed memory leak caused by not releasing an allocated memory in a non-arc source file.
 * Improved editor stability.
