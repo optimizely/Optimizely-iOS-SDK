@@ -3,13 +3,13 @@ June 27, 2016
 
 *New Features:*
 
-* **Enhanced Preview Mode:** Aside from a new look, the enhanced Preview mode allows you to select multiple variations from different experiments and enable them at the same time. A new API also allows you to enable preview mode programmatically without having to go through the web client. 
+* **Enhanced Preview Mode:** Aside from a new look, the enhanced Preview mode allows you to select multiple variations from different experiments and enable them at the same time. A new API also allows you to enable Preview mode programmatically without having to go through the web client. You can also enter Preview mode while in Edit mode by tapping on the Editor icon. 
 
 * **New APIs:**
     * Enter Preview mode programmatically without having to go through the web client:
     ```[Optimizely enablePreview]```
 
-    * Restart app after reseting user bucketing info, so that at relaunch the user will be in her new bucketed state:
+    * Reset user bucketing info and restart app immediately so that at relaunch the user will be in their new bucketed state:
     ```[Optimizely resetUserBucketingAndRestartApp]```. This API can be called any time during the app's lifecycle.
 
 *Bug Fixes:*
