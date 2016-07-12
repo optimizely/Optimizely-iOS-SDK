@@ -245,10 +245,6 @@ typedef NS_ENUM (NSUInteger, OptimizelyRunningMode) {
  */
 + (void)resetUserBucketing;
 
-/** This method clears user bucketing data and immediately relaunches the app so that the user will 
- be re-bucketed upon the app re-launch. */
-+ (void)resetUserBucketingAndRestartApp;
-
 /** This method returns a copy of all audiences that are defined in the data file.
  * If this is called before Optimizely starts, it will return an empty array.
  * If there are no audiences, it will return an empty array.
