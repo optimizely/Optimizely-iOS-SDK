@@ -17,6 +17,7 @@
 #import "OptimizelyVariableKey.h"
 #import "OptimizelyPlugin.h"
 #import "OptimizelyAttribute.h"
+#import "OptimizelyDimension.h"
 
 /**
  * Wrapper for a callback handler block
@@ -148,19 +149,28 @@ typedef NS_ENUM (NSUInteger, OptimizelyRunningMode) {
  * opening the app through the custom URL accessible in the Optimizely web editor.
  *
  * @warning We recommend that this call be wrapped in an `#ifdef DEBUG` flag.  It should be removed from test and production builds.
- * @warning Should be called before `+startWithProjectId:launchOptions:`.
+ * @warning Should be called before `startOptimizelyWithAPIToken`.
  */
 + (void)enableEditor;
 
+/** This method enables the preview mode on the device/simulator.
+ *
+ * It provides an alternate way of opening the app, bypassing the use of the custom URL or web editor.
+ *
+ * @warning We recommend that this call be wrapped in an `#ifdef DEBUG` flag.  It should be removed from test and production builds.
+ * @warning Should be called before `startOptimizelyWithAPIToken`.
+ */
++ (void)enablePreview;
+
 /** This method deactivates the swizzling functionality of the SDK required for use of the visual editor.
  *
- * @warning Should be called before `+startWithProjectId:launchOptions:`.
+ * @warning Should be called before `startOptimizelyWithAPIToken`.
  */
 + (void)disableSwizzle;
 
 /** This method enables the Optimizely gesture that launches your app into edit mode for builds
  *  of your app downloaded from the app store.
- *  @warning Must be called before `+startWithProjectId:launchOptions:`.
+ *  @warning Must be called before `startOptimizelyWithAPIToken`.
  */
 + (void)enableGestureInAppStoreApp;
 
@@ -492,7 +502,7 @@ typedef NS_ENUM (NSUInteger, OptimizelyRunningMode) {
 @property (readonly, strong) NSString *sdkVersion;
 
 /** A unique identifier that can be set. It is used to identify end users across platforms.
- * If a custom identifier is provided, it must be set prior to calling `+startWithProjectId:launchOptions:`.
+ * If a custom identifier is provided, it must be set prior to calling `startOptimizelyWithAPIToken`.
  * Setting the `universalUserId` to nil will clear the UUID.
  */
 @property (nonatomic, readwrite, strong) NSString *universalUserId;
