@@ -1,3 +1,11 @@
+# 1.6.1
+July 25, 2016
+
+*Bug Fixes:*
+
+* Fixed an error in which default segments would not be sent with events. 
+* Fixed a crash when `[Optimizely trackRevenue:withDescription:]` is called in the app, but the downloaded datafile does not have a revenue goal.
+
 # 1.6.0
 July 12, 2016
 
