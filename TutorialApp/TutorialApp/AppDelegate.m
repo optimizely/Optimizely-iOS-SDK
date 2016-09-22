@@ -66,7 +66,7 @@
     }
     
     [Optimizely startOptimizelyWithAPIToken:
-     @"ABCDEF~123456"
+     @"AANVfB0B653KZ6IByle_wz_QjNzxj_Sw~7504940381"
                               launchOptions:launchOptions];
     
     // [OPTIMIZELY] (OPTIONAL) Mixpanel Integration Instructions and order
