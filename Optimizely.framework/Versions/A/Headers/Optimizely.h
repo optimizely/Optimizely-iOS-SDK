@@ -245,10 +245,6 @@ typedef NS_ENUM (NSUInteger, OptimizelyRunningMode) {
  */
 + (void)resetUserBucketing;
 
-/** This method clears user bucketing data and immediately relaunches the app so that the user will 
- be re-bucketed upon the app re-launch. */
-+ (void)resetUserBucketingAndRestartApp;
-
 /** This method returns a copy of all audiences that are defined in the data file.
  * If this is called before Optimizely starts, it will return an empty array.
  * If there are no audiences, it will return an empty array.
@@ -474,6 +470,14 @@ typedef NS_ENUM (NSUInteger, OptimizelyRunningMode) {
  * @param viewSubclassesToIgnoreForTagging A set of all string class names for which Optimizely will not generate IDs.
  */
 + (void)ignoreUIViewSubclassesWithNames:(NSSet *)viewSubclassesToIgnoreForTagging;
+
+/**
+ * Disables the Optimizely Kill Switch
+ *
+ * The Optimizely Kill Switch allows the SDK to be disabled remotely.  This is a common request
+ * if an app starts crashing to due to the SDK. Disabling this will speed up startup time.
+ */
++ (void)disableKillSwitch;
 
 #pragma mark - Properties
 /** @name Properties */
