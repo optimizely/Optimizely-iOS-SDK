@@ -1,13 +1,20 @@
-# 1.6.1
-July 25, 2016
+# 1.7.0
+September 26, 2016
+
+*New Features:*
+
+* **New API -** Users can call ```[Optimizely disableKillSwitch]``` before starting the SDK to disable the kill switch file download. This can speed up SDK launch time. 
+* **Security enhancement -** Disable users from entering the Edit mode if the app is distributed in the app store.
 
 *Bug Fixes:*
 
-* Fixed an error in which default segments would not be sent with events. 
-* Fixed a crash when `[Optimizely trackRevenue:withDescription:]` is called in the app, but the downloaded datafile does not have a revenue goal.
+* Fixed Preview mode on iPad crash.
+* Hide Preview orb when the Preview views are displayed. 
+* Downgraded some verbose logs that were not actual errors from error level to info level to reduce the noise in the Preview activity feed. 
+* Removed legacy Preview mode code to reduce the size of the SDK. 
 
 # 1.6.0
-July 12, 2016
+July 27, 2016
 
 *New Features:*
 

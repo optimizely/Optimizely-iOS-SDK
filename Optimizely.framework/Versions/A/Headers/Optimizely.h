@@ -471,6 +471,14 @@ typedef NS_ENUM (NSUInteger, OptimizelyRunningMode) {
  */
 + (void)ignoreUIViewSubclassesWithNames:(NSSet *)viewSubclassesToIgnoreForTagging;
 
+/**
+ * Disables the Optimizely Kill Switch
+ *
+ * The Optimizely Kill Switch allows the SDK to be disabled remotely.  This is a common request
+ * if an app starts crashing to due to the SDK. Disabling this will speed up startup time.
+ */
++ (void)disableKillSwitch;
+
 #pragma mark - Properties
 /** @name Properties */
 
