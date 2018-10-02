@@ -1,3 +1,6 @@
+## IMPORTANT NOTE
+Starting September 30th, 2018, Optimizely Classic Mobile has been deprecated. We recommend that all customers move to Optimizely X Full Stack, which includes a new version of Optimizely's mobile solution for experimenting on native iOS apps. Learn more [here](https://docs.developers.optimizely.com/full-stack/docs).
+
 # Optimizely for iOS
 
 This is a release of our iOS optimization product. Your [feedback](mailto:support@optimizely.com) is critical and will help us shape the future of this product!
